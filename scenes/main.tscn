@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
+[ext_resource type="Script" path="res://scripts/aircraft_hud.gd" id="2_op104"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="Script" path="res://scripts/aircraft.gd" id="4_upyut"]
 [ext_resource type="Script" path="res://scenes/vector3_label.gd" id="5_qo7oq"]
@@ -10,6 +11,7 @@
 [ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://models/aircrafts/ask21/normal_speed.tres" id="7_vrlh3"]
 [ext_resource type="Script" path="res://scenes/tile_terrain_spawner.gd" id="7_yrhfb"]
 [ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://models/aircrafts/ask21/fast_speed.tres" id="8_4ibqx"]
+[ext_resource type="Script" path="res://scripts/updraft.gd" id="12_l4clu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -23,18 +25,26 @@ background_mode = 2
 sky = SubResource("Sky_xnigv")
 tonemap_mode = 2
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_51cc8"]
+height = 1000.0
+radius = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yq1n"]
+transparency = 1
+albedo_color = Color(0.443137, 1, 1, 0.423529)
+disable_receive_shadows = true
+
 [node name="Node3D" type="Node3D"]
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="UI" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
@@ -58,23 +68,53 @@ text = "Velocity: "
 layout_mode = 2
 script = ExtResource("5_qo7oq")
 
+[node name="Aircraft HUD" type="Control" parent="UI" node_paths=PackedStringArray("aircraft", "horizontal_speed_label", "vertical_speed_label")]
+layout_mode = 2
+script = ExtResource("2_op104")
+aircraft = NodePath("../../Glider")
+horizontal_speed_label = NodePath("HorizontalSpeed")
+vertical_speed_label = NodePath("VerticalSpeed")
+
+[node name="HorizontalSpeed" type="Label" parent="UI/Aircraft HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 29.0
+grow_vertical = 0
+text = "100km/h"
+
+[node name="VerticalSpeed" type="Label" parent="UI/Aircraft HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -27.0
+offset_top = -26.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "-2m/s"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q57oy")
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 82.9019, -19.6962)
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.37751e-06, 84.2074, -15.7569)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
 follow_mode = 5
 follow_target = NodePath("../Glider")
-follow_parameters/distance = 20.0
-follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/distance = 16.0
+follow_parameters/target_offset = Vector3(0, 2, 0)
 follow_parameters/damping = true
 follow_parameters/damping_value = 10.0
 follow_parameters/dead_zone_horizontal = 0.3
 follow_parameters/dead_zone_vertical = 0.05
-follow_parameters/viewfinder_in_play = true
+follow_parameters/viewfinder_in_play = false
 look_at_mode = 0
 tween_parameters = null
 tween_on_load = true
@@ -82,13 +122,15 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 82.9019, -19.6962)
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.37751e-06, 84.2074, -15.7569)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("3_yq5g2")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.429, 0)
+collision_layer = 1
+collision_mask = 6
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 script = ExtResource("4_upyut")
@@ -100,6 +142,29 @@ fast_speed = ExtResource("8_4ibqx")
 script = ExtResource("7_yrhfb")
 
 [node name="small_mountain" parent="Terrain" instance=ExtResource("7_fymdx")]
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.4203, 237.416)
+collision_layer = 4
+monitorable = false
+wind_force_magnitude = 2.73
+wind_source_path = NodePath(".")
+script = ExtResource("12_l4clu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 415.872, 0)
+shape = SubResource("CylinderShape3D_51cc8")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
+radius = 100.0
+height = 1000.0
+material = SubResource("StandardMaterial3D_5yq1n")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
+radius = 5.0
+height = 1000.0
 
 [connection signal="position_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer/PositionValueLabel" method="_on_vector_changed"]
 [connection signal="velocity_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer2/VelocityValueLabel" method="_on_vector_changed"]

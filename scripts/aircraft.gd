@@ -8,6 +8,7 @@ enum FlightModel {
 
 @export_group("Flight model")
 @export var fligth_model: FlightModel = FlightModel.Arcade
+## Acceleration, in m/s²
 @export var acceleration: float = 6
 
 @export_subgroup("Arcade")
@@ -22,7 +23,9 @@ enum FlightModel {
 @export var drag_coefficient: float = 0.0005
 @export var air_density: float = 1.293
 
-var aligned_velocity := Vector3()
+var horizontal_speed := 0.0
+var base_vertical_speed := 0.0
+var wind_vertical_speed := 0.0
 var last_velocity := Vector3()
 
 
@@ -36,7 +39,8 @@ func _ready():
 		FlightModel.Arcade:
 			gravity_scale = 0
 			custom_integrator = true
-			aligned_velocity = Vector3(0, -normal_speed.vertical_speed, normal_speed.horizontal_speed)
+			horizontal_speed = normal_speed.horizontal_speed
+			base_vertical_speed = -normal_speed.vertical_speed
 		FlightModel.Realist:
 			pass
 
@@ -77,21 +81,21 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 	else:
 		state.angular_velocity.y = 0
 
-	state.linear_velocity = aligned_velocity.rotated(Vector3.UP, rotation.y)
+	state.linear_velocity = Vector3(0, -base_vertical_speed + wind_vertical_speed, horizontal_speed).rotated(Vector3.UP, rotation.y)
 
 
 func _integrate_speed_data(state: PhysicsDirectBodyState3D, speed: SpeedData):
-	aligned_velocity.z = clampf(
+	horizontal_speed = clampf(
 		speed.horizontal_speed,
-		aligned_velocity.z - acceleration * state.step,
-		aligned_velocity.z + acceleration * state.step)
+		horizontal_speed - acceleration * state.step,
+		horizontal_speed + acceleration * state.step)
 
-	if aligned_velocity.z >= normal_speed.horizontal_speed:
-		var weight := (fast_speed.horizontal_speed - aligned_velocity.z) / (fast_speed.horizontal_speed - normal_speed.horizontal_speed)
-		aligned_velocity.y = -lerpf(fast_speed.vertical_speed, normal_speed.vertical_speed, weight)
+	if horizontal_speed >= normal_speed.horizontal_speed:
+		var weight := (fast_speed.horizontal_speed - horizontal_speed) / (fast_speed.horizontal_speed - normal_speed.horizontal_speed)
+		base_vertical_speed = lerpf(fast_speed.vertical_speed, normal_speed.vertical_speed, weight)
 	else:
-		var weight := (normal_speed.horizontal_speed - aligned_velocity.z) / (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
-		aligned_velocity.y = -lerpf(normal_speed.vertical_speed, slow_speed.vertical_speed, weight)
+		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
+		base_vertical_speed = lerpf(normal_speed.vertical_speed, slow_speed.vertical_speed, weight)
 
 	
 func _integrate_forces_realist(state):

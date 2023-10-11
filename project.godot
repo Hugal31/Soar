@@ -21,6 +21,8 @@ window/size/viewport_width=320
 window/size/viewport_height=240
 window/size/window_width_override=1152
 window/size/window_height_override=864
+window/stretch/aspect="ignore"
+window/dpi/allow_hidpi=false
 
 [editor_plugins]
 
@@ -57,6 +59,12 @@ right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Aircraft"
+3d_physics/layer_2="Obstacles"
+3d_physics/layer_3="Winds"
+
 [physics]
 
 3d/default_linear_damp=0.0
@@ -64,8 +72,10 @@ right={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/default_filters/anisotropic_filtering_level=0
 
 [shader_globals]
 

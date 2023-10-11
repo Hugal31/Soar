@@ -1,25 +1,80 @@
-[gd_scene load_steps=4 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=14 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
+[ext_resource type="Script" path="res://scripts/aircraft.gd" id="4_upyut"]
+[ext_resource type="Script" path="res://scenes/vector3_label.gd" id="5_qo7oq"]
+[ext_resource type="Resource" uid="uid://b1dx8m0bsrpcj" path="res://models/aircrafts/ask21/slow_speed.tres" id="6_h7a5g"]
+[ext_resource type="PackedScene" uid="uid://cacpbipdcwfth" path="res://models/terrains/mountains/small_mountain.glb" id="7_fymdx"]
+[ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://models/aircrafts/ask21/normal_speed.tres" id="7_vrlh3"]
+[ext_resource type="Script" path="res://scenes/tile_terrain_spawner.gd" id="7_yrhfb"]
+[ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://models/aircrafts/ask21/fast_speed.tres" id="8_4ibqx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_xnigv"]
+sky_material = SubResource("ProceduralSkyMaterial_eufap")
+
+[sub_resource type="Environment" id="Environment_q57oy"]
+background_mode = 2
+sky = SubResource("Sky_xnigv")
+tonemap_mode = 2
 
 [node name="Node3D" type="Node3D"]
 
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="PositionLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Position: "
+
+[node name="PositionValueLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+script = ExtResource("5_qo7oq")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="VelocityLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Velocity: "
+
+[node name="VelocityValueLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+script = ExtResource("5_qo7oq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q57oy")
+
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(7.54979e-08, -0.242535, 0.970142, 0, 0.970142, 0.242535, -1, -1.83109e-08, 7.32436e-08, 19.4028, 4.85071, 1.46487e-06)
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 82.9019, -19.6962)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
 follow_mode = 5
-follow_target = NodePath("../ask21")
+follow_target = NodePath("../Glider")
 follow_parameters/distance = 20.0
 follow_parameters/target_offset = Vector3(0, 0, 0)
 follow_parameters/damping = true
 follow_parameters/damping_value = 10.0
-follow_parameters/dead_zone_horizontal = 0.5
-follow_parameters/dead_zone_vertical = 0.5
-follow_parameters/viewfinder_in_play = false
+follow_parameters/dead_zone_horizontal = 0.3
+follow_parameters/dead_zone_vertical = 0.05
+follow_parameters/viewfinder_in_play = true
 look_at_mode = 0
 tween_parameters = null
 tween_on_load = true
@@ -27,10 +82,24 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(7.54979e-08, -0.242535, 0.970142, 0, 0.970142, 0.242535, -1, -1.83109e-08, 7.32436e-08, 19.4028, 4.85071, 1.46487e-06)
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 82.9019, -19.6962)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("3_yq5g2")
 
-[node name="ask21" parent="." instance=ExtResource("1_mpoqe")]
+[node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 79.429, 0)
 mass = 400.0
+linear_velocity = Vector3(0, -2, 25)
+script = ExtResource("4_upyut")
+slow_speed = ExtResource("6_h7a5g")
+normal_speed = ExtResource("7_vrlh3")
+fast_speed = ExtResource("8_4ibqx")
+
+[node name="Terrain" type="Node3D" parent="."]
+script = ExtResource("7_yrhfb")
+
+[node name="small_mountain" parent="Terrain" instance=ExtResource("7_fymdx")]
+
+[connection signal="position_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer/PositionValueLabel" method="_on_vector_changed"]
+[connection signal="velocity_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer2/VelocityValueLabel" method="_on_vector_changed"]

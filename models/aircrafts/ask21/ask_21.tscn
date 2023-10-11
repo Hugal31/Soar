@@ -97,21 +97,25 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kue6f")
 
 [node name="ask21" type="RigidBody3D"]
-gravity_scale = 0.0
+collision_layer = 0
+collision_mask = 0
 
 [node name="Ask21_lowPoly_body" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_ekpq6")
 skeleton = NodePath("")
 
 [node name="Ask21_lowPoly_wings" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_mikt8")
 skeleton = NodePath("")
 
 [node name="Ask21_lowPoly_aileron_l" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = SubResource("ArrayMesh_wllfd")
 skeleton = NodePath("")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
-transform = Transform3D(0.998547, 2.35548e-09, 0.0538871, 0.0538871, -4.36479e-08, -0.998547, 0, 1, -4.37114e-08, 0, 0.113548, 0)
+transform = Transform3D(-1.06026e-07, 1, -4.66791e-08, 0.0538864, -4.0898e-08, -0.998547, -0.998547, -1.08387e-07, -0.0538864, 0, 0.113548, 0)
 polygon = PackedVector2Array(-0.627743, 0.75361, -3.66507, 0.00490045, -0.627743, -0.654979, -0.691039, -9.69715, 0.0794209, -9.56664, 1.08599, -0.310126, 4.25735, -0.182176, 4.50561, -1.6456, 4.9621, -1.60562, 5.00214, 1.61712, 4.45756, 1.64111, 4.27337, 0.161689, 1.07798, 0.313629, 0.19498, 9.38716, -0.761184, 9.49433)
 margin = 0.24

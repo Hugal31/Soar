@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://l25byk5j4gus"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
+[ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="PhantomCamera3D" type="Node3D" parent="."]
+transform = Transform3D(7.54979e-08, -0.242535, 0.970142, 0, 0.970142, 0.242535, -1, -1.83109e-08, 7.32436e-08, 19.4028, 4.85071, 1.46487e-06)
+script = ExtResource("1_5j3ov")
+priority_override = false
+priority = 0
+follow_mode = 5
+follow_target = NodePath("../ask21")
+follow_parameters/distance = 20.0
+follow_parameters/target_offset = Vector3(0, 0, 0)
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+follow_parameters/dead_zone_horizontal = 0.5
+follow_parameters/dead_zone_vertical = 0.5
+follow_parameters/viewfinder_in_play = false
+look_at_mode = 0
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+camera_3D_resource = null
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(7.54979e-08, -0.242535, 0.970142, 0, 0.970142, 0.242535, -1, -1.83109e-08, 7.32436e-08, 19.4028, 4.85071, 1.46487e-06)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+script = ExtResource("3_yq5g2")
+
+[node name="ask21" parent="." instance=ExtResource("1_mpoqe")]
+mass = 400.0

@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://deou1800af4rc"]
+
+[ext_resource type="Shader" path="res://shaders/psx/psx_unlit.gdshader" id="1_p7bmf"]
+[ext_resource type="Texture2D" uid="uid://cs6iparfs3230" path="res://models/aircrafts/ask21/ask21_ask21.png" id="2_qrf4w"]
+
+[resource]
+resource_name = "Ask21"
+render_priority = 0
+shader = ExtResource("1_p7bmf")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader_parameter/albedoTex = ExtResource("2_qrf4w")

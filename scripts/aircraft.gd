@@ -51,8 +51,14 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	var target_rotation_z := 0.0
+	if Input.is_action_pressed("left"):
+		target_rotation_z = -30
+	elif Input.is_action_pressed("right"):
+		target_rotation_z = 30
+	rotation_degrees.z = clampf(target_rotation_z, rotation_degrees.z - delta * 60, rotation_degrees.z + delta * 60)
+
 	var acceleration: Vector3 = (linear_velocity - last_velocity) / delta
-	print("acceleration is (x: %.4f, y: %.4f, z: %.4f)m/s²" % [acceleration.x, acceleration.y, acceleration.z])
 	last_velocity = linear_velocity
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)

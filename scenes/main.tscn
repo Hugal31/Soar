@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=25 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
@@ -10,7 +10,10 @@
 [ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://models/aircrafts/ask21/normal_speed.tres" id="7_vrlh3"]
 [ext_resource type="Script" path="res://scenes/tile_terrain_spawner.gd" id="7_yrhfb"]
 [ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://models/aircrafts/ask21/fast_speed.tres" id="8_4ibqx"]
-[ext_resource type="PackedScene" uid="uid://d3m2ojsnwlel1" path="res://models/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
+[ext_resource type="Script" path="res://scripts/shadow.gd" id="10_buhu2"]
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent_no_depth_test.gdshader" id="11_51uem"]
+[ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://models/misc/aircraft_shadow.png" id="11_ertk6"]
+[ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://models/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Script" path="res://scripts/updraft.gd" id="12_l4clu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
@@ -26,6 +29,23 @@ sky = SubResource("Sky_xnigv")
 tonemap_mode = 2
 fog_light_color = Color(0.623529, 0.721569, 0.882353, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tdqj"]
+render_priority = 0
+shader = ExtResource("11_51uem")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader_parameter/albedoTex = ExtResource("11_ertk6")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_y4xae"]
+material = SubResource("ShaderMaterial_5tdqj")
+flip_faces = true
+size = Vector2(20, 10)
+subdivide_width = 4
+subdivide_depth = 2
+orientation = 2
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_51cc8"]
 height = 1000.0
 radius = 100.0
@@ -34,6 +54,12 @@ radius = 100.0
 transparency = 1
 albedo_color = Color(0.443137, 1, 1, 0.423529)
 disable_receive_shadows = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x6cj1"]
+size = Vector2(100, 100)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_esj2u"]
+points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
 
 [node name="Node3D" type="Node3D"]
 
@@ -135,14 +161,19 @@ script = ExtResource("3_yq5g2")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -219.993)
-collision_layer = 1
-collision_mask = 6
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 script = ExtResource("4_upyut")
 slow_speed = ExtResource("6_h7a5g")
 normal_speed = ExtResource("7_vrlh3")
 fast_speed = ExtResource("8_4ibqx")
+
+[node name="ShadowSpring" type="Node3D" parent="Glider"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.33185, 0)
+script = ExtResource("10_buhu2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Glider/ShadowSpring"]
+mesh = SubResource("PlaneMesh_y4xae")
 
 [node name="Terrain" type="Node3D" parent="."]
 script = ExtResource("7_yrhfb")
@@ -171,6 +202,38 @@ material = SubResource("StandardMaterial3D_5yq1n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
 radius = 5.0
 height = 1000.0
+
+[node name="Shadow test" type="Node3D" parent="."]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Shadow test"]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 543.918, -52.0256)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D2"]
+mesh = SubResource("PlaneMesh_x6cj1")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D2"]
+shape = SubResource("ConvexPolygonShape3D_esj2u")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Shadow test"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 543.918, -152.418)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D"]
+mesh = SubResource("PlaneMesh_x6cj1")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_esj2u")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="Shadow test"]
+transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 543.918, 47.9744)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D3"]
+mesh = SubResource("PlaneMesh_x6cj1")
+skeleton = NodePath("../../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D3"]
+shape = SubResource("ConvexPolygonShape3D_esj2u")
 
 [connection signal="position_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer/PositionValueLabel" method="_on_vector_changed"]
 [connection signal="velocity_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer2/VelocityValueLabel" method="_on_vector_changed"]

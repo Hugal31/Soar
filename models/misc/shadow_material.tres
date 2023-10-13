@@ -1,0 +1,17 @@
+[gd_resource type="PlaneMesh" load_steps=4 format=3 uid="uid://djjacd7xe0m6o"]
+
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent.gdshader" id="1_v8qk6"]
+[ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://models/misc/aircraft_shadow.png" id="2_r5bpr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tdqj"]
+render_priority = 0
+shader = ExtResource("1_v8qk6")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader_parameter/albedoTex = ExtResource("2_r5bpr")
+
+[resource]
+material = SubResource("ShaderMaterial_5tdqj")
+size = Vector2(10, 10)

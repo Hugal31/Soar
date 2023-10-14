@@ -1,5 +1,5 @@
 extends RigidBody3D
-
+class_name Aircraft
 
 enum FlightModel {
 	Arcade,
@@ -28,6 +28,10 @@ var base_vertical_speed := 0.0
 var wind_vertical_speed := 0.0
 var last_velocity := Vector3()
 
+const BANK_ANGLE := deg_to_rad(30)
+const HIGH_BANK_ANGLE := deg_to_rad(50)
+const BANK_VELOCITY = deg_to_rad(60)
+@onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
@@ -52,11 +56,16 @@ func _process(delta):
 
 func _physics_process(delta):
 	var target_rotation_z := 0.0
+	var max_bank_angle := BANK_ANGLE
+	if Input.is_action_pressed("high_bank"):
+		max_bank_angle = HIGH_BANK_ANGLE
 	if Input.is_action_pressed("left"):
-		target_rotation_z = -30
+		target_rotation_z = -max_bank_angle
 	elif Input.is_action_pressed("right"):
-		target_rotation_z = 30
-	rotation_degrees.z = clampf(target_rotation_z, rotation_degrees.z - delta * 60, rotation_degrees.z + delta * 60)
+		target_rotation_z = max_bank_angle
+	rotation.z = clampf(target_rotation_z,
+		rotation.z - delta * BANK_VELOCITY,
+		rotation.z + delta * BANK_VELOCITY)
 
 	var acceleration: Vector3 = (linear_velocity - last_velocity) / delta
 	last_velocity = linear_velocity
@@ -80,13 +89,8 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 	else:
 		_integrate_speed_data(state, normal_speed)
 
-	if Input.is_action_pressed("left"):
-		state.angular_velocity.y = 1
-	elif Input.is_action_pressed("right"):
-		state.angular_velocity.y = -1
-	else:
-		state.angular_velocity.y = 0
-
+	var bank_angle := rotation.z
+	state.angular_velocity.y = -G * tan(bank_angle) / horizontal_speed
 	state.linear_velocity = Vector3(0, -base_vertical_speed + wind_vertical_speed, horizontal_speed).rotated(Vector3.UP, rotation.y)
 
 

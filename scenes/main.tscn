@@ -1,20 +1,21 @@
-[gd_scene load_steps=25 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=24 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Script" path="res://scripts/aircraft_hud.gd" id="2_op104"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="Script" path="res://scripts/aircraft.gd" id="4_upyut"]
-[ext_resource type="Script" path="res://scenes/vector3_label.gd" id="5_qo7oq"]
 [ext_resource type="Resource" uid="uid://b1dx8m0bsrpcj" path="res://models/aircrafts/ask21/slow_speed.tres" id="6_h7a5g"]
 [ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://models/aircrafts/ask21/normal_speed.tres" id="7_vrlh3"]
-[ext_resource type="Script" path="res://scenes/tile_terrain_spawner.gd" id="7_yrhfb"]
 [ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://models/aircrafts/ask21/fast_speed.tres" id="8_4ibqx"]
 [ext_resource type="Script" path="res://scripts/shadow.gd" id="10_buhu2"]
+[ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent_no_depth_test.gdshader" id="11_51uem"]
 [ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://models/misc/aircraft_shadow.png" id="11_ertk6"]
+[ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://models/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Script" path="res://scripts/updraft.gd" id="12_l4clu"]
+[ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -55,12 +56,6 @@ transparency = 1
 albedo_color = Color(0.443137, 1, 1, 0.423529)
 disable_receive_shadows = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_x6cj1"]
-size = Vector2(100, 100)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_esj2u"]
-points = PackedVector3Array(-50, 0, -50, -50, 0, 50, 50, 0, -50, 50, 0, 50)
-
 [node name="Node3D" type="Node3D"]
 
 [node name="UI" type="MarginContainer" parent="."]
@@ -69,31 +64,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
-layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="PositionLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Position: "
-
-[node name="PositionValueLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-script = ExtResource("5_qo7oq")
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="UI/VBoxContainer"]
-layout_mode = 2
-
-[node name="VelocityLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-text = "Velocity: "
-
-[node name="VelocityValueLabel" type="Label" parent="UI/VBoxContainer/HBoxContainer2"]
-layout_mode = 2
-script = ExtResource("5_qo7oq")
 
 [node name="Aircraft HUD" type="Control" parent="UI" node_paths=PackedStringArray("aircraft", "horizontal_speed_label", "vertical_speed_label")]
 layout_mode = 2
@@ -132,19 +102,15 @@ environment = SubResource("Environment_q57oy")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 570.829, -239.689)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 580.356, -259.993)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
-follow_mode = 5
+follow_mode = 2
 follow_target = NodePath("../Glider")
-follow_parameters/distance = 20.0
-follow_parameters/target_offset = Vector3(0, 2, 0)
+follow_parameters/target_offset = Vector3(0, 15, -40)
 follow_parameters/damping = true
 follow_parameters/damping_value = 10.0
-follow_parameters/dead_zone_horizontal = 0.3
-follow_parameters/dead_zone_vertical = 0.05
-follow_parameters/viewfinder_in_play = false
 look_at_mode = 0
 tween_parameters = null
 tween_on_load = true
@@ -152,7 +118,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, -1.72189e-06, 570.829, -239.689)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 580.356, -259.993)
 near = 1.0
 far = 6000.0
 
@@ -168,6 +134,12 @@ slow_speed = ExtResource("6_h7a5g")
 normal_speed = ExtResource("7_vrlh3")
 fast_speed = ExtResource("8_4ibqx")
 
+[node name="WindPlayer" type="AudioStreamPlayer" parent="Glider" node_paths=PackedStringArray("aircraft")]
+stream = ExtResource("10_ipig2")
+bus = &"Wind"
+script = ExtResource("11_hmsp1")
+aircraft = NodePath("..")
+
 [node name="ShadowSpring" type="Node3D" parent="Glider"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.33185, 0)
 script = ExtResource("10_buhu2")
@@ -176,7 +148,7 @@ script = ExtResource("10_buhu2")
 mesh = SubResource("PlaneMesh_y4xae")
 
 [node name="Terrain" type="Node3D" parent="."]
-script = ExtResource("7_yrhfb")
+script = ExtResource("14_et8ln")
 
 [node name="MountainAlone1" parent="Terrain" instance=ExtResource("11_ua50s")]
 
@@ -202,38 +174,3 @@ material = SubResource("StandardMaterial3D_5yq1n")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
 radius = 5.0
 height = 1000.0
-
-[node name="Shadow test" type="Node3D" parent="."]
-
-[node name="StaticBody3D2" type="StaticBody3D" parent="Shadow test"]
-transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, 0, 543.918, -52.0256)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D2"]
-mesh = SubResource("PlaneMesh_x6cj1")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D2"]
-shape = SubResource("ConvexPolygonShape3D_esj2u")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Shadow test"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 543.918, -152.418)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D"]
-mesh = SubResource("PlaneMesh_x6cj1")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_esj2u")
-
-[node name="StaticBody3D3" type="StaticBody3D" parent="Shadow test"]
-transform = Transform3D(0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0, 1, 0, 543.918, 47.9744)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Shadow test/StaticBody3D3"]
-mesh = SubResource("PlaneMesh_x6cj1")
-skeleton = NodePath("../../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Shadow test/StaticBody3D3"]
-shape = SubResource("ConvexPolygonShape3D_esj2u")
-
-[connection signal="position_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer/PositionValueLabel" method="_on_vector_changed"]
-[connection signal="velocity_changed" from="Glider" to="UI/VBoxContainer/HBoxContainer2/VelocityValueLabel" method="_on_vector_changed"]

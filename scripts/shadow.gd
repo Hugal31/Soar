@@ -23,7 +23,7 @@ func _physics_process(_delta):
 	var global_pos := global_position
 	var point = _raycast(space_state, global_pos, Vector3(0, -distance, 5))
 	if point == null:
-		shadow.position = Vector3(0, -distance, 0)
+		shadow.position = Vector3(0, 0, -distance)
 		return
 
 	var collision_points: Array[Vector3]

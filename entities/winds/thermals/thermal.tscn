@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://k5uuocnk37nr"]
+
+[ext_resource type="Script" path="res://entities/winds/thermals/updraft.gd" id="1_884wh"]
+[ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_51cc8"]
+height = 1000.0
+radius = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5yq1n"]
+transparency = 1
+albedo_color = Color(0.443137, 1, 1, 0.423529)
+disable_receive_shadows = true
+
+[node name="Thermal" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.4203, 237.416)
+collision_layer = 4
+monitorable = false
+wind_force_magnitude = 2.73
+wind_source_path = NodePath(".")
+script = ExtResource("1_884wh")
+
+[node name="ThermalWindAreaComponent" type="Node" parent="."]
+script = ExtResource("2_fn4cx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 415.872, 0)
+shape = SubResource("CylinderShape3D_51cc8")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
+radius = 100.0
+height = 1000.0
+material = SubResource("StandardMaterial3D_5yq1n")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
+radius = 5.0
+height = 1000.0

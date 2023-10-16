@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=15 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
@@ -9,6 +9,14 @@
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://entities/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8koof"]
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_11xfi"]
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -48,6 +56,7 @@ offset_top = -26.0
 offset_right = 29.0
 grow_vertical = 0
 text = "100km/h"
+label_settings = SubResource("LabelSettings_8koof")
 
 [node name="VerticalSpeed" type="Label" parent="UI/Aircraft HUD"]
 layout_mode = 1
@@ -61,6 +70,7 @@ offset_top = -26.0
 grow_horizontal = 0
 grow_vertical = 0
 text = "-2m/s"
+label_settings = SubResource("LabelSettings_11xfi")
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("aircraft")]
 stream = ExtResource("10_ipig2")
@@ -110,3 +120,4 @@ script = ExtResource("14_et8ln")
 [node name="MountainAlone1" parent="Terrain" instance=ExtResource("11_ua50s")]
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 306.797)

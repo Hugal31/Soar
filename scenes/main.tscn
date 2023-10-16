@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=25 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://models/aircrafts/ask21/ask_21.tscn" id="1_mpoqe"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://models/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Script" path="res://scripts/updraft.gd" id="12_l4clu"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
+[ext_resource type="Script" path="res://scripts/ThermalWindAreaComponent.gd" id="17_dhvvj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -127,6 +128,7 @@ script = ExtResource("3_yq5g2")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -219.993)
+collision_layer = 1
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 script = ExtResource("4_upyut")
@@ -152,7 +154,7 @@ script = ExtResource("14_et8ln")
 
 [node name="MountainAlone1" parent="Terrain" instance=ExtResource("11_ua50s")]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Thermal" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.4203, 237.416)
 collision_layer = 4
 monitorable = false
@@ -160,17 +162,20 @@ wind_force_magnitude = 2.73
 wind_source_path = NodePath(".")
 script = ExtResource("12_l4clu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="ThermalWindAreaComponent" type="Node" parent="Thermal"]
+script = ExtResource("17_dhvvj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Thermal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 415.872, 0)
 shape = SubResource("CylinderShape3D_51cc8")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Area3D"]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Thermal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
 radius = 100.0
 height = 1000.0
 material = SubResource("StandardMaterial3D_5yq1n")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Area3D"]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Thermal"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 409.04, 0)
 radius = 5.0
 height = 1000.0

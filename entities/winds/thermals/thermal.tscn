@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=12 format=3 uid="uid://k5uuocnk37nr"]
 
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent.gdshader" id="5_c3cuj"]
 [ext_resource type="Shader" uid="uid://el8hu6njkrsi" path="res://entities/winds/thermals/thermal_particles_shader.tres" id="5_nssml"]
 [ext_resource type="Texture2D" uid="uid://dokw3uw5qc3qb" path="res://entities/winds/assets/wind_whirl_1.png" id="6_sl11x"]
+[ext_resource type="PackedScene" uid="uid://frfogyw6dujl" path="res://entities/clouds/cloud_1.tscn" id="7_qsxoq"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
@@ -57,3 +58,6 @@ lifetime = 5.0
 visibility_aabb = AABB(-75, -430, -75, 150, 929.999, 150)
 process_material = SubResource("ShaderMaterial_qkxcj")
 draw_pass_1 = SubResource("PlaneMesh_ayngv")
+
+[node name="cloud_1" parent="." instance=ExtResource("7_qsxoq")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 869.178, 0)

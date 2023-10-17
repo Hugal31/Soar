@@ -119,7 +119,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, -8.88178e-16, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
 near = 1.0
 far = 6000.0
 

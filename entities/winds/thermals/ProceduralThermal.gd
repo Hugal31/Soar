@@ -13,6 +13,8 @@ class_name ProceduralThermal
 			thermal.changed.connect(self._update_shape)
 		_update_shape()
 
+@export var particle_velocity_multiplier: float = 4
+
 # TODO Maybe export instead of searching?
 var area: Area3D
 var area_collision: CollisionShape3D
@@ -23,8 +25,6 @@ var wind_component: ThermalWindAreaComponent
 func _ready():
 	child_entered_tree.connect(_update_children)
 	child_exiting_tree.connect(_update_children)
-	if thermal != null:
-		thermal.changed.connect(self._update_shape)
 	_update_children()
 
 
@@ -44,14 +44,14 @@ func _update_children(uc=true, _child=null):
 			wind_component = child
 
 	update_configuration_warnings()
-	if uc:
-		_update_shape()
+	_update_shape()
 
 
 func _update_shape():
 	if thermal == null:
 		return
-	print_debug("update", self, thermal, area_collision, area_collision.shape)
+		
+	var half_height := thermal.height / 2.0
 
 	if area_collision != null:
 		if not area_collision.shape is CylinderShape3D:
@@ -59,11 +59,40 @@ func _update_shape():
 		var cylinder: CylinderShape3D = area_collision.shape
 		cylinder.height = thermal.height
 		cylinder.radius = thermal.radius
-		area_collision.position.y = thermal.height / 2.0
+		area_collision.position.y = half_height
 
-	if particles != null and particles.material is ParticleProcessMaterial:
-		var material := particles.material as ParticleProcessMaterial
-		material.emission_ring_radius = thermal.radius
+	if particles != null:
+		var particles_speed := thermal.strength * particle_velocity_multiplier
+		var particles_vertical_distance := particles.lifetime * thermal.strength * particle_velocity_multiplier
+		var emission_height := thermal.height - particles_vertical_distance
+		particles.position.y = emission_height / 2.0
+
+		particles.visibility_aabb.position = Vector3(
+			-thermal.radius,
+			-particles.position.y,
+			-thermal.radius
+		)
+		particles.visibility_aabb.end = Vector3(
+			thermal.radius,
+			half_height,
+			thermal.radius
+		)
+		
+		if particles.process_material is ParticleProcessMaterial:
+			var material := particles.process_material as ParticleProcessMaterial
+			material.initial_velocity_max = particles_speed
+			material.initial_velocity_min = material.initial_velocity_max
+			material.emission_ring_radius = thermal.radius
+			material.emission_ring_height = emission_height
+
+		elif particles.process_material is ShaderMaterial:
+			# Instance parameters doesn't exist for particle shader material (yet),
+			# so duplicate the shader.
+			particles.process_material = particles.process_material.duplicate() 
+			var material := particles.process_material as ShaderMaterial
+			material.set_shader_parameter("height", thermal.height)
+			material.set_shader_parameter("radius", thermal.radius)
+			material.set_shader_parameter("speed", particles_speed)
 
 	if wind_component != null:
 		wind_component.thermal = thermal

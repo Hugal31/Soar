@@ -1,0 +1,295 @@
+[gd_resource type="VisualShader" load_steps=21 format=3 uid="uid://el8hu6njkrsi"]
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_ldca8"]
+constant = 6.284
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_qjf34"]
+function = 0
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_m2cas"]
+function = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_xw1dv"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ck2ho"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_l71y8"]
+parameter_name = "speed"
+hint = 1
+min = 1.0
+max = 1000.0
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_px8t0"]
+function = 11
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7oymv"]
+operator = 1
+
+[sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_alb1u"]
+function = 11
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_f7jt6"]
+operator = 3
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_c54x5"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_ep3p0"]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_t4fst"]
+default_input_values = [0, 0.0, 1, 0.9]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_y2quw"]
+parameter_name = "height"
+hint = 1
+max = 2000.0
+
+[sub_resource type="VisualShaderNodeParticleRandomness" id="VisualShaderNodeParticleRandomness_a5r8g"]
+default_input_values = [1, -0.5, 2, 0.5]
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_8brnn"]
+operator = 2
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_eerkm"]
+parameter_name = "radius"
+hint = 1
+max = 200.0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_d3deb"]
+
+[sub_resource type="VisualShaderNodeParticleRandomness" id="VisualShaderNodeParticleRandomness_0urev"]
+default_input_values = [1, 0.0, 2, 1.0]
+
+[sub_resource type="VisualShaderNodeParticleRandomness" id="VisualShaderNodeParticleRandomness_byeoj"]
+default_input_values = [1, 0.0, 2, 1.0]
+
+[resource]
+code = "shader_type particles;
+uniform float radius : hint_range(0, 200);
+uniform float speed : hint_range(1, 1000);
+uniform float height : hint_range(0, 2000);
+
+
+float __rand_from_seed(inout uint seed) {
+	int k;
+	int s = int(seed);
+	if (s == 0)
+	s = 305420679;
+	k = s / 127773;
+	s = 16807 * (s - k * 127773) - 2836 * k;
+	if (s < 0)
+		s += 2147483647;
+	seed = uint(s);
+	return float(seed % uint(65536)) / 65535.0;
+}
+
+float __rand_from_seed_m1_p1(inout uint seed) {
+	return __rand_from_seed(seed) * 2.0 - 1.0;
+}
+
+float __randf_range(inout uint seed, float from, float to) {
+	return __rand_from_seed(seed) * (to - from) + from;
+}
+
+uint __hash(uint x) {
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = ((x >> uint(16)) ^ x) * uint(73244475);
+	x = (x >> uint(16)) ^ x;
+	return x;
+}
+
+mat3 __build_rotation_mat3(vec3 axis, float angle) {
+	axis = normalize(axis);
+	float s = sin(angle);
+	float c = cos(angle);
+	float oc = 1.0 - c;
+	return mat3(vec3(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s), vec3(oc * axis.x * axis.y + axis.z * s, oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s), vec3(oc * axis.z * axis.x - axis.y * s, oc * axis.y * axis.z + axis.x * s, oc * axis.z * axis.z + c));
+}
+
+mat4 __build_rotation_mat4(vec3 axis, float angle) {
+	axis = normalize(axis);
+	float s = sin(angle);
+	float c = cos(angle);
+	float oc = 1.0 - c;
+	return mat4(vec4(oc * axis.x * axis.x + c, oc * axis.x * axis.y - axis.z * s, oc * axis.z * axis.x + axis.y * s, 0), vec4(oc * axis.x * axis.y + axis.z * s, oc * axis.y * axis.y + c, oc * axis.y * axis.z - axis.x * s, 0), vec4(oc * axis.z * axis.x - axis.y * s, oc * axis.y * axis.z + axis.x * s, oc * axis.z * axis.z + c, 0), vec4(0, 0, 0, 1));
+}
+
+vec2 __get_random_unit_vec2(inout uint seed) {
+	return normalize(vec2(__rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed)));
+}
+
+vec3 __get_random_unit_vec3(inout uint seed) {
+	return normalize(vec3(__rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed), __rand_from_seed_m1_p1(seed)));
+}
+
+vec2 __randv2_range(inout uint seed, vec2 from, vec2 to) {
+	return vec2(__randf_range(seed, from.x, to.x), __randf_range(seed, from.y, to.y));
+}
+
+vec3 __randv3_range(inout uint seed, vec3 from, vec3 to) {
+	return vec3(__randf_range(seed, from.x, to.x), __randf_range(seed, from.y, to.y), __randf_range(seed, from.z, to.z));
+}
+
+vec4 __randv4_range(inout uint seed, vec4 from, vec4 to) {
+	return vec4(__randf_range(seed, from.x, to.x), __randf_range(seed, from.y, to.y), __randf_range(seed, from.z, to.z), __randf_range(seed, from.w, to.w));
+}
+
+void start() {
+	uint __seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
+
+	{
+// FloatParameter:4
+		float n_out4p0 = radius;
+
+
+// FloatOp:25
+		float n_in25p1 = 0.90000;
+		float n_out25p0 = n_out4p0 * n_in25p1;
+
+
+// ParticleRandomness:8
+		float n_in8p1 = 0.00000;
+		float n_out8p0 = __randf_range(__seed, n_in8p1, n_out25p0);
+
+
+// FloatOp:20
+		float n_out20p0 = n_out4p0 - n_out8p0;
+
+
+// FloatFunc:19
+		float n_out19p0 = sqrt(n_out20p0);
+
+
+// FloatFunc:21
+		float n_out21p0 = sqrt(n_out4p0);
+
+
+// FloatOp:22
+		float n_out22p0 = n_out19p0 / n_out21p0;
+
+
+// FloatParameter:18
+		float n_out18p0 = speed;
+
+
+// FloatOp:23
+		float n_out23p0 = n_out22p0 * n_out18p0;
+
+
+// VectorCompose:24
+		float n_in24p0 = 0.00000;
+		float n_in24p2 = 0.00000;
+		vec3 n_out24p0 = vec3(n_in24p0, n_out23p0, n_in24p2);
+
+
+// FloatConstant:10
+		float n_out10p0 = 6.284000;
+
+
+// ParticleRandomness:9
+		float n_in9p1 = 0.00000;
+		float n_out9p0 = __randf_range(__seed, n_in9p1, n_out10p0);
+
+
+// FloatFunc:12
+		float n_out12p0 = cos(n_out9p0);
+
+
+// FloatOp:16
+		float n_out16p0 = n_out12p0 * n_out8p0;
+
+
+// ParticleRandomness:27
+		float n_in27p1 = -0.50000;
+		float n_in27p2 = 0.50000;
+		float n_out27p0 = __randf_range(__seed, n_in27p1, n_in27p2);
+
+
+// FloatParameter:26
+		float n_out26p0 = height;
+
+
+// FloatOp:28
+		float n_out28p0 = n_out27p0 * n_out26p0;
+
+
+// FloatFunc:11
+		float n_out11p0 = sin(n_out9p0);
+
+
+// FloatOp:17
+		float n_out17p0 = n_out11p0 * n_out8p0;
+
+
+// VectorCompose:7
+		vec3 n_out7p0 = vec3(n_out16p0, n_out28p0, n_out17p0);
+
+
+// StartOutput:0
+		VELOCITY = n_out24p0;
+		if (RESTART_POSITION) {
+			TRANSFORM = mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(n_out7p0, 1.0));
+			if (RESTART_VELOCITY) {
+				VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
+			}
+			TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
+		}
+
+
+	}
+}
+
+"
+graph_offset = Vector2(-77.3598, -374.187)
+mode = 2
+flags/collision_use_scale = false
+flags/disable_force = false
+flags/disable_velocity = false
+flags/keep_data = false
+nodes/start/0/position = Vector2(925, 100)
+nodes/start/4/node = SubResource("VisualShaderNodeFloatParameter_eerkm")
+nodes/start/4/position = Vector2(-850, 250)
+nodes/start/7/node = SubResource("VisualShaderNodeVectorCompose_d3deb")
+nodes/start/7/position = Vector2(675, 0)
+nodes/start/8/node = SubResource("VisualShaderNodeParticleRandomness_0urev")
+nodes/start/8/position = Vector2(-325, 250)
+nodes/start/9/node = SubResource("VisualShaderNodeParticleRandomness_byeoj")
+nodes/start/9/position = Vector2(-475, -125)
+nodes/start/10/node = SubResource("VisualShaderNodeFloatConstant_ldca8")
+nodes/start/10/position = Vector2(-700, 0)
+nodes/start/11/node = SubResource("VisualShaderNodeFloatFunc_qjf34")
+nodes/start/11/position = Vector2(-200, -50)
+nodes/start/12/node = SubResource("VisualShaderNodeFloatFunc_m2cas")
+nodes/start/12/position = Vector2(-200, -140)
+nodes/start/16/node = SubResource("VisualShaderNodeFloatOp_xw1dv")
+nodes/start/16/position = Vector2(0, -60)
+nodes/start/17/node = SubResource("VisualShaderNodeFloatOp_ck2ho")
+nodes/start/17/position = Vector2(0, 80)
+nodes/start/18/node = SubResource("VisualShaderNodeFloatParameter_l71y8")
+nodes/start/18/position = Vector2(125, 875)
+nodes/start/19/node = SubResource("VisualShaderNodeFloatFunc_px8t0")
+nodes/start/19/position = Vector2(75, 575)
+nodes/start/20/node = SubResource("VisualShaderNodeFloatOp_7oymv")
+nodes/start/20/position = Vector2(-75, 575)
+nodes/start/21/node = SubResource("VisualShaderNodeFloatFunc_alb1u")
+nodes/start/21/position = Vector2(-75, 725)
+nodes/start/22/node = SubResource("VisualShaderNodeFloatOp_f7jt6")
+nodes/start/22/position = Vector2(275, 650)
+nodes/start/23/node = SubResource("VisualShaderNodeFloatOp_c54x5")
+nodes/start/23/position = Vector2(500, 650)
+nodes/start/24/node = SubResource("VisualShaderNodeVectorCompose_ep3p0")
+nodes/start/24/position = Vector2(725, 525)
+nodes/start/25/node = SubResource("VisualShaderNodeFloatOp_t4fst")
+nodes/start/25/position = Vector2(-550, 150)
+nodes/start/26/node = SubResource("VisualShaderNodeFloatParameter_y2quw")
+nodes/start/26/position = Vector2(225, -225)
+nodes/start/27/node = SubResource("VisualShaderNodeParticleRandomness_a5r8g")
+nodes/start/27/position = Vector2(125, -425)
+nodes/start/28/node = SubResource("VisualShaderNodeFloatOp_8brnn")
+nodes/start/28/position = Vector2(525, -325)
+nodes/start/connections = PackedInt32Array(7, 0, 0, 4, 10, 0, 9, 2, 9, 0, 11, 0, 9, 0, 12, 0, 8, 0, 16, 1, 12, 0, 16, 0, 16, 0, 7, 0, 11, 0, 17, 0, 8, 0, 17, 1, 17, 0, 7, 2, 4, 0, 20, 0, 8, 0, 20, 1, 20, 0, 19, 0, 4, 0, 21, 0, 19, 0, 22, 0, 21, 0, 22, 1, 22, 0, 23, 0, 18, 0, 23, 1, 24, 0, 0, 1, 23, 0, 24, 1, 4, 0, 25, 0, 25, 0, 8, 2, 27, 0, 28, 0, 26, 0, 28, 1, 28, 0, 7, 1)
+nodes/process/0/position = Vector2(380, 100)
+nodes/collide/0/position = Vector2(400, 160)

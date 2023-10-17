@@ -1,0 +1,18 @@
+[gd_resource type="ParticleProcessMaterial" format=3 uid="uid://busk2ot28w6r0"]
+
+[resource]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1000.0
+emission_ring_radius = 75.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -0.1
+tangential_accel_min = 1.0
+tangential_accel_max = 1.0
+angle_min = -180.0
+angle_max = 180.0
+turbulence_noise_strength = 0.1
+attractor_interaction_enabled = false

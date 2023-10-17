@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="9_buwum"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
+[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="10_l005s"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://entities/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
@@ -30,6 +31,20 @@ background_mode = 2
 sky = SubResource("Sky_xnigv")
 tonemap_mode = 2
 fog_light_color = Color(0.623529, 0.721569, 0.882353, 1)
+
+[sub_resource type="Resource" id="Resource_dytcd"]
+resource_local_to_scene = true
+script = ExtResource("10_l005s")
+height = 785.088
+radius = 60.789
+strength = 7.0
+
+[sub_resource type="Resource" id="Resource_7u4sc"]
+resource_local_to_scene = true
+script = ExtResource("10_l005s")
+height = 828.07
+radius = 100.263
+strength = 7.0
 
 [node name="Node3D" type="Node3D"]
 
@@ -85,15 +100,18 @@ environment = SubResource("Environment_q57oy")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 580.356, -259.993)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
-follow_mode = 2
+follow_mode = 5
 follow_target = NodePath("../Glider")
-follow_parameters/target_offset = Vector3(0, 15, -40)
-follow_parameters/damping = true
-follow_parameters/damping_value = 10.0
+follow_parameters/distance = 30.0
+follow_parameters/target_offset = Vector3(0, 5, 0)
+follow_parameters/damping = false
+follow_parameters/dead_zone_horizontal = 0.0
+follow_parameters/dead_zone_vertical = 0.0
+follow_parameters/viewfinder_in_play = false
 look_at_mode = 0
 tween_parameters = null
 tween_on_load = true
@@ -101,7 +119,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 0, 580.356, -259.993)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
 near = 1.0
 far = 6000.0
 
@@ -121,3 +139,8 @@ script = ExtResource("14_et8ln")
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 306.797)
+thermal = SubResource("Resource_dytcd")
+
+[node name="Thermal2" parent="." instance=ExtResource("9_buwum")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 337.846, 0, 306.797)
+thermal = SubResource("Resource_7u4sc")

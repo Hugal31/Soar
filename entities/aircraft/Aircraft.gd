@@ -32,6 +32,7 @@ enum FlightModel {
 
 var horizontal_speed := 0.0
 var base_vertical_speed := 0.0
+var wind_speed := Vector3()
 var wind_areas: Array[WindAreaComponent] = []
 var last_velocity := Vector3()
 
@@ -101,9 +102,15 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 
 	var bank_angle := rotation.z
 	state.angular_velocity.y = -G * tan(bank_angle) / horizontal_speed
+	var target_wind_speed := _get_wind()
+	var wind_speed_diff := target_wind_speed - wind_speed
+	var wind_speed_diff_norm := wind_speed_diff.length()
+	if (wind_speed_diff_norm > acceleration * state.step):
+		target_wind_speed = wind_speed + wind_speed_diff * acceleration * state.step / wind_speed_diff_norm
+	wind_speed = target_wind_speed
 	var vel_vector := Vector3(0, 0, horizontal_speed).rotated(Vector3.UP, rotation.y)
 	vel_vector.y -= base_vertical_speed
-	vel_vector += _get_wind()
+	vel_vector += wind_speed
 	linear_velocity = vel_vector
 
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=14 format=3 uid="uid://k5uuocnk37nr"]
 
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
 [ext_resource type="Script" path="res://entities/winds/thermals/WindArea.gd" id="3_o84b8"]
+[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="4_cht7p"]
 [ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent.gdshader" id="5_c3cuj"]
 [ext_resource type="Shader" uid="uid://el8hu6njkrsi" path="res://entities/winds/thermals/thermal_particles_shader.tres" id="5_nssml"]
 [ext_resource type="Texture2D" uid="uid://dokw3uw5qc3qb" path="res://entities/winds/assets/wind_whirl_1.png" id="6_sl11x"]
@@ -10,14 +11,20 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
-height = 999.999
+height = 1183.18
 radius = 75.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qkxcj"]
+[sub_resource type="Resource" id="Resource_mjqgn"]
+script = ExtResource("4_cht7p")
+height = 1183.18
+radius = 75.0
+strength = 7.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3c4hn"]
 shader = ExtResource("5_nssml")
-shader_parameter/radius = 60.789
+shader_parameter/radius = 75.0
 shader_parameter/speed = 28.0
-shader_parameter/height = 785.088
+shader_parameter/height = 1183.18
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ni8f"]
 render_priority = 0
@@ -36,8 +43,9 @@ size = Vector2(1, 5)
 subdivide_width = 1
 orientation = 2
 
-[node name="Thermal" type="Node3D"]
+[node name="Thermal" type="Node3D" node_paths=PackedStringArray("cloud")]
 script = ExtResource("3_nenhj")
+cloud = NodePath("cloud_1")
 
 [node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("wind_component")]
 monitorable = false
@@ -45,19 +53,20 @@ script = ExtResource("3_o84b8")
 wind_component = NodePath("../ThermalWindAreaComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 591.589, 0)
 shape = SubResource("CylinderShape3D_uknh0")
 
 [node name="ThermalWindAreaComponent" type="Node" parent="."]
 script = ExtResource("2_fn4cx")
+thermal = SubResource("Resource_mjqgn")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 430, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 521.589, 0)
 amount = 300
 lifetime = 5.0
-visibility_aabb = AABB(-75, -430, -75, 150, 929.999, 150)
-process_material = SubResource("ShaderMaterial_qkxcj")
+visibility_aabb = AABB(-75, -521.589, -75, 150, 1113.18, 150)
+process_material = SubResource("ShaderMaterial_3c4hn")
 draw_pass_1 = SubResource("PlaneMesh_ayngv")
 
 [node name="cloud_1" parent="." instance=ExtResource("7_qsxoq")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 869.178, 0)
+transform = Transform3D(-4.19027, 0, -2.72794, 0, 5, 0, 2.72794, 0, -4.19027, 0, 1164.3, 0)

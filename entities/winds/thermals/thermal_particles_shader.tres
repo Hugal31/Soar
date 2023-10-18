@@ -243,7 +243,6 @@ void start() {
 }
 
 "
-graph_offset = Vector2(-77.3598, -374.187)
 mode = 2
 flags/collision_use_scale = false
 flags/disable_force = false

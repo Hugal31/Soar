@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=17 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
@@ -32,14 +32,7 @@ sky = SubResource("Sky_xnigv")
 tonemap_mode = 2
 fog_light_color = Color(0.623529, 0.721569, 0.882353, 1)
 
-[sub_resource type="Resource" id="Resource_dytcd"]
-resource_local_to_scene = true
-script = ExtResource("10_l005s")
-height = 785.088
-radius = 60.789
-strength = 7.0
-
-[sub_resource type="Resource" id="Resource_7u4sc"]
+[sub_resource type="Resource" id="Resource_ysoby"]
 resource_local_to_scene = true
 script = ExtResource("10_l005s")
 height = 828.07
@@ -139,8 +132,7 @@ script = ExtResource("14_et8ln")
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 306.797)
-thermal = SubResource("Resource_dytcd")
 
 [node name="Thermal2" parent="." instance=ExtResource("9_buwum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 337.846, 0, 306.797)
-thermal = SubResource("Resource_7u4sc")
+thermal = SubResource("Resource_ysoby")

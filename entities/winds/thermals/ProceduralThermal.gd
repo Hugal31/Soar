@@ -15,6 +15,9 @@ class_name ProceduralThermal
 
 @export var particle_velocity_multiplier: float = 4
 
+@export var cloud: Node3D
+@export var randomize_cloud_rotation: bool = true
+
 # TODO Maybe export instead of searching?
 var area: Area3D
 var area_collision: CollisionShape3D
@@ -96,6 +99,19 @@ func _update_shape():
 
 	if wind_component != null:
 		wind_component.thermal = thermal
+		
+	if cloud != null:
+		if randomize_cloud_rotation:
+			cloud.rotation.y = randf_range(-PI, PI)
+		
+		var cloud_height: float = 0
+		if cloud is VisualInstance3D or cloud is MeshInstance3D:
+			cloud_height = cloud.get_aabb().size.y
+		else:
+			for child in cloud.get_children():
+				if child is VisualInstance3D or child is MeshInstance3D:
+					cloud_height = max(cloud_height, child.get_aabb().size.y)
+		cloud.position.y = thermal.height - cloud_height / 2
 
 
 func _get_configuration_warnings():

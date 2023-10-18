@@ -343,7 +343,7 @@ void process() {
 }
 
 "
-graph_offset = Vector2(-1551.8, -505.469)
+graph_offset = Vector2(-632.137, -401.357)
 mode = 2
 flags/collision_use_scale = false
 flags/disable_force = false
@@ -355,7 +355,7 @@ nodes/start/4/position = Vector2(-850, 250)
 nodes/start/7/node = SubResource("VisualShaderNodeVectorCompose_d3deb")
 nodes/start/7/position = Vector2(675, 0)
 nodes/start/8/node = SubResource("VisualShaderNodeParticleRandomness_0urev")
-nodes/start/8/position = Vector2(-325, 250)
+nodes/start/8/position = Vector2(-320, 260)
 nodes/start/9/node = SubResource("VisualShaderNodeParticleRandomness_byeoj")
 nodes/start/9/position = Vector2(-475, -125)
 nodes/start/10/node = SubResource("VisualShaderNodeFloatConstant_ldca8")

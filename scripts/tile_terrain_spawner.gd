@@ -28,7 +28,7 @@ func _ready():
 		for z in range(0, length):
 			var tile = tiles[rng.randi_range(0, tiles.size() - 1)]
 			var new_child: Node3D = tile.duplicate(0)
-			new_child.position = Vector3(x * 2000, 0, z * 2000)
+			new_child.position = Vector3(x * 6000, 0, z * 6000)
 			if x != 0 or z != 0:
 				new_child.rotation.y = rng.randi_range(0, 3) * PI * 0.5
 			add_child(new_child)

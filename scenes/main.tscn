@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=21 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
+[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="9_buwum"]
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="10_4iray"]
@@ -21,7 +22,6 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eufap"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
 
 [sub_resource type="Sky" id="Sky_xnigv"]
 sky_material = SubResource("ProceduralSkyMaterial_eufap")
@@ -32,14 +32,23 @@ sky = SubResource("Sky_xnigv")
 tonemap_mode = 2
 fog_light_color = Color(0.623529, 0.721569, 0.882353, 1)
 
-[sub_resource type="Resource" id="Resource_c7c6g"]
+[sub_resource type="QuadMesh" id="QuadMesh_svkgt"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hdb7h"]
+render_priority = 0
+shader = ExtResource("1_r6fcu")
+shader_parameter/fog_start = 0.9993
+shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
+
+[sub_resource type="Resource" id="Resource_comkt"]
 resource_local_to_scene = true
 script = ExtResource("10_4iray")
 height = 828.07
 radius = 100.263
 strength = 7.0
 
-[sub_resource type="Resource" id="Resource_i8ucv"]
+[sub_resource type="Resource" id="Resource_h1aut"]
 resource_local_to_scene = true
 script = ExtResource("10_4iray")
 height = 828.07
@@ -126,6 +135,12 @@ far = 6000.0
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 script = ExtResource("3_yq5g2")
 
+[node name="Fog" type="MeshInstance3D" parent="Camera3D"]
+transform = Transform3D(-1, 1.77636e-15, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, -5.24164e-07, 1.55182, -5.79144)
+mesh = SubResource("QuadMesh_svkgt")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
+
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -219.993)
 collision_layer = 1
@@ -139,8 +154,8 @@ script = ExtResource("14_et8ln")
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 306.797)
-thermal = SubResource("Resource_c7c6g")
+thermal = SubResource("Resource_comkt")
 
 [node name="Thermal2" parent="." instance=ExtResource("9_buwum")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 337.846, 0, 306.797)
-thermal = SubResource("Resource_i8ucv")
+thermal = SubResource("Resource_h1aut")

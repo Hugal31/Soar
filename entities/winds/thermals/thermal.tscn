@@ -20,7 +20,7 @@ resource_local_to_scene = true
 height = 828.07
 radius = 100.263
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pihot"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dhyj1"]
 shader = ExtResource("5_gxknx")
 shader_parameter/radius = 100.263
 shader_parameter/speed = 28.0
@@ -61,10 +61,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 344.035, 0)
 amount = 300
 lifetime = 5.0
 visibility_aabb = AABB(-100.263, -344.035, -100.263, 200.526, 758.07, 200.526)
-process_material = SubResource("ShaderMaterial_pihot")
+process_material = SubResource("ShaderMaterial_dhyj1")
 draw_passes = 2
 draw_pass_1 = SubResource("PlaneMesh_ayngv")
 draw_pass_2 = SubResource("PlaneMesh_g1peh")
 
 [node name="cloud_1" parent="." instance=ExtResource("7_qsxoq")]
-transform = Transform3D(-4.99639, 0, -0.189802, 0, 5, 0, 0.189802, 0, -4.99639, 0, 809.194, 0)
+transform = Transform3D(4.98253, 0, 0.417454, 0, 5, 0, -0.417454, 0, 4.98253, 0, 809.194, 0)

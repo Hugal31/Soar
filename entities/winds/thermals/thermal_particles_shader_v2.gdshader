@@ -3,7 +3,7 @@ shader_type particles;
 uniform float radius : hint_range(0, 200);
 uniform float speed : hint_range(1, 1000);
 uniform float height : hint_range(0, 2000);
-uniform float orbit_speed : hint_range(0, 1);
+uniform float orbit_speed : hint_range(0, 2);
 
 
 float __rand_from_seed(inout uint seed) {
@@ -100,13 +100,19 @@ void process() {
 	mat4 local_transform = inverse(EMISSION_TRANSFORM) * TRANSFORM;
 
 	float xz_distance = CUSTOM[0];
-	float angle = CUSTOM[1];
+	float origin_angle = CUSTOM[1];
+	float new_angle = origin_angle + orbit_speed * TIME;
 	vec4 position = local_transform[3];
-	position.x = cos(angle + orbit_speed * TIME) * xz_distance;
-	position.z = sin(angle + orbit_speed * TIME) * xz_distance;
+	position.x = cos(new_angle) * xz_distance;
+	position.z = sin(new_angle) * xz_distance;
+	
+	float radial_velocity = orbit_speed * xz_distance;
+	float x_angle = atan(VELOCITY.y / radial_velocity) - PI / 2.;
 
 	// I don't know how to make them rotate while keeping them aligned with the view matrix.
-	mat4 new_local_transform = local_transform; //__build_rotation_mat4(vec3(1, 0, 0), -0.1);
+	mat4 x_rotation = __build_rotation_mat4(vec3(1, 0, 0), x_angle);
+	mat4 y_rotation = __build_rotation_mat4(vec3(0, 1, 0), new_angle);
+	mat4 new_local_transform = y_rotation * x_rotation;
 	new_local_transform[3] = position;
 	
 	//local_transform

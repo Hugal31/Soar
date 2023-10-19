@@ -5,6 +5,10 @@ class_name ProceduralThermal
 
 @export var thermal: Thermal:
 	set(t):
+		if not is_node_ready():
+			thermal = t
+			return
+
 		# Check if this is called before or after _ready, if it is called at all.
 		if thermal != null:
 			thermal.changed.disconnect(self._update_shape)
@@ -19,38 +23,18 @@ class_name ProceduralThermal
 @export var randomize_cloud_rotation: bool = true
 
 # TODO Maybe export instead of searching?
-var area: Area3D
-var area_collision: CollisionShape3D
-var particles: GPUParticles3D
-var wind_component: ThermalWindAreaComponent
+@export var area: Area3D
+@export var area_collision: CollisionShape3D
+@export var particles: GPUParticles3D
+@export var wind_component: ThermalWindAreaComponent
 
 
 func _ready():
-	child_entered_tree.connect(_update_children)
-	child_exiting_tree.connect(_update_children)
-	_update_children()
-
-
-func _update_children(uc=true, _child=null):
-	for child in get_children():
-		if child is Area3D:
-			area = child
-			for area_child in area.get_children():
-				if area_child is CollisionShape3D:
-					area_collision = area_child
-					break
-
-		if child is GPUParticles3D:
-			particles = child
-
-		if child is ThermalWindAreaComponent:
-			wind_component = child
-
-	update_configuration_warnings()
 	_update_shape()
 
 
 func _update_shape():
+	assert(is_node_ready())
 	if thermal == null:
 		return
 		
@@ -112,20 +96,3 @@ func _update_shape():
 				if child is VisualInstance3D or child is MeshInstance3D:
 					cloud_height = max(cloud_height, child.get_aabb().size.y)
 		cloud.position.y = thermal.height - cloud_height / 2
-
-
-func _get_configuration_warnings():
-	var warnings = []
-
-	if thermal == null:
-		warnings.append("No thermal resource")
-
-	if area == null:
-		warnings.append("Needs an Area3D to work")
-	elif area_collision == null:
-		warnings.append("The Area3D needs a CollisionShape3D to work")
-
-	if wind_component == null:
-		warnings.append("Needs a WindAreaComponent")
-
-		return warnings

@@ -26,7 +26,7 @@ func _physics_process(_delta):
 		shadow.position = Vector3(0, 0, -distance)
 		return
 
-	var collision_points: Array[Vector3]
+	var collision_points: Array[Vector3] = []
 	collision_points.push_back(point)
 	point = _raycast(space_state, global_pos, Vector3(raycast_width / 2, -distance, -5))
 	if point != null:
@@ -48,10 +48,10 @@ func _physics_process(_delta):
 			normal = -normal
 		# I don't know why it needs to be normalized, the two input are normalized
 		var local_normal := global_transform.basis.inverse() * normal
-		var quaternion := Quaternion(Vector3(0, 0, -1), local_normal).normalized()
-		var rotation := quaternion.get_euler(5)
-		rotation.z = 0
-		shadow.rotation = rotation
+		var quat := Quaternion(Vector3(0, 0, -1), local_normal).normalized()
+		var rot := quat.get_euler(5)
+		rot.z = 0
+		shadow.rotation = rot
 	else:
 		shadow.rotation = Vector3()
 

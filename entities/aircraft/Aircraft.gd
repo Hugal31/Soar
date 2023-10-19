@@ -12,7 +12,7 @@ enum FlightModel {
 @export var acceleration: float = 4
 
 ## Regular bank angle in degrees.
-@export var bank_angle := 30.0
+@export var regular_bank_angle := 30.0
 ## High bank angle in degrees.
 @export var high_bank_angle := 50.0
 ## Bank velocity in degrees/s.
@@ -34,7 +34,6 @@ var horizontal_speed := 0.0
 var base_vertical_speed := 0.0
 var wind_speed := Vector3()
 var wind_areas: Array[WindAreaComponent] = []
-var last_velocity := Vector3()
 
 @onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -65,21 +64,14 @@ func _ready():
 	Engine.time_scale = 2
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _physics_process(delta):
 	var target_rotation_z := 0.0
-	var max_bank_angle := high_bank_angle if Input.is_action_pressed("high_bank") else bank_angle
+	var max_bank_angle := high_bank_angle if Input.is_action_pressed("high_bank") else regular_bank_angle
 	target_rotation_z = Input.get_axis("left", "right") * max_bank_angle
 	rotation_degrees.z = clampf(target_rotation_z,
 		rotation_degrees.z - delta * bank_velocity,
 		rotation_degrees.z + delta * bank_velocity)
 
-	var acceleration: Vector3 = (linear_velocity - last_velocity) / delta
-	last_velocity = linear_velocity
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)
 

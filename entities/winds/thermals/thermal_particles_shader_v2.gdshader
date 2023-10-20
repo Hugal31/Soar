@@ -85,8 +85,7 @@ void start() {
 	float vertical_speed = speed * base_vertical_speed;
 	VELOCITY = vec3(0, vertical_speed, 0);
 
-	float scale = __randf_range(__seed, 0.8, 1.2);
-	CUSTOM = vec4(xz_distance, angle, vertical_speed, scale);
+	CUSTOM = vec4(xz_distance, angle, TIME, LIFETIME);
 
 	if (RESTART_POSITION) {
 		TRANSFORM = mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0, 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(position, 1.0));
@@ -95,8 +94,6 @@ void start() {
 		}
 		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;		
 	}
-
-	TRANSFORM *= mat4(vec4(scale, 0, 0, 0), vec4(0, scale, 0, 0), vec4(0, 0, scale, 0), vec4(0, 0, 0, 1));
 }
 
 void process() {
@@ -119,6 +116,4 @@ void process() {
 	new_local_transform[3] = position;
 
 	TRANSFORM = EMISSION_TRANSFORM * new_local_transform;
-	float scale = CUSTOM[3];
-	TRANSFORM *= mat4(vec4(scale, 0, 0, 0), vec4(0, scale, 0, 0), vec4(0, 0, scale, 0), vec4(0, 0, 0, 1));
 }

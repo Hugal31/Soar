@@ -1,0 +1,9 @@
+[gd_resource type="PlaneMesh" load_steps=2 format=3 uid="uid://uucjbeemmsia"]
+
+[ext_resource type="Material" uid="uid://drbh2dcbpvmrj" path="res://entities/winds/thermals/thermal_round_wind_whirl_material.tres" id="1_rifo8"]
+
+[resource]
+material = ExtResource("1_rifo8")
+size = Vector2(1, 5)
+subdivide_width = 1
+orientation = 2

@@ -1,0 +1,45 @@
+[gd_resource type="ShaderMaterial" load_steps=9 format=3 uid="uid://bsshslsdgp7t3"]
+
+[ext_resource type="Shader" path="res://entities/terrains/mountains/procedural_terrain.gdshader" id="1_f0xqo"]
+[ext_resource type="Texture2D" uid="uid://c6unsvnbapef2" path="res://entities/terrains/mountains/assets/mountain_alone_1_heightmap.exr" id="2_d46b5"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hs03u"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6xt4v"]
+generate_mipmaps = false
+noise = SubResource("FastNoiseLite_hs03u")
+
+[sub_resource type="Curve" id="Curve_6pi2f"]
+_data = [Vector2(0.876623, 0.178947), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_03gc5"]
+texture_mode = 1
+curve = SubResource("Curve_6pi2f")
+
+[sub_resource type="Curve" id="Curve_135tm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.33539, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ksmhy"]
+texture_mode = 1
+curve = SubResource("Curve_135tm")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_f0xqo")
+shader_parameter/water_albedo = Color(0.529412, 0.729412, 0.870588, 1)
+shader_parameter/max_water_height = 1.0
+shader_parameter/sand_albedo = Color(1, 0.996078, 0.686366, 1)
+shader_parameter/max_sand_height = 9.3
+shader_parameter/rock_albedo = Color(0.4, 0.4, 0.4, 1)
+shader_parameter/snow_albedo = Color(1, 1, 1, 1)
+shader_parameter/min_snow_height = 441.6
+shader_parameter/max_rock_height = 570.8
+shader_parameter/grass_albedo = Color(0.360784, 0.545098, 0.196078, 1)
+shader_parameter/water_level_curve = SubResource("CurveTexture_ksmhy")
+shader_parameter/sand_level_curve = SubResource("CurveTexture_ksmhy")
+shader_parameter/rock_grass_curve = SubResource("CurveTexture_03gc5")
+shader_parameter/snow_level_curve = SubResource("CurveTexture_ksmhy")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_6xt4v")
+shader_parameter/heightmap = ExtResource("2_d46b5")

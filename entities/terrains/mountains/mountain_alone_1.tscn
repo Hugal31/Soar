@@ -10,6 +10,3 @@ surface_material_override/0 = ExtResource("2_sp0yr")
 
 [node name="StaticBody3D" parent="MountainAlone1" index="0"]
 visible = false
-
-[node name="CollisionShape3D" parent="MountainAlone1/StaticBody3D" index="0"]
-visible = false

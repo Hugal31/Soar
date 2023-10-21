@@ -13,6 +13,17 @@ void vertex() {
 	float lifetime = INSTANCE_CUSTOM[3];
 	float expiration_time = spawn_time + lifetime;	
 	lifespan = 1. - ((expiration_time - TIME) / lifetime);
+	
+	// Y-billboard
+	mat4 n_out2p0;
+	{
+		mat4 __mvm = VIEW_MATRIX * mat4(INV_VIEW_MATRIX[0], MODEL_MATRIX[1], vec4(normalize(cross(INV_VIEW_MATRIX[0].xyz, MODEL_MATRIX[1].xyz)), 0.0), MODEL_MATRIX[3]);
+		__mvm = __mvm * mat4(vec4(1.0, 0.0, 0.0, 0.0), vec4(0.0, 1.0 / length(MODEL_MATRIX[1].xyz), 0.0, 0.0), vec4(0.0, 0.0, 1.0, 0.0), vec4(0.0, 0.0, 0.0, 1.0));
+		n_out2p0 = __mvm;
+	}
+
+	MODELVIEW_MATRIX = n_out2p0;
+
 }
 
 void fragment() {

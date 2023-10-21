@@ -17,11 +17,14 @@ enum FlightModel {
 @export var high_bank_angle := 50.0
 ## Bank velocity in degrees/s.
 @export var bank_velocity = 60.0
+## Pitch velocity in degrees/s.
+@export var pitch_velocity = 10.0
 
 @export_subgroup("Arcade")
 @export var slow_speed: SpeedData = SpeedData.new()
 @export var normal_speed: SpeedData = SpeedData.new()
 @export var fast_speed: SpeedData = SpeedData.new()
+@onready var target_speed: SpeedData = normal_speed
 
 @export_subgroup("Realist")
 @export var lift_surface: float = 18
@@ -65,12 +68,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	var target_rotation_z := 0.0
 	var max_bank_angle := high_bank_angle if Input.is_action_pressed("high_bank") else regular_bank_angle
-	target_rotation_z = Input.get_axis("left", "right") * max_bank_angle
+	var target_rotation_z = Input.get_axis("left", "right") * max_bank_angle
+	var target_rotation_x = target_speed.pitch
 	rotation_degrees.z = clampf(target_rotation_z,
 		rotation_degrees.z - delta * bank_velocity,
 		rotation_degrees.z + delta * bank_velocity)
+	rotation_degrees.x = clampf(target_rotation_x,
+		rotation_degrees.x - delta * pitch_velocity,
+		rotation_degrees.x + delta * pitch_velocity)
 
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)
@@ -107,6 +113,7 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 
 
 func _integrate_speed_data(state: PhysicsDirectBodyState3D, speed: SpeedData):
+	target_speed = speed
 	horizontal_speed = clampf(
 		speed.horizontal_speed,
 		horizontal_speed - acceleration * state.step,
@@ -118,6 +125,7 @@ func _integrate_speed_data(state: PhysicsDirectBodyState3D, speed: SpeedData):
 	else:
 		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
 		base_vertical_speed = lerpf(normal_speed.vertical_speed, slow_speed.vertical_speed, weight)
+
 
 
 func _integrate_forces_realist(state):

@@ -29,6 +29,10 @@ window/size/window_height_override=960
 window/stretch/mode="viewport"
 window/dpi/allow_hidpi=false
 
+[editor]
+
+movie_writer/movie_file="/home/laloge_h/projets/Perso/Godot/Soar/out/video/movie.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/godot-logger-master/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")

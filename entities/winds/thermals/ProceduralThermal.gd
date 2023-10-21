@@ -30,6 +30,8 @@ class_name ProceduralThermal
 
 
 func _ready():
+	if Engine.is_editor_hint() and thermal != null:
+		thermal.changed.connect(self._update_shape)
 	_update_shape()
 
 

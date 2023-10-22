@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bke10385gj55s"
-path="res://.godot/imported/mountain_alone_1.glb-3aa8c037edfc55a27ccfee51082e3cd3.scn"
+uid="uid://bf5nuabri3im2"
+path="res://.godot/imported/water.glb-7c9922da163b4be96b289a1e63d4ce01.scn"
 
 [deps]
 
-source_file="res://entities/terrains/mountains/assets/mountain_alone_1.glb"
-dest_files=["res://.godot/imported/mountain_alone_1.glb-3aa8c037edfc55a27ccfee51082e3cd3.scn"]
+source_file="res://entities/terrains/assets/water.glb"
+dest_files=["res://.godot/imported/water.glb-7c9922da163b4be96b289a1e63d4ce01.scn"]
 
 [params]
 
 nodes/root_type="Node3D"
-nodes/root_name="MountainAlone1"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=false
@@ -22,7 +22,7 @@ meshes/generate_lods=true
 meshes/create_shadow_meshes=false
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
-skins/use_named_skins=false
+skins/use_named_skins=true
 animation/import=false
 animation/fps=30
 animation/trimming=false

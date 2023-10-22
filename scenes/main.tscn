@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=32 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
@@ -6,12 +6,15 @@
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="9_buwum"]
+[ext_resource type="PackedScene" uid="uid://buqx3jajy1q27" path="res://entities/terrains/tiles/mountain_alone_1_center.tscn" id="9_rieks"]
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="10_4iray"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
-[ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://entities/terrains/mountains/mountain_alone_1.tscn" id="11_ua50s"]
 [ext_resource type="Shader" path="res://shaders/psx/psx_lit.gdshader" id="12_rbh33"]
+[ext_resource type="PackedScene" uid="uid://d33y6o0pq1mgr" path="res://entities/winds/ridge_lifts/ridge_lift.tscn" id="13_3i050"]
+[ext_resource type="Script" path="res://entities/winds/ridge_lifts/RidgeLift.gd" id="14_5rc2c"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
+[ext_resource type="Shader" path="res://entities/winds/ridge_lifts/ridge_lift_particles.gdshader" id="15_jlms8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_8koof"]
 outline_size = 3
@@ -61,6 +64,47 @@ shader_parameter/y_billboard = false
 [sub_resource type="PlaneMesh" id="PlaneMesh_dnqii"]
 material = SubResource("ShaderMaterial_02smb")
 size = Vector2(6000, 6000)
+
+[sub_resource type="Curve3D" id="Curve3D_eb56b"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -292.456, 0.743, 0, 292.456, -0.743, 0, 406.947, 178.238, 0, 0, 0, 0, 0, 0, 0, 889.81, -65.787, 0),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
+[sub_resource type="Resource" id="Resource_vg5cj"]
+resource_local_to_scene = true
+script = ExtResource("14_5rc2c")
+strength = 10.0
+width = 1000.0
+radius = 200.0
+curve = SubResource("Curve3D_eb56b")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gxhh8"]
+resource_local_to_scene = true
+size = Vector3(889.81, 644.026, 1000)
+
+[sub_resource type="Image" id="Image_syrgw"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 248, 116, 55, 64, 122, 102, 51, 65, 202, 227, 94, 65, 157, 244, 132, 65, 18, 89, 175, 65, 50, 233, 216, 65, 45, 104, 237, 65, 5, 221, 0, 66, 38, 232, 20, 66, 111, 151, 40, 66, 137, 75, 50, 66, 17, 234, 59, 66, 55, 111, 69, 66, 245, 55, 88, 66, 119, 123, 97, 66, 194, 188, 115, 66, 107, 187, 124, 66, 244, 209, 130, 66, 19, 59, 135, 66, 209, 235, 143, 66, 98, 51, 148, 66, 180, 111, 152, 66, 147, 198, 160, 66, 24, 225, 164, 66, 86, 240, 168, 66, 76, 244, 172, 66, 250, 236, 176, 66, 143, 188, 184, 66, 128, 147, 188, 66, 63, 95, 192, 66, 210, 31, 196, 66, 109, 126, 203, 66, 204, 27, 207, 66, 252, 173, 210, 66, 8, 53, 214, 66, 2, 177, 217, 66, 251, 33, 221, 66, 4, 136, 224, 66, 245, 224, 227, 66, 156, 112, 234, 66, 39, 168, 237, 66, 250, 212, 240, 66, 108, 245, 243, 66, 35, 9, 247, 66, 52, 18, 250, 66, 189, 16, 253, 66, 66, 117, 1, 67, 170, 226, 2, 67, 239, 74, 4, 67, 36, 174, 5, 67, 51, 10, 7, 67, 180, 96, 8, 67, 59, 178, 9, 67, 201, 254, 10, 67, 150, 67, 12, 67, 133, 131, 13, 67, 173, 190, 14, 67, 134, 243, 15, 67, 253, 33, 17, 67, 206, 75, 18, 67, 194, 142, 20, 67, 94, 167, 21, 67, 173, 186, 22, 67, 205, 199, 23, 67, 184, 207, 24, 67, 47, 210, 25, 67, 165, 206, 26, 67, 231, 197, 27, 67, 203, 183, 28, 67, 169, 163, 29, 67, 84, 138, 30, 67, 207, 107, 31, 67, 77, 71, 32, 67, 122, 29, 33, 67, 122, 238, 33, 67, 32, 186, 34, 67, 236, 127, 35, 67, 147, 64, 36, 67, 23, 252, 36, 67, 87, 178, 37, 67, 204, 98, 38, 67, 39, 14, 39, 67, 108, 180, 39, 67, 154, 85, 40, 67, 78, 241, 40, 67, 166, 135, 41, 67, 245, 24, 42, 67, 64, 165, 42, 67, 137, 44, 43, 67, 187, 174, 43, 67, 110, 43, 44, 67, 47, 163, 44, 67, 1, 22, 45, 67, 234, 131, 45, 67, 237, 236, 45, 67, 14, 81, 46, 67, 42, 176, 46, 67, 30, 10, 47, 67, 68, 95, 47, 67, 160, 175, 47, 67, 56, 251, 47, 67, 17, 66, 48, 67, 48, 132, 48, 67, 156, 193, 48, 67, 89, 250, 48, 67, 110, 46, 49, 67, 224, 93, 49, 67, 114, 136, 49, 67, 114, 174, 49, 67, 231, 207, 49, 67, 215, 236, 49, 67, 73, 5, 50, 67, 66, 25, 50, 67, 203, 40, 50, 67, 233, 51, 50, 67, 163, 58, 50, 67, 1, 61, 50, 67, 182, 58, 50, 67, 255, 50, 50, 67, 110, 37, 50, 67, 3, 18, 50, 67, 189, 248, 49, 67, 158, 217, 49, 67, 168, 180, 49, 67, 219, 137, 49, 67, 56, 89, 49, 67, 193, 34, 49, 67, 96, 164, 48, 67, 123, 92, 48, 67, 204, 14, 48, 67, 84, 187, 47, 67, 22, 98, 47, 67, 238, 2, 47, 67, 228, 157, 46, 67, 31, 51, 46, 67, 160, 194, 45, 67, 109, 76, 45, 67, 139, 208, 44, 67, 252, 78, 44, 67, 201, 199, 43, 67, 243, 58, 43, 67, 129, 168, 42, 67, 121, 16, 42, 67, 223, 114, 41, 67, 185, 207, 40, 67, 250, 38, 40, 67, 95, 120, 39, 67, 72, 196, 38, 67, 191, 10, 38, 67, 198, 75, 37, 67, 102, 135, 36, 67, 164, 189, 35, 67, 137, 238, 34, 67, 26, 26, 34, 67, 94, 64, 33, 67, 23, 97, 32, 67, 89, 124, 31, 67, 100, 146, 30, 67, 65, 163, 29, 67, 247, 174, 28, 67, 140, 181, 27, 67, 12, 183, 26, 67, 123, 179, 25, 67, 125, 170, 24, 67, 89, 156, 23, 67, 61, 137, 22, 67, 49, 113, 21, 67, 61, 84, 20, 67, 194, 11, 18, 67, 192, 223, 16, 67, 240, 174, 15, 67, 97, 121, 14, 67, 31, 63, 13, 67, 48, 0, 12, 67, 159, 188, 10, 67, 233, 115, 9, 67, 143, 38, 8, 67, 172, 212, 6, 67, 75, 126, 5, 67, 111, 35, 4, 67, 224, 195, 2, 67, 201, 237, 255, 66, 198, 19, 253, 66, 43, 49, 250, 66, 125, 69, 247, 66, 166, 80, 244, 66, 106, 83, 241, 66, 222, 77, 238, 66, 13, 64, 235, 66, 243, 40, 232, 66, 147, 9, 229, 66, 185, 178, 222, 66, 154, 122, 219, 66, 33, 58, 216, 66, 223, 241, 212, 66, 230, 161, 209, 66, 113, 73, 206, 66, 232, 128, 199, 66, 118, 17, 196, 66, 89, 153, 192, 66, 216, 25, 189, 66, 28, 147, 185, 66, 146, 4, 182, 66, 44, 110, 178, 66, 181, 208, 174, 66, 69, 127, 167, 66, 172, 203, 163, 66, 34, 17, 160, 66, 155, 78, 156, 66, 84, 181, 148, 66, 143, 221, 144, 66, 78, 255, 140, 66, 9, 26, 137, 66, 145, 45, 133, 66, 198, 58, 129, 66, 130, 125, 114, 66, 12, 113, 106, 66, 134, 83, 98, 66, 216, 243, 81, 66, 148, 177, 73, 66, 4, 95, 65, 66, 98, 1, 57, 66, 142, 152, 48, 66, 105, 156, 31, 66, 4, 12, 23, 66, 69, 112, 14, 66, 131, 32, 250, 65, 112, 155, 232, 65, 152, 255, 214, 65, 220, 76, 197, 65, 125, 150, 161, 65, 207, 151, 143, 65, 140, 4, 123, 65, 197, 34, 50, 65, 26, 101, 13, 65, 192, 238, 208, 64, 19, 183, 134, 64, 164, 243, 236, 190, 105, 204, 165, 192, 112, 216, 241, 192, 122, 33, 31, 193, 11, 134, 69, 193, 18, 111, 137, 193, 179, 122, 176, 193, 92, 36, 196, 193, 225, 229, 215, 193, 111, 191, 235, 193, 58, 223, 9, 194, 249, 16, 30, 194, 59, 64, 40, 194, 7, 122, 50, 194, 129, 21, 71, 194, 98, 240, 91, 194, 161, 117, 102, 194, 67, 16, 113, 194),
+"format": "RFloat",
+"height": 1,
+"mipmaps": false,
+"width": 256
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_wx2sc"]
+image = SubResource("Image_syrgw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hoxa3"]
+resource_local_to_scene = true
+shader = ExtResource("15_jlms8")
+shader_parameter/lift_length = 889.81
+shader_parameter/lift_width = 1000.0
+shader_parameter/lift_radius = 200.0
+shader_parameter/lift_strength = 10.0
+shader_parameter/height_texture = SubResource("ImageTexture_wx2sc")
 
 [node name="Node3D" type="Node3D"]
 
@@ -116,7 +160,7 @@ environment = SubResource("Environment_q57oy")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -612.971)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
@@ -135,7 +179,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -248.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, -8.88178e-16, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -612.971)
 current = true
 near = 1.0
 far = 6000.0
@@ -151,7 +195,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -219.993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -583.993)
 collision_layer = 1
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
@@ -160,13 +204,34 @@ linear_velocity = Vector3(0, -2, 25)
 script = ExtResource("14_et8ln")
 width = 1
 
-[node name="MountainAlone1" parent="Terrain" instance=ExtResource("11_ua50s")]
+[node name="mountain_alone_1_center" parent="Terrain" instance=ExtResource("9_rieks")]
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 306.797)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.395, 0, 306.797)
 thermal = SubResource("Resource_comkt")
 
 [node name="Ocean" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -31.782, 0)
 visible = false
 mesh = SubResource("PlaneMesh_dnqii")
+
+[node name="RidgeLift" parent="." instance=ExtResource("13_3i050")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 194.977, 501.698, 0)
+ridge_lift = SubResource("Resource_vg5cj")
+
+[node name="CollisionShape3D" parent="RidgeLift/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 444.905, 56.2258, 0)
+shape = SubResource("BoxShape3D_gxhh8")
+
+[node name="Path3D" parent="RidgeLift" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0298767, 0, -1.81899e-12)
+curve = SubResource("Curve3D_eb56b")
+
+[node name="GPUParticles3D" parent="RidgeLift" index="2"]
+visibility_aabb = AABB(0, -322.013, -500, 889.81, 644.026, 1000)
+process_material = SubResource("ShaderMaterial_hoxa3")
+
+[node name="RidgeLiftWindAreaComponent" parent="RidgeLift" index="3"]
+ridge_lift = SubResource("Resource_vg5cj")
+
+[editable path="RidgeLift"]

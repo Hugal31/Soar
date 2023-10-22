@@ -6,6 +6,8 @@
 [node name="MountainAlone1" instance=ExtResource("1_eatn2")]
 
 [node name="MountainAlone1" parent="." index="0"]
+cast_shadow = 0
+gi_mode = 0
 surface_material_override/0 = ExtResource("2_sp0yr")
 
 [node name="StaticBody3D" parent="MountainAlone1" index="0"]

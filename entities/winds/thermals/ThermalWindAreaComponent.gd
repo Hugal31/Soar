@@ -7,7 +7,7 @@ class_name ThermalWindAreaComponent
 @onready var parent: Node3D = get_parent()
 
 
-func get_wind_at_position(position: Vector3):
+func get_wind_at_position(position: Vector3) -> Vector3:
 	if thermal == null:
 		return Vector3()
 

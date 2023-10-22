@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://buqx3jajy1q27"]
+
+[ext_resource type="PackedScene" uid="uid://drot3qniko7g3" path="res://entities/terrains/mountains/mountain_alone_1.tscn" id="1_ehmyu"]
+[ext_resource type="PackedScene" uid="uid://c4t2w73144ncs" path="res://entities/terrains/water.tscn" id="2_gxi4g"]
+
+[node name="mountain_alone_1_center" type="Node3D"]
+
+[node name="MountainAlone1" parent="." instance=ExtResource("1_ehmyu")]
+
+[node name="water" parent="." instance=ExtResource("2_gxi4g")]
+transform = Transform3D(2.99958, 0, 0.0500014, 0, 3, 0, -0.0500014, 0, 2.99958, 0, -0.01, 0)

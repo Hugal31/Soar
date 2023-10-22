@@ -2,18 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf3xnehsqulcv"
-path.s3tc="res://.godot/imported/small_mountain_mountain.png-70bf0af631ccf4556e65dc0358761dac.s3tc.ctex"
+uid="uid://dj73whuvtpq6e"
+path.s3tc="res://.godot/imported/water.png-c27263f42daeafb7b495efcbf3ed305f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={}
 
 [deps]
 
-source_file="res://entities/terrains/mountains/assets/small_mountain_mountain.png"
-dest_files=["res://.godot/imported/small_mountain_mountain.png-70bf0af631ccf4556e65dc0358761dac.s3tc.ctex"]
+source_file="res://entities/terrains/assets/water.png"
+dest_files=["res://.godot/imported/water.png-c27263f42daeafb7b495efcbf3ed305f.s3tc.ctex"]
 
 [params]
 

@@ -1,10 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwdwodmtx0r84"]
 
-[ext_resource type="Shader" path="res://entities/winds/thermals/thermal_wind_whirl_spatial.gdshader" id="1_tnyeu"]
+[ext_resource type="Shader" path="res://entities/winds/ridge_lifts/ridge_lift_wind_whirl_spatial.gdshader" id="1_ygmix"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_tnyeu")
+shader = ExtResource("1_ygmix")
 shader_parameter/albedo = Color(0.803922, 1, 1, 1)
 shader_parameter/end_appear = 0.3
 shader_parameter/start_dissapear = 0.7

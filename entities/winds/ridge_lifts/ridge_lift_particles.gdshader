@@ -8,6 +8,7 @@ uniform float lift_radius = 50.;
 uniform float lift_strength = 10.;
 
 const float strength_multiplier = 4.;
+const float spawn_margin = 0.9;
 
 uint __hash(uint x) {
         x = ((x >> uint(16)) ^ x) * uint(73244475);
@@ -44,8 +45,9 @@ mat4 __build_rotation_mat4(vec3 axis, float angle) {
 void start() {
 	uint seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
 
-	float y = __randf_range(seed, -lift_radius, lift_radius);
-	float z = __randf_range(seed, -0.5 * lift_width, 0.5 * lift_width);
+	// TODO Make it slightly more probable to spawn near the center?
+	float y = spawn_margin * __randf_range(seed, -lift_radius, lift_radius);
+	float z = spawn_margin * __randf_range(seed, -0.5 * lift_width, 0.5 * lift_width);
 	float y_dist_to_core = abs(y);
 	float z_dist_to_core = abs(z);
 	float y_strenght = sqrt(lift_radius - y_dist_to_core) / sqrt(lift_radius);

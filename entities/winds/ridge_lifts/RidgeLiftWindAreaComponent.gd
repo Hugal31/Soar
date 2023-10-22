@@ -27,16 +27,14 @@ func get_wind_at_position(position: Vector3) -> Vector3:
 
 ## Return the approx t (in baked space) given the x coordinate 
 func get_curve_baked_t_at_x(x: float) -> float:
-	var x_begin := ridge_lift.curve.get_point_position(0).x
-	var x_end := ridge_lift.curve.get_point_position(ridge_lift.curve.point_count - 1).x
-	var x_span := x_end - x_begin
-	var t := (x - x_begin) / x_span
+	var t := x
 	var point := ridge_lift.curve.sample_baked(t)
-	var t_shift := 1.
-	while t_shift > 0.25 and abs(point.x - x) > 0.5:
+	var t_shift := 4.
+	while t_shift > 0.5 and abs(point.x - x) > 0.5:
 		if point.x > x:
 			t -= t_shift
 		else:
 			t += t_shift
 		t_shift *= 0.5
+		point = ridge_lift.curve.sample_baked(t)
 	return t

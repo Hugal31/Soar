@@ -21,6 +21,7 @@ enum FlightModel {
 @export var pitch_velocity = 10.0
 
 @export_subgroup("Arcade")
+@export var brake_speed: SpeedData = SpeedData.new()
 @export var slow_speed: SpeedData = SpeedData.new()
 @export var normal_speed: SpeedData = SpeedData.new()
 @export var fast_speed: SpeedData = SpeedData.new()
@@ -91,7 +92,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 
 
 func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
-	if Input.is_action_pressed("forward"):
+	if Input.is_action_pressed("brake"):
+		_integrate_speed_data(state, brake_speed)
+	elif Input.is_action_pressed("forward"):
 		_integrate_speed_data(state, fast_speed)
 	elif Input.is_action_pressed("backward"):
 		_integrate_speed_data(state, slow_speed)
@@ -122,10 +125,12 @@ func _integrate_speed_data(state: PhysicsDirectBodyState3D, speed: SpeedData):
 	if horizontal_speed >= normal_speed.horizontal_speed:
 		var weight := (fast_speed.horizontal_speed - horizontal_speed) / (fast_speed.horizontal_speed - normal_speed.horizontal_speed)
 		base_vertical_speed = lerpf(fast_speed.vertical_speed, normal_speed.vertical_speed, weight)
+	elif speed == brake_speed:
+		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - brake_speed.horizontal_speed)
+		base_vertical_speed = lerpf(normal_speed.vertical_speed, brake_speed.vertical_speed, weight)
 	else:
 		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
 		base_vertical_speed = lerpf(normal_speed.vertical_speed, slow_speed.vertical_speed, weight)
-
 
 
 func _integrate_forces_realist(state):

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://buard2riacv0g"]
+
+[ext_resource type="PackedScene" uid="uid://ppqorrlg5ndd" path="res://entities/terrains/assets/terrains_2.glb" id="1_87bfx"]
+[ext_resource type="Material" uid="uid://bep2l1fda1hns" path="res://entities/terrains/terrain_palette_material.tres" id="2_lfi48"]
+
+[node name="terrains_2" instance=ExtResource("1_87bfx")]
+
+[node name="Landscape_002" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_lfi48")

@@ -73,7 +73,11 @@ void fragment()
 	vec2 texture_uv = UV;
 #endif
 
-	vec4 color_base = COLOR * modulate_color;
+#ifndef NO_BASE_COLOR
+	vec4 color_base = COLOR;// * modulate_color;
+#else
+	vec4 color_base = vec4(1);
+#endif
 
 #ifdef NO_TEXTURE
 	ALBEDO = color_base.rgb;

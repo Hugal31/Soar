@@ -1,0 +1,15 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://yhbd5gqjvlw7"]
+
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit.gdshader" id="1_vddgu"]
+[ext_resource type="Texture2D" uid="uid://cw18apxpkmmcm" path="res://entities/terrains/decor/assets/tree_palette.png" id="2_ggyyp"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_vddgu")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader_parameter/billboard = false
+shader_parameter/y_billboard = false
+shader_parameter/albedoTex = ExtResource("2_ggyyp")

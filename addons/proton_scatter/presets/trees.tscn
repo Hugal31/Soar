@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://b4ablnkldkd26"]
+
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_7tsye"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_je1pe"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="3_ut6pt"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="4_0cboo"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_rotation.gd" id="5_3ambp"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="6_dpkub"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="7_voi3e"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="8_pdb55"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/common/physics_helper.gd" id="9_3rmgu"]
+
+[sub_resource type="Resource" id="Resource_ghl32"]
+script = ExtResource("3_ut6pt")
+amount = 600
+enabled = true
+override_global_seed = true
+custom_seed = 0
+restrict_height = false
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_5noj1"]
+script = ExtResource("4_0cboo")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 1000.0
+ray_offset = 100.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 40.0
+collision_mask = 2
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_eeit0"]
+script = ExtResource("5_3ambp")
+rotation = Vector3(10, 360, 10)
+snap_angle = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_cxkyl"]
+script = ExtResource("2_je1pe")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ghl32"), SubResource("Resource_5noj1"), SubResource("Resource_eeit0")])
+
+[sub_resource type="Resource" id="Resource_08rvi"]
+script = ExtResource("7_voi3e")
+radius = 1530.72
+
+[sub_resource type="Resource" id="Resource_ekp8q"]
+script = ExtResource("7_voi3e")
+radius = 915.042
+
+[node name="ProtonScatter" type="Node3D"]
+script = ExtResource("1_7tsye")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_cxkyl")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(1000, 1000, 1000)
+
+[node name="ScatterShape" type="Node3D" parent="."]
+transform = Transform3D(0.808678, 0, -0.588251, 0, 1, 0, 0.588251, 0, 0.808678, -537.156, -10.4308, 249.629)
+script = ExtResource("6_dpkub")
+shape = SubResource("Resource_08rvi")
+
+[node name="Lake" type="Node3D" parent="."]
+transform = Transform3D(0.808678, 0, -0.588251, 0, 1, 0, 0.588251, 0, 0.808678, 279.612, -57.0541, -241.071)
+script = ExtResource("6_dpkub")
+negative = true
+shape = SubResource("Resource_ekp8q")
+
+[node name="Pine1" type="Node3D" parent="."]
+script = ExtResource("8_pdb55")
+lod_generate = false
+path = "res://entities/terrains/decor/trees/pine_1.tscn"
+
+[node name="Pine2" type="Node3D" parent="."]
+script = ExtResource("8_pdb55")
+path = "res://entities/terrains/decor/trees/pine_2.tscn"
+
+[node name="Pine3" type="Node3D" parent="."]
+script = ExtResource("8_pdb55")
+path = "res://entities/terrains/decor/trees/pine_3.tscn"
+
+[node name="PhysicsHelper" type="Node" parent="."]
+script = ExtResource("9_3rmgu")
+
+[node name="ScatterOutput" type="Marker3D" parent="."]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2foqbevuikku"]
+
+[ext_resource type="ArrayMesh" uid="uid://d1nhdky5lmybu" path="res://entities/terrains/decor/assets/SM_Env_Tree_02.obj" id="1_f3gu6"]
+[ext_resource type="Material" uid="uid://shgji07t3gvc" path="res://entities/terrains/decor/trees/poly_adventure_1_material.tres" id="2_4sr7n"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4slyi"]
+height = 56.0
+radius = 13.0
+
+[node name="Node3D" type="StaticBody3D"]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("1_f3gu6")
+surface_material_override/0 = ExtResource("2_4sr7n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.8418, 0)
+shape = SubResource("CylinderShape3D_4slyi")

@@ -1,0 +1,99 @@
+[gd_scene load_steps=17 format=3 uid="uid://c6y53dkvqxqwc"]
+
+[ext_resource type="PackedScene" uid="uid://rjj52oy76h4k" path="res://entities/terrains/base/terrains_1.tscn" id="1_3afkg"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="2_bpd8l"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="3_htk0c"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="4_f4ssn"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="4_x4a5s"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="5_82s8q"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="5_c1knw"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_rotation.gd" id="6_epa3b"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/sphere_shape.gd" id="6_takd5"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="10_v638c"]
+
+[sub_resource type="Resource" id="Resource_1axhl"]
+script = ExtResource("4_x4a5s")
+amount = 600
+enabled = true
+override_global_seed = true
+custom_seed = 0
+restrict_height = false
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_yub0g"]
+script = ExtResource("5_c1knw")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 1000.0
+ray_offset = 100.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 40.0
+collision_mask = 2
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_wbojg"]
+script = ExtResource("6_epa3b")
+rotation = Vector3(10, 360, 10)
+snap_angle = Vector3(0, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_i1py0"]
+script = ExtResource("3_htk0c")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_1axhl"), SubResource("Resource_yub0g"), SubResource("Resource_wbojg")])
+
+[sub_resource type="Resource" id="Resource_08rvi"]
+script = ExtResource("6_takd5")
+radius = 1530.72
+
+[sub_resource type="Resource" id="Resource_ekp8q"]
+script = ExtResource("6_takd5")
+radius = 915.042
+
+[node name="mountains_lake_1" type="Node3D"]
+
+[node name="ScatterCache" type="Node3D" parent="."]
+script = ExtResource("10_v638c")
+cache_file = "res://cache.res"
+
+[node name="terrains_1" parent="." instance=ExtResource("1_3afkg")]
+
+[node name="ProtonScatter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 619.726, 405.245, 0)
+script = ExtResource("2_bpd8l")
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_i1py0")
+Performance/use_chunks = true
+Performance/chunk_dimensions = Vector3(3000, 3000, 3000)
+
+[node name="ScatterShape" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(0.808678, 0, -0.588251, 0, 1, 0, 0.588251, 0, 0.808678, -537.156, -10.4308, 249.629)
+script = ExtResource("5_82s8q")
+shape = SubResource("Resource_08rvi")
+
+[node name="Lake" type="Node3D" parent="ProtonScatter"]
+transform = Transform3D(0.808678, 0, -0.588251, 0, 1, 0, 0.588251, 0, 0.808678, 279.612, -57.0541, -241.071)
+script = ExtResource("5_82s8q")
+negative = true
+shape = SubResource("Resource_ekp8q")
+
+[node name="Pine1" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("4_f4ssn")
+lod_generate = false
+path = "res://entities/terrains/decor/trees/pine_1.tscn"
+
+[node name="Pine2" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("4_f4ssn")
+path = "res://entities/terrains/decor/trees/pine_2.tscn"
+
+[node name="Pine3" type="Node3D" parent="ProtonScatter"]
+script = ExtResource("4_f4ssn")
+path = "res://entities/terrains/decor/trees/pine_3.tscn"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cybr7m451edne"]
+
+[ext_resource type="ArrayMesh" uid="uid://wpq5xemwm0iw" path="res://entities/terrains/decor/assets/SM_Env_TreePine_02_Snow.obj" id="1_g3vcw"]
+[ext_resource type="Material" uid="uid://shgji07t3gvc" path="res://entities/terrains/decor/trees/poly_adventure_1_material.tres" id="2_eaw81"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_4slyi"]
+height = 50.0
+radius = 12.8894
+
+[node name="Node3D" type="StaticBody3D"]
+collision_layer = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+mesh = ExtResource("1_g3vcw")
+surface_material_override/0 = ExtResource("2_eaw81")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.8418, 0)
+shape = SubResource("CylinderShape3D_4slyi")

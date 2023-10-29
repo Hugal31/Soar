@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cjjy1k1p4am5o"
+path="res://.godot/imported/SM_Env_Tree_04.obj-2c85f8ef6df870efe8543973a65a7e48.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Env_Tree_04.obj-2c85f8ef6df870efe8543973a65a7e48.mesh"]
+
+source_file="res://entities/terrains/decor/assets/SM_Env_Tree_04.obj"
+dest_files=["res://.godot/imported/SM_Env_Tree_04.obj-2c85f8ef6df870efe8543973a65a7e48.mesh", "res://.godot/imported/SM_Env_Tree_04.obj-2c85f8ef6df870efe8543973a65a7e48.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

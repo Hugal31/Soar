@@ -1,0 +1,21 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b6pg7tlq317jj"
+path="res://.godot/imported/SM_Env_Tree_04_Snow.obj-bb141a0d62803df2506578f41febe11e.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SM_Env_Tree_04_Snow.obj-bb141a0d62803df2506578f41febe11e.mesh"]
+
+source_file="res://entities/terrains/decor/assets/SM_Env_Tree_04_Snow.obj"
+dest_files=["res://.godot/imported/SM_Env_Tree_04_Snow.obj-bb141a0d62803df2506578f41febe11e.mesh", "res://.godot/imported/SM_Env_Tree_04_Snow.obj-bb141a0d62803df2506578f41febe11e.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true

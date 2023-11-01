@@ -3,12 +3,6 @@ extends Resource
 class_name Thermal
 ## Cylindrical vertical thermal
 
-## The maximum height of the thermal.
-@export_range(100, 5000) var height: float = 1000.0:
-	set(h):
-		height = h
-		emit_signal("changed")
-
 ## The radius of the thermal.
 @export_range(20, 200) var radius: float = 75.0:
 	set(r):

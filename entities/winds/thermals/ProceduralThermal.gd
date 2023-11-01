@@ -30,40 +30,52 @@ class_name ProceduralThermal
 
 
 func _ready():
-	if Engine.is_editor_hint() and thermal != null:
-		thermal.changed.connect(self._update_shape)
+	if Engine.is_editor_hint():
+		set_notify_local_transform(true)
+		if thermal != null:
+			thermal.changed.connect(self._update_shape)
 	_update_shape()
+
+
+func _notification(what):
+	if not Engine.is_editor_hint():
+		return
+
+	if what == NOTIFICATION_TRANSFORM_CHANGED \
+		or what == NOTIFICATION_LOCAL_TRANSFORM_CHANGED:
+		_update_shape()
 
 
 func _update_shape():
 	assert(is_node_ready())
 	if thermal == null:
 		return
-		
-	var half_height := thermal.height / 2.0
+
+	var height := position.y
+	var half_height := height / 2.0
 
 	if area_collision != null:
 		if not area_collision.shape is CylinderShape3D:
 			area_collision.shape = CylinderShape3D.new()
 		var cylinder: CylinderShape3D = area_collision.shape
-		cylinder.height = thermal.height
+		cylinder.height = height
 		cylinder.radius = thermal.radius
-		area_collision.position.y = half_height
+		area_collision.position.y = -half_height
 
 	if particles != null:
 		var particles_speed := thermal.strength * particle_velocity_multiplier
 		var particles_vertical_distance := particles.lifetime * thermal.strength * particle_velocity_multiplier
-		var emission_height := thermal.height - particles_vertical_distance
-		particles.position.y = emission_height / 2.0
+		var emission_height := height - particles_vertical_distance
+		particles.position.y = -height + emission_height / 2.
 
 		particles.visibility_aabb.position = Vector3(
 			-thermal.radius,
-			-particles.position.y,
+			-emission_height / 2.,
 			-thermal.radius
 		)
 		particles.visibility_aabb.end = Vector3(
 			thermal.radius,
-			half_height,
+			half_height + emission_height / 2.,
 			thermal.radius
 		)
 		
@@ -79,7 +91,7 @@ func _update_shape():
 			# so duplicate the shader.
 			particles.process_material = particles.process_material.duplicate() 
 			var material := particles.process_material as ShaderMaterial
-			material.set_shader_parameter("height", thermal.height)
+			material.set_shader_parameter("height", height)
 			material.set_shader_parameter("radius", thermal.radius)
 			material.set_shader_parameter("speed", particles_speed)
 
@@ -89,12 +101,3 @@ func _update_shape():
 	if cloud != null:
 		if randomize_cloud_rotation:
 			cloud.rotation.y = randf_range(-PI, PI)
-		
-		var cloud_height: float = 0
-		if cloud is VisualInstance3D or cloud is MeshInstance3D:
-			cloud_height = cloud.get_aabb().size.y
-		else:
-			for child in cloud.get_children():
-				if child is VisualInstance3D or child is MeshInstance3D:
-					cloud_height = max(cloud_height, child.get_aabb().size.y)
-		cloud.position.y = thermal.height - cloud_height / 2

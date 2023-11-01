@@ -10,23 +10,23 @@
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
-height = 1000.0
-radius = 75.0
+height = 785.663
+radius = 200.0
 
-[sub_resource type="Resource" id="Resource_4dtyy"]
+[sub_resource type="Resource" id="Resource_hpr5f"]
 script = ExtResource("4_cht7p")
-height = 1000.0
-radius = 75.0
-strength = 7.0
+radius = 200.0
+strength = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ixnnc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy8r4"]
 shader = ExtResource("5_gxknx")
-shader_parameter/radius = 75.0
-shader_parameter/speed = 28.0
-shader_parameter/height = 1000.0
+shader_parameter/radius = 200.0
+shader_parameter/speed = 4.0
+shader_parameter/height = 785.663
 shader_parameter/orbit_speed = 0.2
 
 [node name="Thermal" type="Node3D" node_paths=PackedStringArray("cloud", "area", "area_collision", "particles", "wind_component")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 785.663, 0)
 script = ExtResource("3_nenhj")
 cloud = NodePath("cloud_1")
 area = NodePath("Area3D")
@@ -40,20 +40,20 @@ script = ExtResource("3_o84b8")
 wind_component = NodePath("../ThermalWindAreaComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -392.831, 0)
 shape = SubResource("CylinderShape3D_uknh0")
 
 [node name="ThermalWindAreaComponent" type="Node" parent="."]
 script = ExtResource("2_fn4cx")
-thermal = SubResource("Resource_4dtyy")
+thermal = SubResource("Resource_hpr5f")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 430, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -382.831, 0)
 amount = 200
 lifetime = 5.0
-visibility_aabb = AABB(-75, -430, -75, 150, 930, 150)
-process_material = SubResource("ShaderMaterial_ixnnc")
+visibility_aabb = AABB(-200, -382.831, -200, 400, 775.663, 400)
+process_material = SubResource("ShaderMaterial_hy8r4")
 draw_pass_1 = ExtResource("6_ht70n")
 
 [node name="cloud_1" parent="." instance=ExtResource("7_qsxoq")]
-transform = Transform3D(-0.520772, 0, 4.97279, 0, 5, 0, -4.97279, 0, -0.520772, 0, 981.124, 0)
+transform = Transform3D(-4.97777, 0, 0.470829, 0, 5, 0, -0.470829, 0, -4.97777, 0, 0, 0)

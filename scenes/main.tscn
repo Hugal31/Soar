@@ -48,7 +48,6 @@ shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 [sub_resource type="Resource" id="Resource_comkt"]
 resource_local_to_scene = true
 script = ExtResource("10_4iray")
-height = 828.07
 radius = 100.263
 strength = 7.0
 
@@ -209,7 +208,7 @@ width = 1
 [node name="mountain_alone_1_center" parent="Terrain" instance=ExtResource("9_rieks")]
 
 [node name="Thermal" parent="." instance=ExtResource("9_buwum")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 409.395, 0, 306.797)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 201.584, 946.847, 306.797)
 thermal = SubResource("Resource_comkt")
 
 [node name="Ocean" type="MeshInstance3D" parent="."]

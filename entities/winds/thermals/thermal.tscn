@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=13 format=3 uid="uid://k5uuocnk37nr"]
 
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
@@ -7,6 +7,8 @@
 [ext_resource type="Shader" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_gxknx"]
 [ext_resource type="PlaneMesh" uid="uid://bu66q72ei5kmj" path="res://entities/winds/thermals/wind_whirl_dissolving_mesh_z.tres" id="6_ht70n"]
 [ext_resource type="PackedScene" uid="uid://frfogyw6dujl" path="res://entities/clouds/cloud_1.tscn" id="7_qsxoq"]
+[ext_resource type="Script" path="res://scripts/NodeRandomizer.gd" id="8_psnwb"]
+[ext_resource type="PackedScene" uid="uid://oundxfntq103" path="res://entities/clouds/cloud_2.tscn" id="9_nervw"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
@@ -29,7 +31,7 @@ shader_parameter/orbit_speed = 0.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
 script = ExtResource("3_nenhj")
 particle_density = 20.0
-cloud = NodePath("cloud_1")
+cloud = NodePath("CloudRandomizer")
 area = NodePath("Area3D")
 area_collision = NodePath("Area3D/CollisionShape3D")
 particles = NodePath("GPUParticles3D")
@@ -56,5 +58,7 @@ visibility_aabb = AABB(-121.337, -180, -121.337, 242.674, 610, 242.674)
 process_material = SubResource("ShaderMaterial_bgfri")
 draw_pass_1 = ExtResource("6_ht70n")
 
-[node name="cloud_1" parent="." instance=ExtResource("7_qsxoq")]
-transform = Transform3D(-3.98632, 0, -3.01812, 0, 5, 0, 3.01812, 0, -3.98632, 0, 0, 0)
+[node name="CloudRandomizer" type="Node3D" parent="."]
+transform = Transform3D(-1.20918, 0, -4.85159, 0, 5, 0, 4.85159, 0, -1.20918, 0, 0, 0)
+script = ExtResource("8_psnwb")
+scenes = Array[PackedScene]([ExtResource("7_qsxoq"), ExtResource("9_nervw")])

@@ -16,6 +16,6 @@ dest_files=["res://.godot/imported/SM_Env_Tree_06_Snow.obj-a6898593f222c230971ab
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3(1, 1, 1)
+scale_mesh=Vector3(0.1, 0.1, 0.1)
 offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

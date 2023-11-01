@@ -16,6 +16,6 @@ dest_files=["res://.godot/imported/SM_Env_Tree_04.obj-2c85f8ef6df870efe8543973a6
 [params]
 
 generate_tangents=true
-scale_mesh=Vector3(1, 1, 1)
+scale_mesh=Vector3(0.1, 0.1, 0.1)
 offset_mesh=Vector3(0, 0, 0)
 optimize_mesh=true

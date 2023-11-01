@@ -46,14 +46,14 @@ const ProtonScatterUtil := preload('./common/scatter_util.gd')
 		if is_ready:
 			full_rebuild.call_deferred()
 
-var use_chunks : bool = true:
+@export var use_chunks : bool = true:
 	set(val):
 		use_chunks = val
-		notify_property_list_changed()
+#		notify_property_list_changed()
 		if is_ready:
 			full_rebuild.call_deferred()
 
-var chunk_dimensions := Vector3.ONE * 15.0:
+@export var chunk_dimensions := Vector3.ONE * 15.0:
 	set(val):
 		chunk_dimensions.x = max(val.x, 1.0)
 		chunk_dimensions.y = max(val.y, 1.0)
@@ -172,17 +172,17 @@ func _get_property_list() -> Array:
 		if use_chunks:
 			dimensions_usage = PROPERTY_USAGE_DEFAULT
 
-	list.push_back({
-		name = "Performance/use_chunks",
-		type = TYPE_BOOL,
-		usage = chunk_usage
-	})
+	#list.push_back({
+	#	name = "Performance/use_chunks",
+	#	type = TYPE_BOOL,
+	#	usage = chunk_usage
+	#})
 
-	list.push_back({
-		name = "Performance/chunk_dimensions",
-		type = TYPE_VECTOR3,
-		usage = dimensions_usage
-	})
+	#list.push_back({
+	#	name = "Performance/chunk_dimensions",
+	#	type = TYPE_VECTOR3,
+	#	usage = dimensions_usage
+	#})
 	return list
 
 
@@ -222,11 +222,12 @@ func _set(property, value):
 	if property == "transform":
 		_on_node_duplicated.call_deferred()
 
-	elif property == "Performance/use_chunks":
+	#elif property == "Performance/use_chunks":
 		use_chunks = value
 
-	elif property == "Performance/chunk_dimensions":
-		chunk_dimensions = value
+	#elif property == "Performance/chunk_dimensions":
+	#	print("Setting chunk dimensions to ", value)
+	#	chunk_dimensions = value
 
 	# Backward compatibility.
 	# Convert the value of previous property "use_instancing" into the proper render_mode.
@@ -238,11 +239,12 @@ func _set(property, value):
 
 
 func _get(property):
-	if property == "Performance/use_chunks":
-		return use_chunks
-
-	elif property == "Performance/chunk_dimensions":
-		return chunk_dimensions
+	pass
+	#if property == "Performance/use_chunks":
+	#	return use_chunks
+	#
+	#elif property == "Performance/chunk_dimensions":
+	#	return chunk_dimensions
 
 
 func is_thread_running() -> bool:
@@ -464,9 +466,9 @@ func _update_split_multimeshes() -> void:
 					if chunk_elements == 0:
 						continue
 					var mmi = ProtonScatterUtil.get_or_create_multimesh_chunk(
-													item, 
-													mesh_instance, 
-													Vector3i(xi, yi, zi), 
+													item,
+													mesh_instance,
+													Vector3i(xi, yi, zi),
 													chunk_elements)
 					if not mmi:
 						continue

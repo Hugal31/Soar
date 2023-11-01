@@ -85,8 +85,10 @@ func update_cache() -> void:
 		printerr("Cache file path is empty.")
 		return
 
+	print("Start caching")
 	_purge_outdated_nodes()
 	_discover_scatter_nodes(_scene_root)
+	print("Scatter nodes discovered")
 
 	if not _local_cache:
 		_local_cache = ProtonScatterCacheResource.new()
@@ -111,11 +113,14 @@ func update_cache() -> void:
 
 	# Only save the cache on disk if there's something new to save
 	if not _local_cache_changed:
+		print("Nothing new to save")
 		return
 
+	print("Saving cache at %s..." % cache_file)
 	# TODO: Save large files on a thread
 	var err = ResourceSaver.save(_local_cache, cache_file)
 	_local_cache_changed = false
+	print("Saved!")
 
 	if err != OK:
 		printerr("ProtonScatter error: Failed to save the cache file. Code: ", err)
@@ -127,6 +132,7 @@ func restore_cache() -> void:
 		printerr("Could not find cache file ", cache_file)
 		return
 
+	print("Loading cache...")
 	# Cache files are large, load on a separate thread
 	ResourceLoader.load_threaded_request(cache_file)
 	while true:
@@ -140,6 +146,7 @@ func restore_cache() -> void:
 			ResourceLoader.ThreadLoadStatus.THREAD_LOAD_LOADED:
 				break
 
+	print("Cache loaded")
 	_local_cache = ResourceLoader.load_threaded_get(cache_file)
 	if not _local_cache:
 		printerr("Could not load cache: ", cache_file)
@@ -148,18 +155,24 @@ func restore_cache() -> void:
 	_scatter_nodes.clear()
 	_discover_scatter_nodes(_scene_root)
 
+	print("Restoring cache...")
 	for s in _scatter_nodes:
 		if s.force_rebuild_on_load:
 			continue # Ignore the cache if the scatter node is about to rebuild anyway.
 
 		# Send the cached transforms to the scatter node.
+		print("Getting transforms...")
 		var transforms = ProtonScatterTransformList.new()
 		transforms.list = _local_cache.get_transforms(_scene_root.get_path_to(s))
+		print("Sanity check...")
 		s._perform_sanity_check()
+		print("Setting transforms...")
 		s._on_transforms_ready(transforms)
+		print("Transforms set!")
 		s.build_version = 0
 		_scatter_nodes[s] = 0
 
+	print("Cache restored!")
 	cache_restored.emit()
 
 

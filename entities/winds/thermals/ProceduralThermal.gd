@@ -81,7 +81,7 @@ func _update_shape():
 		)
 		particles.visibility_aabb.end = Vector3(
 			thermal.radius,
-			half_height + emission_height / 2.,
+			half_height + particles_vertical_distance,
 			thermal.radius
 		)
 		

@@ -13,16 +13,16 @@
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
 height = 500.0
-radius = 121.337
+radius = 75.0
 
-[sub_resource type="Resource" id="Resource_q00n7"]
+[sub_resource type="Resource" id="Resource_othli"]
 script = ExtResource("4_cht7p")
-radius = 121.337
+radius = 75.0
 strength = 7.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bgfri"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uq7tf"]
 shader = ExtResource("5_gxknx")
-shader_parameter/radius = 121.337
+shader_parameter/radius = 75.0
 shader_parameter/speed = 28.0
 shader_parameter/height = 500.0
 shader_parameter/orbit_speed = 0.2
@@ -48,17 +48,17 @@ shape = SubResource("CylinderShape3D_uknh0")
 
 [node name="ThermalWindAreaComponent" type="Node" parent="."]
 script = ExtResource("2_fn4cx")
-thermal = SubResource("Resource_q00n7")
+thermal = SubResource("Resource_othli")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -320, 0)
-amount = 718
+amount = 256
 lifetime = 5.0
-visibility_aabb = AABB(-121.337, -180, -121.337, 242.674, 610, 242.674)
-process_material = SubResource("ShaderMaterial_bgfri")
+visibility_aabb = AABB(-75, -180, -75, 150, 570, 150)
+process_material = SubResource("ShaderMaterial_uq7tf")
 draw_pass_1 = ExtResource("6_ht70n")
 
 [node name="CloudRandomizer" type="Node3D" parent="."]
-transform = Transform3D(-1.20918, 0, -4.85159, 0, 5, 0, 4.85159, 0, -1.20918, 0, 0, 0)
+transform = Transform3D(-2.9608, 0, -4.02911, 0, 5, 0, 4.02911, 0, -2.9608, 0, 0, 0)
 script = ExtResource("8_psnwb")
 scenes = Array[PackedScene]([ExtResource("7_qsxoq"), ExtResource("9_nervw")])

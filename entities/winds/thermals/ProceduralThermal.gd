@@ -18,6 +18,12 @@ class_name ProceduralThermal
 		_update_shape()
 
 @export var particle_velocity_multiplier: float = 4
+# Particle density per hm3
+@export_range(0, 100) var particle_density: float = 1:
+	set(d):
+		particle_density = d
+		if Engine.is_editor_hint() and is_node_ready():
+			_update_shape()
 
 @export var cloud: Node3D
 @export var randomize_cloud_rotation: bool = true
@@ -78,6 +84,11 @@ func _update_shape():
 			half_height + emission_height / 2.,
 			thermal.radius
 		)
+		
+		var volume := particles.visibility_aabb.size.x \
+			* particles.visibility_aabb.size.y \
+			* particles.visibility_aabb.size.z
+		particles.amount = particle_density * volume / 1000000.0
 		
 		if particles.process_material is ParticleProcessMaterial:
 			var material := particles.process_material as ParticleProcessMaterial

@@ -16,8 +16,3 @@ extends Resource
 	set(r):
 		radius = r
 		emit_signal("changed")
-
-@export var curve: Curve3D:
-	set(c):
-		curve = c
-		emit_signal("changed")

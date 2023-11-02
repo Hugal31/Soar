@@ -11,20 +11,35 @@ extends Node3D
 
 		if ridge_lift != null:
 			ridge_lift.changed.disconnect(_on_ridge_lift_changed)
-			if ridge_lift.curve != null:
-				ridge_lift.curve.changed.disconnect(_on_curve_changed)
 		ridge_lift = r
 		if ridge_lift != null:
 			ridge_lift.changed.connect(_on_ridge_lift_changed)
-			if ridge_lift.curve != null:
-				ridge_lift.curve.changed.connect(_on_curve_changed)
+				
+
+@export var curve: Curve3D:
+	set(c):
+		if curve != null and is_node_ready() and Engine.is_editor_hint():
+			curve.changed.disconnect(_on_curve_changed)
+		curve = c
+		if path != null:
+			path.curve = curve
+		if wind_component != null:
+			wind_component.curve = curve
+		if curve != null and is_node_ready() and Engine.is_editor_hint():
+			curve.changed.connect(_on_curve_changed)
 
 
 @export var path: Path3D:
 	set(p):
 		path = p
-		if path != null and ridge_lift != null:
-			path.curve = ridge_lift.curve
+		if path != null:
+			path.curve = curve
+
+@export_range(0, 10, 0.1) var particle_density: float = 1:
+	set(d):
+		particle_density = d
+		if Engine.is_editor_hint() and is_node_ready():
+			_on_curve_changed()
 
 @export var wind_component: RidgeLiftWindAreaComponent
 @export var collision_shape: CollisionShape3D
@@ -37,29 +52,51 @@ func _ready():
 	if Engine.is_editor_hint():
 		if ridge_lift != null and not ridge_lift.changed.is_connected(_on_ridge_lift_changed):
 			ridge_lift.changed.connect(_on_ridge_lift_changed)
+		if curve != null and not curve.changed.is_connected(_on_curve_changed):
+			curve.changed.connect(_on_curve_changed)
 
-	if path != null and ridge_lift != null:
-		path.curve = ridge_lift.curve
+		if path != null:
+			path.curve = curve
+
+	if wind_component != null:
+		wind_component.curve = curve
 
 	_on_ridge_lift_changed()
 
 
 func _on_ridge_lift_changed():
-	if path != null and ridge_lift != null:
-		path.curve = ridge_lift.curve
-
-	if ridge_lift.curve != null and not ridge_lift.curve.changed.is_connected(_on_curve_changed):
-		ridge_lift.curve.changed.connect(_on_curve_changed)
-
 	wind_component.ridge_lift = ridge_lift
 	_on_curve_changed()
+	
+
+func _notification(what):
+	if what == NOTIFICATION_EDITOR_PRE_SAVE:
+		_flatten_curve()
+
+
+## Remove the Z component on the curve
+func _flatten_curve():
+	if curve == null:
+		return
+	for idx in range(0, curve.point_count):
+		var v := curve.get_point_position(idx)
+		v.z = 0
+		curve.set_point_position(idx, v)
+
+		v = curve.get_point_in(idx)
+		v.z = 0
+		curve.set_point_in(idx, v)
+
+		v = curve.get_point_out(idx)
+		v.z = 0
+		curve.set_point_out(idx, v)
 
 
 func _on_curve_changed():
-	if ridge_lift.curve == null or ridge_lift.curve.point_count < 2:
+	if ridge_lift == null or curve == null or curve.point_count < 2:
 		return
 
-	var curve2D := ProceduralRidgeLift.curve3D_to_2D(ridge_lift.curve)
+	var curve2D := ProceduralRidgeLift.curve3D_to_2D(curve)
 
 	var curve_aabb := ProceduralRidgeLift._compute_curve2D_aabb(curve2D)
 	var size := Vector3(curve_aabb.size.x,
@@ -77,6 +114,8 @@ func _on_curve_changed():
 
 	if particles != null:
 		particles.visibility_aabb = AABB(size * Vector3(0, -0.5, -0.5), size)
+		var volume = size.x * size.y * size.z
+		particles.amount = volume * particle_density / 1000000.0
 		if particles.process_material is ShaderMaterial:
 			var material := particles.process_material as ShaderMaterial
 			var curve_data := ProceduralRidgeLift._sample_curve_to_image(curve2D, curve_texture_resolution)
@@ -94,18 +133,18 @@ func _on_curve_changed():
 
 ## Return a array of the Y value of the texture along its X span
 ## The curve should be X-monotonic (do not go decreasing in X).
-static func _sample_curve_to_image(curve: Curve2D, resolution: int) -> PackedFloat32Array:
+static func _sample_curve_to_image(curve_2d: Curve2D, resolution: int) -> PackedFloat32Array:
 	var array := PackedFloat32Array()
 	array.resize(resolution)
-	var min_x := curve.get_point_position(0).x
-	var max_x := curve.get_point_position(curve.point_count - 1).x
+	var min_x := curve_2d.get_point_position(0).x
+	var max_x := curve_2d.get_point_position(curve_2d.point_count - 1).x
 	var span_x := max_x - min_x
 	array.resize(resolution)
 	for i in range(0, resolution):
 		# Sample baked is in pixel space, not [0,1] space.
 		var t := span_x * float(i) / resolution
 		# To be sure I sample each pixel on the texture, I use binary search to get to the right pixel.
-		var point := curve.sample_baked(t)
+		var point := curve_2d.sample_baked(t)
 		var t_jump := 0.5 * span_x
 		var actual_pixel := roundi(float(resolution) * (point.x - min_x) / span_x)
 		while actual_pixel != i:
@@ -113,7 +152,7 @@ static func _sample_curve_to_image(curve: Curve2D, resolution: int) -> PackedFlo
 				t -= t_jump
 			else:
 				t += t_jump
-			point = curve.sample_baked(t)
+			point = curve_2d.sample_baked(t)
 			actual_pixel = roundi(float(resolution) * (point.x - min_x) / span_x)
 			t_jump *= 0.5
 			if t_jump < 0.001:
@@ -137,8 +176,8 @@ static func _project_xy(v: Vector3) -> Vector2:
 	return Vector2(v.x, v.y)
 
 ## Compute a Curve2D AABB
-static func _compute_curve2D_aabb(curve: Curve2D) -> Rect2:
-	var points := curve.get_baked_points()
+static func _compute_curve2D_aabb(curve_2d: Curve2D) -> Rect2:
+	var points := curve_2d.get_baked_points()
 	var aabb := Rect2(points[0], points[0])
 	for point in points:
 		aabb = aabb.expand(point)
@@ -146,8 +185,8 @@ static func _compute_curve2D_aabb(curve: Curve2D) -> Rect2:
 
 
 ## Compute a Curve3D AABB
-static func _compute_curve3D_aabb(curve: Curve3D) -> AABB:
-	var points := curve.get_baked_points()
+static func _compute_curve3D_aabb(curve_2d: Curve3D) -> AABB:
+	var points := curve_2d.get_baked_points()
 	var aabb := AABB(points[0], points[0])
 	for point in points:
 		aabb = aabb.expand(point)

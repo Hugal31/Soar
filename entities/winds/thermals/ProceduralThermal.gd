@@ -52,6 +52,10 @@ func _notification(what):
 		_update_shape()
 
 
+func _physics_process(delta):
+	if Engine.is_editor_hint():
+		return
+
 func _update_shape():
 	assert(is_node_ready())
 	if thermal == null:

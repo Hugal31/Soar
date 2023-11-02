@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6y53dkvqxqwc"]
+[gd_scene load_steps=36 format=3 uid="uid://c6y53dkvqxqwc"]
 
 [ext_resource type="PackedScene" uid="uid://rjj52oy76h4k" path="res://entities/terrains/base/terrains_1.tscn" id="1_3afkg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="2_4ukva"]
@@ -11,8 +11,13 @@
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/randomize_transforms.gd" id="6_q58qg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_position.gd" id="7_pcdx0"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="10_vc2js"]
+[ext_resource type="PackedScene" uid="uid://d33y6o0pq1mgr" path="res://entities/winds/ridge_lifts/ridge_lift.tscn" id="12_wpq72"]
+[ext_resource type="Script" path="res://entities/winds/ridge_lifts/RidgeLift.gd" id="13_ubqs6"]
+[ext_resource type="Shader" path="res://entities/winds/ridge_lifts/ridge_lift_particles.gdshader" id="14_35y4f"]
+[ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="15_u8iil"]
+[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="16_mdtuo"]
 
-[sub_resource type="Resource" id="Resource_g6qkv"]
+[sub_resource type="Resource" id="Resource_lwp4i"]
 script = ExtResource("4_x4a5s")
 amount = 1000
 enabled = true
@@ -21,7 +26,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_xgbqw"]
+[sub_resource type="Resource" id="Resource_0sohd"]
 script = ExtResource("5_c1knw")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -37,7 +42,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_1o4r0"]
+[sub_resource type="Resource" id="Resource_3cfyw"]
 script = ExtResource("7_pcdx0")
 operation = 0
 position = Vector3(0, -10, 0)
@@ -47,7 +52,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_dllot"]
+[sub_resource type="Resource" id="Resource_m4jq4"]
 script = ExtResource("6_q58qg")
 position = Vector3(0, 0, 0)
 rotation = Vector3(10, 360, 10)
@@ -58,13 +63,95 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_tgyaa"]
+[sub_resource type="Resource" id="Resource_53vdp"]
 script = ExtResource("3_htk0c")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_g6qkv"), SubResource("Resource_xgbqw"), SubResource("Resource_1o4r0"), SubResource("Resource_dllot")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_lwp4i"), SubResource("Resource_0sohd"), SubResource("Resource_3cfyw"), SubResource("Resource_m4jq4")])
 
 [sub_resource type="Resource" id="Resource_i2s6c"]
 script = ExtResource("10_vc2js")
 size = Vector3(4500, 1, 4500)
+
+[sub_resource type="Resource" id="Resource_glqfv"]
+script = ExtResource("13_ubqs6")
+strength = 15.0
+width = 2000.0
+radius = 750.0
+
+[sub_resource type="Curve3D" id="Curve3D_bdjth"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -182.014, -38.6779, 0, 182.014, 38.6779, 0, 888.473, 49.4181, 0, -177.463, -4.55042, 0, 177.463, 4.55042, 0, 1589.82, 199.809, 0, -276.038, 16.5319, 0, 276.038, -16.5319, 0, 2178.97, -295.955, 0, -255.962, -119.003, 0, 255.962, 119.003, 0, 3385.5, -340.105, 0, -207.388, 6.19067, 0, 207.388, -6.19067, 0, 4206.27, 428.71, 0, -297.153, 0, 0, 297.153, 0, 0, 5607.75, -380.644, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sdmr4"]
+resource_local_to_scene = true
+size = Vector3(5607.75, 2315.02, 2000)
+
+[sub_resource type="Curve3D" id="Curve3D_4p7ny"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -182.014, -38.6779, 0, 182.014, 38.6779, 0, 886.394, 53.7801, 0, -177.463, -4.55042, 0, 177.463, 4.55042, 0, 1361.9, 572.519, 0, -276.038, 16.5319, 0, 276.038, -16.5319, 0, 1787.36, 12.8271, 0, -238.342, 0, 0, 238.342, 0, 0, 3145.67, -45.9587, 0, -207.388, 6.19067, 0, 207.388, -6.19067, 0, 4123.8, 245.004, 0, -297.153, 0, 0, 297.153, 0, 0, 5877.14, -108.59, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="Image" id="Image_i886p"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 100, 193, 191, 62, 34, 215, 73, 63, 227, 168, 157, 63, 171, 200, 217, 63, 97, 139, 12, 64, 162, 190, 45, 64, 99, 119, 80, 64, 193, 181, 116, 64, 168, 61, 141, 64, 223, 231, 160, 64, 228, 91, 181, 64, 105, 159, 202, 64, 188, 184, 224, 64, 220, 174, 247, 64, 207, 196, 7, 65, 219, 40, 20, 65, 111, 8, 33, 65, 210, 105, 46, 65, 15, 84, 60, 65, 248, 204, 74, 65, 110, 222, 89, 65, 237, 144, 105, 65, 43, 238, 121, 65, 102, 130, 133, 65, 209, 111, 142, 65, 157, 199, 151, 65, 206, 147, 161, 65, 236, 221, 171, 65, 167, 178, 182, 65, 1, 33, 194, 65, 252, 58, 206, 65, 87, 22, 219, 65, 141, 205, 232, 65, 39, 132, 247, 65, 101, 178, 3, 66, 143, 86, 12, 66, 83, 216, 21, 66, 168, 114, 32, 66, 133, 134, 44, 66, 217, 183, 58, 66, 0, 23, 76, 66, 25, 50, 95, 66, 211, 26, 115, 66, 203, 207, 131, 66, 140, 76, 142, 66, 81, 245, 152, 66, 159, 190, 163, 66, 1, 159, 174, 66, 148, 142, 185, 66, 99, 134, 196, 66, 82, 128, 207, 66, 187, 118, 218, 66, 87, 100, 229, 66, 25, 68, 240, 66, 35, 227, 2, 67, 88, 47, 8, 67, 134, 106, 13, 67, 229, 145, 18, 67, 120, 162, 23, 67, 242, 152, 28, 67, 185, 113, 33, 67, 188, 40, 38, 67, 89, 185, 42, 67, 241, 29, 47, 67, 126, 80, 51, 67, 7, 73, 55, 67, 127, 254, 58, 67, 99, 101, 62, 67, 197, 110, 65, 67, 159, 7, 68, 67, 50, 22, 70, 67, 160, 118, 71, 67, 237, 90, 71, 67, 112, 236, 66, 67, 44, 162, 58, 67, 112, 136, 47, 67, 207, 9, 20, 67, 26, 167, 4, 67, 156, 39, 233, 66, 254, 28, 166, 66, 141, 186, 65, 66, 179, 28, 247, 65, 33, 48, 84, 65, 121, 222, 30, 194, 129, 39, 101, 194, 244, 131, 149, 194, 66, 90, 252, 194, 65, 216, 14, 195, 144, 49, 31, 195, 154, 172, 62, 195, 104, 166, 77, 195, 5, 147, 105, 195, 49, 69, 118, 195, 98, 246, 128, 195, 156, 46, 134, 195, 84, 179, 138, 195, 0, 109, 142, 195, 3, 70, 145, 195, 93, 45, 147, 195, 83, 34, 148, 195, 74, 238, 148, 195, 16, 226, 149, 195, 85, 244, 150, 195, 58, 30, 152, 195, 231, 90, 153, 195, 101, 166, 154, 195, 168, 253, 155, 195, 41, 94, 157, 195, 212, 197, 158, 195, 234, 50, 160, 195, 204, 163, 161, 195, 50, 23, 163, 195, 224, 139, 164, 195, 191, 0, 166, 195, 209, 116, 167, 195, 42, 231, 168, 195, 232, 86, 170, 195, 54, 195, 171, 195, 74, 43, 173, 195, 93, 142, 174, 195, 169, 235, 175, 195, 109, 66, 177, 195, 232, 145, 178, 195, 82, 217, 179, 195, 229, 23, 181, 195, 211, 76, 182, 195, 70, 119, 183, 195, 101, 150, 184, 195, 242, 174, 186, 195, 97, 166, 187, 195, 136, 142, 188, 195, 59, 102, 189, 195, 57, 44, 190, 195, 35, 223, 190, 195, 131, 125, 191, 195, 194, 5, 192, 195, 28, 118, 192, 195, 132, 204, 192, 195, 229, 6, 193, 195, 183, 34, 193, 195, 65, 29, 193, 195, 87, 243, 192, 195, 204, 161, 192, 195, 8, 36, 192, 195, 179, 117, 191, 195, 110, 145, 190, 195, 183, 112, 189, 195, 252, 11, 188, 195, 98, 90, 186, 195, 152, 81, 184, 195, 226, 227, 181, 195, 124, 2, 179, 195, 10, 154, 175, 195, 1, 148, 171, 195, 93, 214, 166, 195, 36, 107, 161, 195, 53, 120, 155, 195, 115, 101, 142, 195, 165, 106, 135, 195, 166, 53, 128, 195, 210, 159, 113, 195, 128, 30, 83, 195, 37, 126, 67, 195, 88, 169, 35, 195, 68, 129, 19, 195, 88, 55, 3, 195, 120, 157, 196, 194, 199, 26, 130, 194, 203, 76, 65, 194, 241, 148, 107, 193, 254, 23, 152, 65, 116, 161, 15, 66, 123, 63, 83, 66, 252, 55, 173, 66, 152, 171, 240, 66, 238, 37, 9, 67, 48, 234, 25, 67, 69, 210, 75, 67, 247, 71, 92, 67, 25, 160, 108, 67, 186, 113, 134, 67, 212, 96, 142, 67, 56, 230, 157, 67, 209, 112, 165, 67, 105, 203, 172, 67, 80, 195, 186, 67, 234, 62, 193, 67, 115, 67, 199, 67, 54, 169, 204, 67, 134, 54, 209, 67, 227, 147, 212, 67, 205, 69, 214, 67, 186, 191, 213, 67, 185, 82, 211, 67, 210, 187, 203, 67, 65, 46, 199, 67, 60, 79, 194, 67, 46, 51, 189, 67, 66, 230, 183, 67, 61, 114, 178, 67, 3, 222, 172, 67, 220, 46, 167, 67, 90, 143, 155, 67, 12, 165, 149, 67, 21, 172, 143, 67, 108, 166, 137, 67, 30, 246, 122, 67, 227, 175, 110, 67, 140, 90, 98, 67, 44, 248, 85, 67, 42, 138, 73, 67, 77, 18, 61, 67, 26, 10, 36, 67, 55, 124, 23, 67, 29, 233, 10, 67, 74, 164, 252, 66, 120, 55, 202, 66, 90, 252, 176, 66, 90, 192, 151, 66, 112, 10, 125, 66, 239, 152, 74, 66, 8, 163, 203, 65, 79, 8, 78, 65, 208, 48, 162, 62, 47, 146, 67, 193, 146, 234, 20, 194, 164, 192, 70, 194, 142, 116, 120, 194, 236, 0, 149, 194, 79, 178, 173, 194, 81, 205, 222, 194, 82, 50, 247, 194, 160, 188, 7, 195, 154, 207, 19, 195, 16, 190, 43, 195, 111, 150, 55, 195, 136, 87, 67, 195, 144, 255, 78, 195, 17, 140, 90, 195, 71, 250, 101, 195, 115, 71, 113, 195, 105, 184, 131, 195, 80, 34, 137, 195, 101, 115, 142, 195, 149, 168, 147, 195, 132, 190, 152, 195, 204, 176, 157, 195, 218, 20, 167, 195, 83, 120, 171, 195, 157, 154, 175, 195, 115, 110, 179, 195, 1, 226, 182, 195, 25, 222, 185, 195, 241, 62, 188, 195, 251, 210, 189, 195),
+"format": "RFloat",
+"height": 1,
+"mipmaps": false,
+"width": 256
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_ldjtc"]
+image = SubResource("Image_i886p")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o3frs"]
+resource_local_to_scene = true
+shader = ExtResource("14_35y4f")
+shader_parameter/lift_length = 5607.75
+shader_parameter/lift_width = 2000.0
+shader_parameter/lift_radius = 750.0
+shader_parameter/lift_strength = 15.0
+shader_parameter/height_texture = SubResource("ImageTexture_ldjtc")
+
+[sub_resource type="Curve3D" id="Curve3D_07cyp"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, -208.137, -39.1836, 0, 208.137, 39.1836, 0, 847.287, -48.4766, 0, -90.4622, -2.51953, 0, 90.4622, 2.51953, 0, 1450.89, 171.293, 0, -289.58, 79.304, 0, 289.58, -79.304, 0, 2151.85, -461.903, 0, -446.029, -146.222, 0, 446.029, 146.222, 0, 3182.42, -478.009, 0, -234.765, -6.98914, 0, 234.765, 6.98914, 0, 4176.54, 365.33, 0, -663.109, -7.77319, 0, 663.109, 7.77319, 0, 5449.81, -346.36, 0),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nw5ap"]
+resource_local_to_scene = true
+size = Vector3(5449.81, 2423.72, 2000)
+
+[sub_resource type="Image" id="Image_7ifex"]
+data = {
+"data": PackedByteArray(0, 0, 0, 0, 105, 186, 51, 192, 239, 40, 177, 192, 253, 67, 3, 193, 107, 25, 45, 193, 130, 30, 86, 193, 206, 89, 126, 193, 125, 231, 146, 193, 141, 62, 166, 193, 205, 49, 185, 193, 101, 191, 203, 193, 81, 230, 221, 193, 212, 162, 239, 193, 69, 121, 0, 194, 245, 232, 8, 194, 95, 30, 17, 194, 55, 23, 25, 194, 227, 208, 32, 194, 126, 72, 40, 194, 49, 122, 47, 194, 167, 98, 54, 194, 217, 253, 60, 194, 25, 71, 67, 194, 93, 56, 73, 194, 236, 203, 78, 194, 29, 251, 83, 194, 240, 189, 88, 194, 33, 11, 93, 194, 222, 215, 96, 194, 132, 23, 100, 194, 33, 187, 102, 194, 0, 177, 104, 194, 235, 227, 105, 194, 30, 58, 106, 194, 86, 143, 105, 194, 36, 187, 103, 194, 91, 132, 100, 194, 60, 159, 95, 194, 165, 154, 88, 194, 90, 213, 78, 194, 122, 68, 65, 194, 254, 238, 47, 194, 184, 254, 27, 194, 86, 222, 5, 194, 141, 196, 219, 193, 16, 158, 168, 193, 30, 104, 101, 193, 73, 156, 233, 192, 160, 177, 246, 186, 180, 4, 116, 65, 56, 53, 185, 65, 16, 157, 249, 65, 93, 135, 29, 66, 231, 176, 62, 66, 253, 55, 96, 66, 203, 4, 129, 66, 147, 9, 146, 66, 119, 32, 163, 66, 38, 63, 180, 66, 45, 101, 214, 66, 160, 80, 231, 66, 51, 10, 248, 66, 248, 60, 4, 67, 123, 64, 12, 67, 120, 249, 19, 67, 135, 69, 27, 67, 38, 237, 33, 67, 233, 131, 39, 67, 182, 8, 43, 67, 231, 52, 39, 67, 61, 6, 28, 67, 64, 130, 14, 67, 255, 127, 225, 66, 139, 186, 162, 66, 6, 186, 130, 66, 98, 241, 68, 66, 130, 241, 133, 65, 65, 126, 126, 193, 34, 250, 0, 194, 113, 195, 129, 194, 217, 200, 194, 194, 197, 37, 227, 194, 143, 177, 1, 195, 52, 181, 33, 195, 159, 90, 65, 195, 42, 3, 81, 195, 241, 138, 96, 195, 173, 43, 127, 195, 88, 30, 135, 195, 99, 228, 149, 195, 172, 28, 157, 195, 213, 51, 164, 195, 105, 38, 171, 195, 255, 139, 184, 195, 12, 244, 190, 195, 110, 33, 197, 195, 179, 170, 208, 195, 37, 242, 213, 195, 216, 211, 218, 195, 68, 65, 223, 195, 245, 38, 227, 195, 174, 110, 230, 195, 178, 65, 233, 195, 71, 16, 236, 195, 19, 219, 238, 195, 152, 159, 241, 195, 87, 91, 244, 195, 210, 11, 247, 195, 172, 174, 249, 195, 115, 65, 252, 195, 222, 193, 254, 195, 210, 150, 0, 196, 75, 193, 1, 196, 77, 223, 2, 196, 212, 239, 3, 196, 235, 241, 4, 196, 13, 199, 6, 196, 102, 152, 7, 196, 247, 87, 8, 196, 254, 4, 9, 196, 219, 158, 9, 196, 25, 37, 10, 196, 8, 151, 10, 196, 119, 244, 10, 196, 221, 60, 11, 196, 12, 112, 11, 196, 219, 141, 11, 196, 4, 150, 11, 196, 124, 136, 11, 196, 80, 101, 11, 196, 134, 44, 11, 196, 54, 222, 10, 196, 135, 122, 10, 196, 175, 1, 10, 196, 241, 115, 9, 196, 135, 209, 8, 196, 177, 26, 8, 196, 247, 79, 7, 196, 152, 113, 6, 196, 246, 127, 5, 196, 140, 123, 4, 196, 190, 100, 3, 196, 226, 59, 2, 196, 165, 1, 1, 196, 127, 108, 255, 195, 98, 180, 252, 195, 220, 219, 249, 195, 220, 227, 246, 195, 58, 205, 243, 195, 223, 152, 240, 195, 34, 63, 237, 195, 81, 146, 233, 195, 7, 144, 229, 195, 73, 61, 225, 195, 145, 158, 220, 195, 95, 145, 210, 195, 226, 43, 205, 195, 189, 140, 199, 195, 30, 184, 193, 195, 100, 177, 187, 195, 106, 124, 181, 195, 63, 148, 168, 195, 240, 230, 161, 195, 27, 23, 155, 195, 161, 25, 141, 195, 91, 240, 133, 195, 251, 90, 125, 195, 129, 196, 95, 195, 150, 186, 80, 195, 161, 56, 50, 195, 82, 198, 34, 195, 179, 54, 19, 195, 182, 146, 231, 194, 234, 6, 168, 194, 26, 10, 136, 194, 25, 220, 79, 194, 155, 170, 157, 193, 118, 10, 75, 65, 84, 93, 231, 65, 132, 164, 52, 66, 16, 172, 187, 66, 77, 5, 220, 66, 70, 71, 252, 66, 121, 51, 30, 67, 123, 226, 61, 67, 174, 135, 77, 67, 93, 2, 93, 67, 5, 82, 123, 67, 185, 7, 133, 67, 79, 49, 147, 67, 253, 227, 153, 67, 143, 62, 160, 67, 203, 40, 166, 67, 144, 129, 171, 67, 98, 26, 176, 67, 134, 181, 179, 67, 43, 3, 182, 67, 180, 123, 181, 67, 5, 202, 178, 67, 185, 246, 174, 67, 67, 79, 170, 67, 155, 10, 165, 67, 25, 80, 159, 67, 103, 59, 153, 67, 124, 79, 140, 67, 10, 147, 133, 67, 244, 104, 125, 67, 149, 117, 111, 67, 3, 23, 83, 67, 161, 189, 68, 67, 142, 215, 39, 67, 238, 85, 25, 67, 213, 208, 10, 67, 47, 152, 248, 66, 194, 165, 190, 66, 43, 202, 161, 66, 48, 215, 80, 66, 41, 231, 23, 66, 141, 160, 190, 65, 78, 116, 28, 65, 109, 237, 143, 193, 225, 133, 253, 193, 194, 171, 106, 194, 61, 218, 143, 194, 120, 8, 170, 194, 119, 219, 195, 194, 112, 78, 221, 194, 99, 125, 7, 195, 178, 148, 19, 195, 73, 112, 31, 195, 254, 102, 54, 195, 67, 124, 65, 195, 52, 73, 76, 195, 100, 202, 86, 195, 111, 252, 96, 195, 6, 220, 106, 195, 232, 101, 116, 195, 109, 150, 125, 195, 40, 53, 131, 195, 98, 119, 139, 195, 72, 76, 143, 195, 41, 236, 146, 195, 135, 85, 150, 195, 206, 134, 153, 195, 165, 126, 156, 195, 150, 59, 159, 195, 134, 188, 161, 195, 74, 0, 164, 195, 244, 5, 166, 195, 161, 204, 167, 195, 184, 83, 169, 195, 69, 154, 170, 195, 42, 160, 171, 195, 90, 101, 172, 195, 87, 233, 172, 195, 118, 44, 173, 195),
+"format": "RFloat",
+"height": 1,
+"mipmaps": false,
+"width": 256
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_3sxc4"]
+image = SubResource("Image_7ifex")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wxjf"]
+resource_local_to_scene = true
+shader = ExtResource("14_35y4f")
+shader_parameter/lift_length = 5449.81
+shader_parameter/lift_width = 2000.0
+shader_parameter/lift_radius = 750.0
+shader_parameter/lift_strength = 15.0
+shader_parameter/height_texture = SubResource("ImageTexture_3sxc4")
+
+[sub_resource type="Resource" id="Resource_m2650"]
+script = ExtResource("16_mdtuo")
+radius = 75.0
+strength = 7.0
 
 [node name="mountains_lake_1" type="Node3D"]
 
@@ -72,7 +159,6 @@ size = Vector3(4500, 1, 4500)
 
 [node name="Decor" type="Node3D" parent="."]
 metadata/_edit_lock_ = true
-metadata/_edit_group_ = true
 
 [node name="ScatterCache" type="Node3D" parent="Decor"]
 script = ExtResource("2_4ukva")
@@ -82,7 +168,7 @@ cache_file = "res://addons/proton_scatter/cache/mountains_lake_1_32265282_scatte
 script = ExtResource("2_bpd8l")
 chunk_dimensions = Vector3(3001.03, 3001, 3000)
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_tgyaa")
+modifier_stack = SubResource("Resource_53vdp")
 
 [node name="ScatterShape" type="Node3D" parent="Decor/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.6425, 670.717, -128.077)
@@ -98,3 +184,56 @@ path = "res://entities/terrains/decor/trees/pine_1.tscn"
 script = ExtResource("4_f4ssn")
 lod_generate = false
 path = "res://entities/terrains/decor/trees/pine_2.tscn"
+
+[node name="RidgeLift" parent="." instance=ExtResource("12_wpq72")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3286.72, 923.49, -815.014)
+visible = false
+ridge_lift = SubResource("Resource_glqfv")
+curve = SubResource("Curve3D_bdjth")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" parent="RidgeLift/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2803.87, 21.2238, 0)
+shape = SubResource("BoxShape3D_sdmr4")
+
+[node name="Path3D" parent="RidgeLift" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0297852, 0, 2.91038e-11)
+curve = SubResource("Curve3D_4p7ny")
+
+[node name="GPUParticles3D" parent="RidgeLift" index="2"]
+amount = 5192
+visibility_aabb = AABB(0, -1157.51, -1000, 5607.75, 2315.02, 2000)
+process_material = SubResource("ShaderMaterial_o3frs")
+
+[node name="RidgeLiftWindAreaComponent" parent="RidgeLift" index="3"]
+ridge_lift = SubResource("Resource_glqfv")
+
+[node name="RidgeLift2" parent="." instance=ExtResource("12_wpq72")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3170, 909.054, 619.056)
+ridge_lift = SubResource("Resource_glqfv")
+curve = SubResource("Curve3D_07cyp")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape3D" parent="RidgeLift2/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2724.9, -96.4838, 0)
+shape = SubResource("BoxShape3D_nw5ap")
+
+[node name="Path3D" parent="RidgeLift2" index="1"]
+curve = SubResource("Curve3D_07cyp")
+
+[node name="GPUParticles3D" parent="RidgeLift2" index="2"]
+amount = 5283
+visibility_aabb = AABB(0, -1211.86, -1000, 5449.81, 2423.72, 2000)
+process_material = SubResource("ShaderMaterial_6wxjf")
+
+[node name="RidgeLiftWindAreaComponent" parent="RidgeLift2" index="3"]
+ridge_lift = SubResource("Resource_glqfv")
+curve = SubResource("Curve3D_07cyp")
+
+[node name="Thermal" parent="." instance=ExtResource("15_u8iil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 838.883, 1420.46, 1150.92)
+thermal = SubResource("Resource_m2650")
+metadata/_edit_group_ = true
+
+[editable path="RidgeLift"]
+[editable path="RidgeLift2"]

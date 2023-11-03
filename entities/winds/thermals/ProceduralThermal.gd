@@ -1,5 +1,5 @@
 @tool
-extends Node3D
+extends WindArea
 class_name ProceduralThermal
 
 
@@ -29,10 +29,8 @@ class_name ProceduralThermal
 @export var randomize_cloud_rotation: bool = true
 
 # TODO Maybe export instead of searching?
-@export var area: Area3D
 @export var area_collision: CollisionShape3D
 @export var particles: GPUParticles3D
-@export var wind_component: ThermalWindAreaComponent
 
 
 func _ready():

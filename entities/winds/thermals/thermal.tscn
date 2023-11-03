@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=12 format=3 uid="uid://k5uuocnk37nr"]
 
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
-[ext_resource type="Script" path="res://entities/winds/thermals/WindArea.gd" id="3_o84b8"]
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="4_cht7p"]
 [ext_resource type="Shader" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_gxknx"]
 [ext_resource type="PlaneMesh" uid="uid://bu66q72ei5kmj" path="res://entities/winds/thermals/wind_whirl_dissolving_mesh_z.tres" id="6_ht70n"]
@@ -27,23 +26,16 @@ shader_parameter/speed = 28.0
 shader_parameter/height = 500.0
 shader_parameter/orbit_speed = 0.2
 
-[node name="Thermal" type="Node3D" node_paths=PackedStringArray("cloud", "area", "area_collision", "particles", "wind_component")]
+[node name="Thermal" type="Area3D" node_paths=PackedStringArray("cloud", "area_collision", "particles", "wind_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
+collision_layer = 12
 script = ExtResource("3_nenhj")
-particle_density = 20.0
 cloud = NodePath("CloudRandomizer")
-area = NodePath("Area3D")
-area_collision = NodePath("Area3D/CollisionShape3D")
+area_collision = NodePath("CollisionShape3D")
 particles = NodePath("GPUParticles3D")
 wind_component = NodePath("ThermalWindAreaComponent")
 
-[node name="Area3D" type="Area3D" parent="." node_paths=PackedStringArray("wind_component")]
-collision_layer = 5
-collision_mask = 5
-script = ExtResource("3_o84b8")
-wind_component = NodePath("../ThermalWindAreaComponent")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -250, 0)
 shape = SubResource("CylinderShape3D_uknh0")
 

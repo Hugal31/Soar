@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://pj0eaentnadx"]
+
+[ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_fwvyq"]
+[ext_resource type="Script" path="res://entities/aircraft/lock_xz_rotation.gd" id="2_rdrti"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sk13l"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_56tps"]
+sky_material = SubResource("ProceduralSkyMaterial_sk13l")
+
+[sub_resource type="Environment" id="Environment_e4di7"]
+background_mode = 2
+sky = SubResource("Sky_56tps")
+tonemap_mode = 2
+
+[sub_resource type="BoxMesh" id="BoxMesh_251b3"]
+size = Vector3(40, 20, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jbwax"]
+size = Vector2(1000, 1000)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a874v"]
+size = Vector3(1000, 1, 1000)
+
+[node name="test_shadow" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_e4di7")
+
+[node name="ask21" parent="." instance=ExtResource("1_fwvyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.6294, 26.967)
+axis_lock_linear_x = true
+axis_lock_linear_y = true
+axis_lock_linear_z = true
+
+[node name="x" type="MeshInstance3D" parent="ask21"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -20, 0)
+visible = false
+mesh = SubResource("BoxMesh_251b3")
+skeleton = NodePath("../..")
+script = ExtResource("2_rdrti")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.85457, 53.0591)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_jbwax")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_a874v")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.85457, 1149.93)
+mesh = SubResource("PlaneMesh_jbwax")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, 0, 24.3128, -8.60739)

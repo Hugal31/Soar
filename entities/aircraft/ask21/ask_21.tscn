@@ -1,14 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://chji78mhvr35x"]
+[gd_scene load_steps=16 format=3 uid="uid://chji78mhvr35x"]
 
 [ext_resource type="Script" path="res://entities/aircraft/Aircraft.gd" id="1_gq5ev"]
 [ext_resource type="Material" uid="uid://deou1800af4rc" path="res://entities/aircraft/ask21/ask21.tres" id="2_lbi2f"]
 [ext_resource type="Script" path="res://entities/aircraft/SpeedData.gd" id="2_qdjqe"]
 [ext_resource type="Resource" uid="uid://b1dx8m0bsrpcj" path="res://entities/aircraft/ask21/slow_speed.tres" id="2_saeyy"]
 [ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://entities/aircraft/ask21/normal_speed.tres" id="3_3mxvj"]
-[ext_resource type="Script" path="res://entities/aircraft/shadow.gd" id="3_l6prx"]
-[ext_resource type="Shader" path="res://shaders/psx/psx_lit_transparent_no_depth_test.gdshader" id="4_07qxk"]
 [ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://entities/aircraft/ask21/fast_speed.tres" id="4_81j7w"]
-[ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://entities/aircraft/ask21/assets/aircraft_shadow.png" id="8_3ejmd"]
+[ext_resource type="Script" path="res://entities/aircraft/lock_xz_rotation.gd" id="8_tx0os"]
+[ext_resource type="PackedScene" uid="uid://4cwnl5extw5r" path="res://entities/aircraft/shadow_decal.tscn" id="10_0xnd4"]
 
 [sub_resource type="Resource" id="Resource_o1ufo"]
 script = ExtResource("2_qdjqe")
@@ -110,25 +109,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_kue6f")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tdqj"]
-render_priority = 0
-shader = ExtResource("4_07qxk")
-shader_parameter/modulate_color = Color(1, 1, 1, 1)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_pan_velocity = Vector2(0, 0)
-shader_parameter/billboard = false
-shader_parameter/y_billboard = false
-shader_parameter/albedoTex = ExtResource("8_3ejmd")
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_tx4i7"]
-material = SubResource("ShaderMaterial_5tdqj")
-flip_faces = true
-size = Vector2(20, 10)
-subdivide_width = 4
-subdivide_depth = 2
-orientation = 2
-
 [node name="ask21" type="RigidBody3D"]
 collision_layer = 0
 collision_mask = 0
@@ -158,9 +138,7 @@ transform = Transform3D(-1.06026e-07, 1, -4.66791e-08, 0.0538864, -4.0898e-08, -
 polygon = PackedVector2Array(-0.627743, 0.75361, -3.66507, 0.00490045, -0.627743, -0.654979, -0.691039, -9.69715, 0.0794209, -9.56664, 1.08599, -0.310126, 4.25735, -0.182176, 4.50561, -1.6456, 4.9621, -1.60562, 5.00214, 1.61712, 4.45756, 1.64111, 4.27337, 0.161689, 1.07798, 0.313629, 0.19498, 9.38716, -0.761184, 9.49433)
 margin = 0.24
 
-[node name="ShadowSpring" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -3.33185, 0)
-script = ExtResource("3_l6prx")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="ShadowSpring"]
-mesh = SubResource("PlaneMesh_tx4i7")
+[node name="Shadow Decal" parent="." instance=ExtResource("10_0xnd4")]
+transform = Transform3D(20, 0, 0, 0, -4.37114e-07, -20, 0, 10, -8.74228e-07, 0, -20.8992, 0)
+skeleton = NodePath("")
+script = ExtResource("8_tx0os")

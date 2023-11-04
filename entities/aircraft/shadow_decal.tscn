@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://4cwnl5extw5r"]
+
+[ext_resource type="Shader" path="res://shaders/decal.gdshader" id="1_qdlfq"]
+[ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://entities/aircraft/ask21/assets/aircraft_shadow.png" id="2_l3px2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ardrp"]
+render_priority = 0
+shader = ExtResource("1_qdlfq")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/decal = ExtResource("2_l3px2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_jn6gt"]
+material = SubResource("ShaderMaterial_ardrp")
+size = Vector3(2, 2, 2)
+
+[node name="Shadow Decal" type="MeshInstance3D"]
+transform = Transform3D(20, 0, 0, 0, 10, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_jn6gt")

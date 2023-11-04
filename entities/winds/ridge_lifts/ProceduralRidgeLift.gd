@@ -14,7 +14,7 @@ extends Node3D
 		ridge_lift = r
 		if ridge_lift != null:
 			ridge_lift.changed.connect(_on_ridge_lift_changed)
-				
+
 
 @export var curve: Curve3D:
 	set(c):

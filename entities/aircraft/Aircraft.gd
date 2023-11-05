@@ -40,6 +40,7 @@ var wind_speed := Vector3()
 var wind_areas: Array[WindAreaComponent] = []
 
 @onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+@onready var animation_player: AnimationPlayer = $Model/AnimationPlayer
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
@@ -66,6 +67,14 @@ func _ready():
 		FlightModel.Realist:
 			pass
 	Engine.time_scale = 2
+	animation_player.play("Default")
+
+
+func _process(_delta):
+	if Input.is_action_just_pressed("brake"):
+		animation_player.play("Brake out")
+	if Input.is_action_just_released("brake"):
+		animation_player.play("Brake in")
 
 
 func _physics_process(delta):

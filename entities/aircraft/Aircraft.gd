@@ -41,20 +41,26 @@ var wind_areas: Array[WindAreaComponent] = []
 
 @onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player: AnimationPlayer = $Model/AnimationPlayer
+@onready var _controller_container: Node = $ControllerContainer
+
+var _controller: AircraftController
+
+enum Pitch {
+	Fast,
+	Normal,
+	Slow,
+}
+
+## Are the air brakes open?
+var _air_brake_open := false
+## Target bank angle in degrees
+var _target_bank := 0.
+var _target_pitch := Pitch.Normal
+
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
 
-
-func on_enter_wind_area(area: WindAreaComponent):
-	wind_areas.push_back(area)
-
-func on_exit_wind_area(area: WindAreaComponent):
-	var index := wind_areas.find(area)
-	if index == -1:
-		push_error("Exiting invalid area ", area)
-		return
-	wind_areas.remove_at(index)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
@@ -68,18 +74,45 @@ func _ready():
 			pass
 	Engine.time_scale = 2
 	animation_player.play("Default")
+	set_controller(HumanAircraftController.new(self))
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("brake"):
+func set_controller(controller: AircraftController):
+	for child in _controller_container.get_children():
+		child.queue_free()
+
+	_controller = controller
+	_controller_container.add_child(controller)
+
+func on_enter_wind_area(area: WindAreaComponent):
+	wind_areas.push_back(area)
+
+func on_exit_wind_area(area: WindAreaComponent):
+	var index := wind_areas.find(area)
+	if index == -1:
+		push_error("Exiting invalid area ", area)
+		return
+	wind_areas.remove_at(index)
+
+func pull_out_air_brakes():
+	if not _air_brake_open:
 		animation_player.play("Brake out")
-	if Input.is_action_just_released("brake"):
+		_air_brake_open = true
+	
+func store_air_brakes():
+	if _air_brake_open:
 		animation_player.play("Brake in")
+		_air_brake_open = false
 
+## Set the target bank in degrees
+func set_bank(angle: float):
+	_target_bank = angle
+	
+func set_pitch(pitch: Pitch):
+	self._target_pitch = pitch
 
 func _physics_process(delta):
-	var max_bank_angle := high_bank_angle if Input.is_action_pressed("high_bank") else regular_bank_angle
-	var target_rotation_z = Input.get_axis("left", "right") * max_bank_angle
+	var target_rotation_z = _target_bank
 	var target_rotation_x = target_speed.pitch
 	rotation_degrees.z = clampf(target_rotation_z,
 		rotation_degrees.z - delta * bank_velocity,
@@ -101,14 +134,16 @@ func _integrate_forces(state: PhysicsDirectBodyState3D):
 
 
 func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
-	if Input.is_action_pressed("brake"):
+	if _air_brake_open:
 		_integrate_speed_data(state, brake_speed)
-	elif Input.is_action_pressed("forward"):
-		_integrate_speed_data(state, fast_speed)
-	elif Input.is_action_pressed("backward"):
-		_integrate_speed_data(state, slow_speed)
 	else:
-		_integrate_speed_data(state, normal_speed)
+		match _target_pitch:
+			Pitch.Fast:
+				_integrate_speed_data(state, fast_speed)
+			Pitch.Normal:
+				_integrate_speed_data(state, normal_speed)
+			Pitch.Slow:
+				_integrate_speed_data(state, slow_speed)
 
 	var bank_angle := rotation.z
 	state.angular_velocity.y = -G * tan(bank_angle) / horizontal_speed

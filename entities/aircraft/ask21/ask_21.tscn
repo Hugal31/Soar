@@ -36,3 +36,5 @@ script = ExtResource("8_tx0os")
 
 [node name="Model" parent="." instance=ExtResource("8_0komx")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="ControllerContainer" type="Node" parent="."]

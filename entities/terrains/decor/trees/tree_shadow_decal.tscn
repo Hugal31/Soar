@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1aflkb4ukr3i"]
+
+[ext_resource type="Shader" path="res://shaders/decal.gdshader" id="1_g5k7y"]
+[ext_resource type="Texture2D" uid="uid://duyindulosrxk" path="res://entities/terrains/decor/assets/shadow.png" id="2_hrl2x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1b7ju"]
+render_priority = 0
+shader = ExtResource("1_g5k7y")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/decal = ExtResource("2_hrl2x")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fjoom"]
+material = SubResource("ShaderMaterial_1b7ju")
+size = Vector3(2, 2, 2)
+
+[node name="Shadow Decal" type="MeshInstance3D"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 8, 0, 0, 0)
+mesh = SubResource("BoxMesh_fjoom")

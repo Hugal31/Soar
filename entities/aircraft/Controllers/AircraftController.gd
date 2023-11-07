@@ -1,7 +1,6 @@
 class_name AircraftController
 extends Node
 
-
 var aircraft: Aircraft
 
 var bank_command := BankCommand.new()

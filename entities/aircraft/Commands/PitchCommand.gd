@@ -1,6 +1,7 @@
 class_name PitchCommand
 extends AircraftCommand
 
+
 class Param:
 	# Angle "power" -1 (slow) to 1 (fast)
 	var power: float

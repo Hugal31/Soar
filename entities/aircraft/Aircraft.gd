@@ -70,7 +70,7 @@ signal velocity_changed(Vector3)
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():	
+func _ready():
 	Logger.add_module(LOGNAME)
 
 	match fligth_model:
@@ -84,7 +84,7 @@ func _ready():
 	animation_player.play("Default")
 	set_controller(HumanAircraftController.new(self))
 	body_entered.connect(_on_body_entered)
-	
+
 	_stop_engine_timer.autostart = false
 	_stop_engine_timer.timeout.connect(stop_engine)
 	_stop_engine_timer.wait_time = engine_duration
@@ -93,6 +93,7 @@ func _ready():
 	# While we have lifes, disable collisions
 	collision_mask = 0
 	$Area3D.body_entered.connect(_on_body_entered)
+
 
 func _on_body_entered(other: Node):
 	Logger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
@@ -108,8 +109,10 @@ func set_controller(controller: AircraftController):
 	_controller = controller
 	_controller_container.add_child(controller)
 
+
 func on_enter_wind_area(area: WindAreaComponent):
 	wind_areas.push_back(area)
+
 
 func on_exit_wind_area(area: WindAreaComponent):
 	var index := wind_areas.find(area)
@@ -118,16 +121,18 @@ func on_exit_wind_area(area: WindAreaComponent):
 		return
 	wind_areas.remove_at(index)
 
+
 func pull_out_air_brakes():
 	if not _air_brake_open:
 		animation_player.play("Brake out")
 		_air_brake_open = true
-	
+
+
 func store_air_brakes():
 	if _air_brake_open:
 		animation_player.play("Brake in")
 		_air_brake_open = false
-		
+
 
 func start_engine():
 	if _engine_running:
@@ -138,29 +143,37 @@ func start_engine():
 	_engine_audio_player.play()
 	_engine_running = true
 	_stop_engine_timer.start()
-	
+
+
 func stop_engine():
 	_stop_engine_timer.stop()
 	_engine_running = false
 	animation_player.play("Closing")
 	_engine_audio_player.stop()
 
+
 ## Set the target bank in degrees
 func set_bank(angle: float):
 	_target_bank = angle
-	
+
+
 func set_pitch(pitch: Pitch):
 	self._target_pitch = pitch
+
 
 func _physics_process(delta):
 	var target_rotation_z = _target_bank
 	var target_rotation_x = target_speed.pitch
-	rotation_degrees.z = clampf(target_rotation_z,
+	rotation_degrees.z = clampf(
+		target_rotation_z,
 		rotation_degrees.z - delta * bank_velocity,
-		rotation_degrees.z + delta * bank_velocity)
-	rotation_degrees.x = clampf(target_rotation_x,
+		rotation_degrees.z + delta * bank_velocity
+	)
+	rotation_degrees.x = clampf(
+		target_rotation_x,
 		rotation_degrees.x - delta * pitch_velocity,
-		rotation_degrees.x + delta * pitch_velocity)
+		rotation_degrees.x + delta * pitch_velocity
+	)
 
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)
@@ -191,8 +204,10 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 	var target_wind_speed := _get_wind()
 	var wind_speed_diff := target_wind_speed - wind_speed
 	var wind_speed_diff_norm := wind_speed_diff.length()
-	if (wind_speed_diff_norm > acceleration * state.step):
-		target_wind_speed = wind_speed + wind_speed_diff * acceleration * state.step / wind_speed_diff_norm
+	if wind_speed_diff_norm > acceleration * state.step:
+		target_wind_speed = (
+			wind_speed + wind_speed_diff * acceleration * state.step / wind_speed_diff_norm
+		)
 	wind_speed = target_wind_speed
 	var vel_vector := Vector3(0, 0, horizontal_speed).rotated(Vector3.UP, rotation.y)
 	vel_vector.y -= base_vertical_speed
@@ -207,16 +222,26 @@ func _integrate_speed_data(state: PhysicsDirectBodyState3D, speed: SpeedData):
 	horizontal_speed = clampf(
 		speed.horizontal_speed,
 		horizontal_speed - acceleration * state.step,
-		horizontal_speed + acceleration * state.step)
+		horizontal_speed + acceleration * state.step
+	)
 
 	if horizontal_speed >= normal_speed.horizontal_speed:
-		var weight := (fast_speed.horizontal_speed - horizontal_speed) / (fast_speed.horizontal_speed - normal_speed.horizontal_speed)
+		var weight := (
+			(fast_speed.horizontal_speed - horizontal_speed)
+			/ (fast_speed.horizontal_speed - normal_speed.horizontal_speed)
+		)
 		base_vertical_speed = lerpf(fast_speed.vertical_speed, normal_speed.vertical_speed, weight)
 	elif speed == brake_speed:
-		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - brake_speed.horizontal_speed)
+		var weight := (
+			(normal_speed.horizontal_speed - horizontal_speed)
+			/ (normal_speed.horizontal_speed - brake_speed.horizontal_speed)
+		)
 		base_vertical_speed = lerpf(normal_speed.vertical_speed, brake_speed.vertical_speed, weight)
 	else:
-		var weight := (normal_speed.horizontal_speed - horizontal_speed) / (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
+		var weight := (
+			(normal_speed.horizontal_speed - horizontal_speed)
+			/ (normal_speed.horizontal_speed - slow_speed.horizontal_speed)
+		)
 		base_vertical_speed = lerpf(normal_speed.vertical_speed, slow_speed.vertical_speed, weight)
 
 

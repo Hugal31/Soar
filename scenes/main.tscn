@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_en61t"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
-[ext_resource type="PackedScene" uid="uid://buqx3jajy1q27" path="res://entities/terrains/tiles/mountain_alone_1_center.tscn" id="9_rieks"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
@@ -40,6 +40,7 @@ shader_parameter/fog_start = 0.9993
 shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_8cmnw")
 
 [node name="UI" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -129,15 +130,12 @@ surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -583.993)
-collision_layer = 1
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
+
+[node name="mountains_lake_1" parent="." instance=ExtResource("16_stlg7")]
 
 [node name="Terrain" type="Node3D" parent="."]
 visible = false
 script = ExtResource("14_et8ln")
 width = 1
-
-[node name="mountain_alone_1_center" parent="Terrain" instance=ExtResource("9_rieks")]
-
-[node name="mountains_lake_1" parent="." instance=ExtResource("16_stlg7")]

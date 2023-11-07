@@ -2,7 +2,6 @@
 extends WindArea
 class_name ProceduralThermal
 
-
 @export var thermal: Thermal:
 	set(t):
 		if not is_node_ready():
@@ -45,14 +44,9 @@ func _notification(what):
 	if not Engine.is_editor_hint():
 		return
 
-	if what == NOTIFICATION_TRANSFORM_CHANGED \
-		or what == NOTIFICATION_LOCAL_TRANSFORM_CHANGED:
+	if what == NOTIFICATION_TRANSFORM_CHANGED or what == NOTIFICATION_LOCAL_TRANSFORM_CHANGED:
 		_update_shape()
 
-
-func _physics_process(delta):
-	if Engine.is_editor_hint():
-		return
 
 func _update_shape():
 	assert(is_node_ready())
@@ -72,26 +66,26 @@ func _update_shape():
 
 	if particles != null:
 		var particles_speed := thermal.strength * particle_velocity_multiplier
-		var particles_vertical_distance := particles.lifetime * thermal.strength * particle_velocity_multiplier
+		var particles_vertical_distance := (
+			particles.lifetime * thermal.strength * particle_velocity_multiplier
+		)
 		var emission_height := height - particles_vertical_distance
 		particles.position.y = -height + emission_height / 2.
 
 		particles.visibility_aabb.position = Vector3(
-			-thermal.radius,
-			-emission_height / 2.,
-			-thermal.radius
+			-thermal.radius, -emission_height / 2., -thermal.radius
 		)
 		particles.visibility_aabb.end = Vector3(
-			thermal.radius,
-			half_height + particles_vertical_distance,
-			thermal.radius
+			thermal.radius, half_height + particles_vertical_distance, thermal.radius
 		)
-		
-		var volume := particles.visibility_aabb.size.x \
-			* particles.visibility_aabb.size.y \
+
+		var volume := (
+			particles.visibility_aabb.size.x
+			* particles.visibility_aabb.size.y
 			* particles.visibility_aabb.size.z
+		)
 		particles.amount = particle_density * volume / 1000000.0
-		
+
 		if particles.process_material is ParticleProcessMaterial:
 			var material := particles.process_material as ParticleProcessMaterial
 			material.initial_velocity_max = particles_speed
@@ -102,7 +96,7 @@ func _update_shape():
 		elif particles.process_material is ShaderMaterial:
 			# Instance parameters doesn't exist for particle shader material (yet),
 			# so duplicate the shader.
-			particles.process_material = particles.process_material.duplicate() 
+			particles.process_material = particles.process_material.duplicate()
 			var material := particles.process_material as ShaderMaterial
 			material.set_shader_parameter("height", height)
 			material.set_shader_parameter("radius", thermal.radius)
@@ -110,7 +104,7 @@ func _update_shape():
 
 	if wind_component != null:
 		wind_component.thermal = thermal
-		
+
 	if cloud != null:
 		if randomize_cloud_rotation:
 			cloud.rotation.y = randf_range(-PI, PI)

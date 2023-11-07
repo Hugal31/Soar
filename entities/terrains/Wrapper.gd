@@ -2,6 +2,7 @@ extends Area3D
 
 const LOGNAME = "Wrapper"
 
+
 func _ready():
 	Logger.add_module(LOGNAME)
 	body_entered.connect(_on_node_entered)

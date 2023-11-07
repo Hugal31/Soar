@@ -2,7 +2,6 @@
 class_name ProceduralRidgeLift
 extends Node3D
 
-
 @export var ridge_lift: RidgeLift:
 	set(r):
 		if not is_node_ready() or not Engine.is_editor_hint():
@@ -15,7 +14,6 @@ extends Node3D
 		if ridge_lift != null:
 			ridge_lift.changed.connect(_on_ridge_lift_changed)
 
-
 @export var curve: Curve3D:
 	set(c):
 		if curve != null and is_node_ready() and Engine.is_editor_hint():
@@ -27,7 +25,6 @@ extends Node3D
 			wind_component.curve = curve
 		if curve != null and is_node_ready() and Engine.is_editor_hint():
 			curve.changed.connect(_on_curve_changed)
-
 
 @export var path: Path3D:
 	set(p):
@@ -46,6 +43,7 @@ extends Node3D
 @export var particles: GPUParticles3D
 
 const curve_texture_resolution := 256
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -67,7 +65,7 @@ func _ready():
 func _on_ridge_lift_changed():
 	wind_component.ridge_lift = ridge_lift
 	_on_curve_changed()
-	
+
 
 func _notification(what):
 	if what == NOTIFICATION_EDITOR_PRE_SAVE:
@@ -99,9 +97,9 @@ func _on_curve_changed():
 	var curve2D := ProceduralRidgeLift.curve3D_to_2D(curve)
 
 	var curve_aabb := ProceduralRidgeLift._compute_curve2D_aabb(curve2D)
-	var size := Vector3(curve_aabb.size.x,
-		curve_aabb.size.y + ridge_lift.radius * 2,
-		ridge_lift.width)
+	var size := Vector3(
+		curve_aabb.size.x, curve_aabb.size.y + ridge_lift.radius * 2, ridge_lift.width
+	)
 	var center2D := curve_aabb.get_center()
 	var center := Vector3(center2D.x, center2D.y, 0)
 	collision_shape.position = center
@@ -115,11 +113,15 @@ func _on_curve_changed():
 	if particles != null:
 		particles.visibility_aabb = AABB(size * Vector3(0, -0.5, -0.5), size)
 		var volume = size.x * size.y * size.z
-		particles.amount = volume * particle_density / 1000000.0
+		particles.amount = int(volume * particle_density / 1000000.0)
 		if particles.process_material is ShaderMaterial:
 			var material := particles.process_material as ShaderMaterial
-			var curve_data := ProceduralRidgeLift._sample_curve_to_image(curve2D, curve_texture_resolution)
-			var curve_image := Image.create_from_data(curve_texture_resolution, 1, false, Image.FORMAT_RF, curve_data.to_byte_array())
+			var curve_data := ProceduralRidgeLift._sample_curve_to_image(
+				curve2D, curve_texture_resolution
+			)
+			var curve_image := Image.create_from_data(
+				curve_texture_resolution, 1, false, Image.FORMAT_RF, curve_data.to_byte_array()
+			)
 			var height_texture = material.get_shader_parameter("height_texture")
 			if not height_texture is ImageTexture:
 				height_texture = ImageTexture.new()
@@ -174,6 +176,7 @@ static func curve3D_to_2D(curve3D: Curve3D) -> Curve2D:
 
 static func _project_xy(v: Vector3) -> Vector2:
 	return Vector2(v.x, v.y)
+
 
 ## Compute a Curve2D AABB
 static func _compute_curve2D_aabb(curve_2d: Curve2D) -> Rect2:

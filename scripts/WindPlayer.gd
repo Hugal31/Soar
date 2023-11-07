@@ -10,6 +10,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	var velocity_weight := (aircraft.horizontal_speed - aircraft.slow_speed.horizontal_speed) / (aircraft.fast_speed.horizontal_speed - aircraft.slow_speed.horizontal_speed) 
+	var velocity_weight := (
+		(aircraft.horizontal_speed - aircraft.slow_speed.horizontal_speed)
+		/ (aircraft.fast_speed.horizontal_speed - aircraft.slow_speed.horizontal_speed)
+	)
 	volume_db = lerpf(-13, 0, velocity_weight)
 	pitch_scale = lerpf(0.8, 1.7, velocity_weight)

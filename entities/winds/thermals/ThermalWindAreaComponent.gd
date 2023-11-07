@@ -1,11 +1,9 @@
 extends WindAreaComponent
 class_name ThermalWindAreaComponent
 
-
 @export var thermal: Thermal
 
 @onready var parent: Node3D = get_parent()
-
 
 var effective_wind_areas: Array[WindAreaComponent] = []
 

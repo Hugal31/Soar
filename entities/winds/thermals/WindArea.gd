@@ -1,7 +1,6 @@
 extends Area3D
 class_name WindArea
 
-
 @export() var wind_component: WindAreaComponent
 
 

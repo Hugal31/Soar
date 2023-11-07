@@ -2,11 +2,10 @@
 class_name NodeRandomizer
 extends Node3D
 
-
 @export var scenes: Array[PackedScene]
 
-
 var instantiated_node: Node
+
 
 func _ready():
 	if is_node_ready():
@@ -21,10 +20,12 @@ func _instantiate_node():
 		instantiated_node = scene.instantiate()
 		add_child.call_deferred(instantiated_node)
 
+
 func _delete_node():
 	if instantiated_node:
 		remove_child.call_deferred(instantiated_node)
 		instantiated_node = null
+
 
 func _notification(what):
 	if not is_node_ready():

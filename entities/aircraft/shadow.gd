@@ -12,10 +12,7 @@ extends Node3D
 
 func _process(_delta):
 	# Negate X-Z rotations
-	global_rotation = Vector3(
-		original_rotation.x,
-		parent.global_rotation.y,
-		original_rotation.z)
+	global_rotation = Vector3(original_rotation.x, parent.global_rotation.y, original_rotation.z)
 
 
 func _physics_process(_delta):
@@ -34,7 +31,7 @@ func _physics_process(_delta):
 	point = _raycast(space_state, global_pos, Vector3(-raycast_width / 2, -distance, -5))
 	if point != null:
 		collision_points.push_back(point)
-	
+
 	var centroid := collision_points[0]
 	for i in range(1, collision_points.size()):
 		centroid += collision_points[i]
@@ -43,7 +40,9 @@ func _physics_process(_delta):
 	shadow.position = local_centroid - Vector3(0, 0, margin)
 
 	if collision_points.size() == 3:
-		var normal := (collision_points[0] - collision_points[1]).normalized().cross((collision_points[0] - collision_points[2]).normalized())
+		var normal := (collision_points[0] - collision_points[1]).normalized().cross(
+			(collision_points[0] - collision_points[2]).normalized()
+		)
 		if normal.y < 0:
 			normal = -normal
 		# I don't know why it needs to be normalized, the two input are normalized
@@ -55,10 +54,10 @@ func _physics_process(_delta):
 	else:
 		shadow.rotation = Vector3()
 
+
 func _raycast(space_state: PhysicsDirectSpaceState3D, origin: Vector3, ray: Vector3):
 	var raycast := PhysicsRayQueryParameters3D.create(origin, origin + ray)
 	var intersection := space_state.intersect_ray(raycast)
 	if intersection.has("position"):
 		return intersection["position"]
 	return null
-

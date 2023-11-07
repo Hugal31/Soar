@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=19 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
+[ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
@@ -86,6 +87,11 @@ stream = ExtResource("10_ipig2")
 bus = &"Wind"
 script = ExtResource("11_hmsp1")
 aircraft = NodePath("../Glider")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_m8nfw")
+autoplay = true
+bus = &"Music"
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q57oy")

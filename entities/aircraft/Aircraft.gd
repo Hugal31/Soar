@@ -20,6 +20,9 @@ enum FlightModel {
 ## Pitch velocity in degrees/s.
 @export var pitch_velocity = 10.0
 
+@export var engine_vertical_velocity := 10.0
+@export var engine_duration := 20.0
+
 @export_subgroup("Arcade")
 @export var brake_speed: SpeedData = SpeedData.new()
 @export var slow_speed: SpeedData = SpeedData.new()
@@ -34,6 +37,8 @@ enum FlightModel {
 @export var drag_coefficient: float = 0.0005
 @export var air_density: float = 1.293
 
+const LOGNAME := "Aircraft"
+
 var horizontal_speed := 0.0
 var base_vertical_speed := 0.0
 var wind_speed := Vector3()
@@ -42,6 +47,7 @@ var wind_areas: Array[WindAreaComponent] = []
 @onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player: AnimationPlayer = $Model/AnimationPlayer
 @onready var _controller_container: Node = $ControllerContainer
+@onready var _engine_audio_player: AudioStreamPlayer = $EngineAudioPlayer
 
 var _controller: AircraftController
 
@@ -53,10 +59,11 @@ enum Pitch {
 
 ## Are the air brakes open?
 var _air_brake_open := false
+var _engine_running := false
 ## Target bank angle in degrees
 var _target_bank := 0.
 var _target_pitch := Pitch.Normal
-
+var _stop_engine_timer := Timer.new()
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
@@ -64,6 +71,8 @@ signal velocity_changed(Vector3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():	
+	Logger.add_module(LOGNAME)
+
 	match fligth_model:
 		FlightModel.Arcade:
 			gravity_scale = 0
@@ -72,9 +81,24 @@ func _ready():
 			base_vertical_speed = -normal_speed.vertical_speed
 		FlightModel.Realist:
 			pass
-	Engine.time_scale = 2
 	animation_player.play("Default")
 	set_controller(HumanAircraftController.new(self))
+	body_entered.connect(_on_body_entered)
+	
+	_stop_engine_timer.autostart = false
+	_stop_engine_timer.timeout.connect(stop_engine)
+	_stop_engine_timer.wait_time = engine_duration
+	add_child(_stop_engine_timer)
+
+	# While we have lifes, disable collisions
+	collision_mask = 0
+	$Area3D.body_entered.connect(_on_body_entered)
+
+func _on_body_entered(other: Node):
+	Logger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
+	if not _engine_running:
+		rotation.y += PI
+		start_engine()
 
 
 func set_controller(controller: AircraftController):
@@ -103,6 +127,23 @@ func store_air_brakes():
 	if _air_brake_open:
 		animation_player.play("Brake in")
 		_air_brake_open = false
+		
+
+func start_engine():
+	if _engine_running:
+		return
+
+	animation_player.play("Opening")
+	animation_player.play("Running")
+	_engine_audio_player.play()
+	_engine_running = true
+	_stop_engine_timer.start()
+	
+func stop_engine():
+	_stop_engine_timer.stop()
+	_engine_running = false
+	animation_player.play("Closing")
+	_engine_audio_player.stop()
 
 ## Set the target bank in degrees
 func set_bank(angle: float):
@@ -156,6 +197,8 @@ func _integrate_forces_arcade(state: PhysicsDirectBodyState3D):
 	var vel_vector := Vector3(0, 0, horizontal_speed).rotated(Vector3.UP, rotation.y)
 	vel_vector.y -= base_vertical_speed
 	vel_vector += wind_speed
+	if _engine_running:
+		vel_vector.y += engine_vertical_velocity
 	linear_velocity = vel_vector
 
 

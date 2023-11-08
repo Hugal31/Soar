@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4lvfyrs6hmib"]
+
+[ext_resource type="Script" path="res://scripts/set_text_from_file.gd" id="1_t8obb"]
+[ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_u4sp8"]
+
+[node name="credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_u4sp8")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("1_t8obb")
+file_path = "res://Credits.txt"
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Back"
+flat = true

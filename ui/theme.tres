@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dw8tap3ih7i5s"]
+
+[ext_resource type="FontFile" uid="uid://bj58e05ml3uko" path="res://fonts/emulogic.ttf" id="1_cwq2e"]
+
+[resource]
+Button/fonts/font = ExtResource("1_cwq2e")

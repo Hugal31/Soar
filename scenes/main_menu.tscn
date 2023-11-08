@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://boqwd8cabt18h"]
+
+[ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_r1ay0"]
+[ext_resource type="Script" path="res://scripts/grab_focus.gd" id="2_jfvdw"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_khxp2"]
+[ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
+[ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
+
+[node name="main_menu" type="Node3D"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_r1ay0")
+script = ExtResource("2_khxp2")
+game_scene = ExtResource("3_m8k1r")
+credits_scene = ExtResource("3_pnlio")
+
+[node name="Menu" type="VBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = -85.5
+offset_right = 23.0
+offset_bottom = 85.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Start" type="Button" parent="Control/Menu"]
+layout_mode = 2
+text = "Start
+"
+flat = true
+script = ExtResource("2_jfvdw")
+
+[node name="Task of the day" type="Button" parent="Control/Menu"]
+visible = false
+layout_mode = 2
+text = "Task of the day"
+flat = true
+
+[node name="Tutorial" type="Button" parent="Control/Menu"]
+visible = false
+layout_mode = 2
+text = "Tutorial"
+flat = true
+
+[node name="Settings" type="Button" parent="Control/Menu"]
+visible = false
+layout_mode = 2
+text = "Settings"
+flat = true
+
+[node name="Credits" type="Button" parent="Control/Menu"]
+layout_mode = 2
+text = "Credits"
+flat = true
+
+[node name="Credits" parent="Control" instance=ExtResource("3_pnlio")]
+visible = false
+layout_mode = 1
+
+[connection signal="pressed" from="Control/Menu/Start" to="Control" method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Menu/Task of the day" to="Control" method="_on_task_of_the_day_pressed"]
+[connection signal="pressed" from="Control/Menu/Credits" to="Control" method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/Credits/BackButton" to="Control" method="_on_credits_back_button_pressed"]
+
+[editable path="Control/Credits"]

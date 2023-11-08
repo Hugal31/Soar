@@ -1,0 +1,17 @@
+[center][b]Game made by[/b]
+
+Hugal31
+
+[b]Assets[/b]
+
+Glider model inspired by [url=https://sketchfab.com/3d-models/ask-21-mi-b69f1e3209ba40dcbb07a662d32736dd]helijah[/url]
+Tree models by [url=https://syntystore.com/products/polygon-adventure-pack]Synty Studios Limited[/url]
+
+PSX shader by [url=https://github.com/MenacingMecha/godot-psx-style-demo]MenacingMecha[/url]
+Shadow decals by [url=https://github.com/leopoldek/Screen-Space-Decals]leopoldek[/url]
+
+Wind SFX by [url=https://freesound.org/people/InspectorJ/sounds/376415/]InspectorJ (www.jshaw.co.uk) of Freesound.org[/url]
+Motor SFX by [url=https://freesound.org/people/Timbre/sounds/539682/]Timbre[/url]
+
+Emulogic font by [url=https://blogfonts.com/emulogic.font]ck! [Freaky Fonts][/url]
+[/center]

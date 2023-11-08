@@ -45,9 +45,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Aircraft HUD" parent="UI" node_paths=PackedStringArray("aircraft") instance=ExtResource("2_3c3kt")]
-layout_mode = 2
-offset_right = 640.0
-offset_bottom = 480.0
+layout_mode = 1
 aircraft = NodePath("../../Glider")
 
 [node name="PauseMenu" parent="UI" instance=ExtResource("3_fmeva")]

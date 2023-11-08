@@ -119,3 +119,4 @@ width = 1
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]
+[connection signal="fuel_level_changed" from="Glider" to="." method="_on_glider_fuel_level_changed"]

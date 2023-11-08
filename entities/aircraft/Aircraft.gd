@@ -43,6 +43,11 @@ var horizontal_speed := 0.0
 var base_vertical_speed := 0.0
 var wind_speed := Vector3()
 var wind_areas: Array[WindAreaComponent] = []
+var fuel_level := 3
+
+signal fuel_level_changed(int)
+signal landed
+signal crashed
 
 @onready var G: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player: AnimationPlayer = $Model/AnimationPlayer
@@ -98,8 +103,17 @@ func _ready():
 func _on_body_entered(other: Node):
 	Logger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
 	if not _engine_running:
-		rotation.y += PI
-		start_engine()
+		if fuel_level > 0:
+			rotation.y += PI
+			start_engine()
+			fuel_level -= 1
+			emit_signal("fuel_level_changed", fuel_level)
+		else:
+			crash()
+
+
+func crash():
+	emit_signal("crashed")
 
 
 func set_controller(controller: AircraftController):

@@ -54,3 +54,7 @@ func unpause():
 
 func _on_quit():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+
+func _on_glider_fuel_level_changed(fuel: int):
+	_hud.set_fuel(fuel)

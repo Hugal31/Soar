@@ -5,6 +5,7 @@ extends Control
 
 @onready var main_menu = $Menu
 @onready var tutorials = $Tutorial
+@onready var settings = $Settings
 @onready var credits = $Credits
 @onready var back_button = $BackButton
 
@@ -21,20 +22,27 @@ func _start_game():
 	get_tree().change_scene_to_packed(game_scene)
 
 
-func _on_tutorial_pressed():
+func _show_sub_menu(sub_menu: Control):
 	main_menu.hide()
-	tutorials.visible = true
+	sub_menu.visible = true
 	back_button.visible = true
+
+
+func _on_settings_pressed():
+	_show_sub_menu(settings)
+
+
+func _on_tutorial_pressed():
+	_show_sub_menu(tutorials)
 
 
 func _on_credits_pressed():
-	main_menu.hide()
-	credits.visible = true
-	back_button.visible = true
+	_show_sub_menu(credits)
 
 
 func _on_back_button_pressed():
 	main_menu.visible = true
 	back_button.hide()
+	settings.hide()
 	tutorials.hide()
 	credits.hide()

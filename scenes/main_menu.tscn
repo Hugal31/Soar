@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://boqwd8cabt18h"]
+[gd_scene load_steps=10 format=3 uid="uid://boqwd8cabt18h"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_r1ay0"]
 [ext_resource type="Script" path="res://scripts/grab_focus.gd" id="2_jfvdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
 [ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
 [ext_resource type="PackedScene" uid="uid://dng8hv0o82diu" path="res://scenes/tutorial.tscn" id="6_s5nen"]
+[ext_resource type="PackedScene" uid="uid://bemuipky3kqcg" path="res://scenes/settings.tscn" id="7_vcc5x"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_f4d1o"]
 device = -1
@@ -71,16 +72,21 @@ layout_mode = 2
 text = "Credits"
 flat = true
 
-[node name="Credits" parent="MainMenu" instance=ExtResource("3_pnlio")]
+[node name="Tutorial" parent="MainMenu" instance=ExtResource("6_s5nen")]
 visible = false
 layout_mode = 1
 
-[node name="Tutorial" parent="MainMenu" instance=ExtResource("6_s5nen")]
+[node name="Settings" parent="MainMenu" instance=ExtResource("7_vcc5x")]
+visible = false
+layout_mode = 1
+
+[node name="Credits" parent="MainMenu" instance=ExtResource("3_pnlio")]
 visible = false
 layout_mode = 1
 
 [node name="BackButton" type="Button" parent="MainMenu"]
 visible = false
+layout_mode = 0
 offset_right = 72.0
 offset_bottom = 28.0
 shortcut = SubResource("Shortcut_eo0h8")
@@ -90,5 +96,6 @@ flat = true
 [connection signal="pressed" from="MainMenu/Menu/Start" to="MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Task of the day" to="MainMenu" method="_on_task_of_the_day_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Tutorial" to="MainMenu" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Settings" to="MainMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Credits" to="MainMenu" method="_on_credits_pressed"]
 [connection signal="pressed" from="MainMenu/BackButton" to="MainMenu" method="_on_back_button_pressed"]

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
 [ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
 [ext_resource type="PackedScene" uid="uid://dng8hv0o82diu" path="res://scenes/tutorial.tscn" id="6_s5nen"]
-[ext_resource type="PackedScene" uid="uid://bemuipky3kqcg" path="res://scenes/settings.tscn" id="7_vcc5x"]
+[ext_resource type="PackedScene" uid="uid://qfcb5fhfgwab" path="res://scenes/settings.tscn" id="7_vcc5x"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_f4d1o"]
 device = -1
@@ -62,7 +62,6 @@ text = "Tutorial"
 flat = true
 
 [node name="Settings" type="Button" parent="MainMenu/Menu"]
-visible = false
 layout_mode = 2
 text = "Settings"
 flat = true

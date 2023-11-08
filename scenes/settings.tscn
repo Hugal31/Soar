@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bemuipky3kqcg"]
+[gd_scene load_steps=2 format=3 uid="uid://qfcb5fhfgwab"]
+
+[ext_resource type="Script" path="res://scripts/VolumeSlider.gd" id="2_jel0o"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -24,7 +26,6 @@ grow_vertical = 2
 clip_tabs = false
 
 [node name="Game" type="GridContainer" parent="TabContainer"]
-visible = false
 layout_mode = 2
 columns = 2
 
@@ -52,6 +53,7 @@ size_flags_horizontal = 0
 text = "Ground speed"
 
 [node name="Music" type="GridContainer" parent="TabContainer"]
+visible = false
 layout_mode = 2
 columns = 2
 
@@ -59,7 +61,51 @@ columns = 2
 layout_mode = 2
 text = "General"
 
-[node name="GeneralVolumeSlider" type="HSlider" parent="TabContainer/Music"]
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Music"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_jel0o")
+channel = &"Master"
+
+[node name="MusicLabel" type="Label" parent="TabContainer/Music"]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Music"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_jel0o")
+channel = &"Music"
+
+[node name="EffectsLabel" type="Label" parent="TabContainer/Music"]
+layout_mode = 2
+text = "Effects"
+
+[node name="EffectsSlider" type="HSlider" parent="TabContainer/Music"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_jel0o")
+channel = &"Effects"
+
+[node name="WindLabel" type="Label" parent="TabContainer/Music"]
+layout_mode = 2
+text = "Winds
+"
+
+[node name="WindSlider" type="HSlider" parent="TabContainer/Music"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+script = ExtResource("2_jel0o")
+channel = &"Wind"

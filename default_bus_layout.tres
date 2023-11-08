@@ -1,7 +1,6 @@
 [gd_resource type="AudioBusLayout" format=3 uid="uid://dd0v5qmarawem"]
 
 [resource]
-bus/0/bypass_fx = true
 bus/1/name = &"Effects"
 bus/1/solo = false
 bus/1/mute = false

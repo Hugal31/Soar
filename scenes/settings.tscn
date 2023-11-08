@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://bemuipky3kqcg"]
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.5
+offset_top = -15.5
+offset_right = 99.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+clip_tabs = false
+
+[node name="Game" type="GridContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+columns = 2
+
+[node name="Air speed2" type="Label" parent="TabContainer/Game"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Speed instrument"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Game"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Air speed" type="Label" parent="TabContainer/Game/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Air speed"
+
+[node name="SpeedCheckBox" type="CheckButton" parent="TabContainer/Game/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Ground speed" type="Label" parent="TabContainer/Game/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Ground speed"
+
+[node name="Music" type="GridContainer" parent="TabContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="GeneralLabel" type="Label" parent="TabContainer/Music"]
+layout_mode = 2
+text = "General"
+
+[node name="GeneralVolumeSlider" type="HSlider" parent="TabContainer/Music"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_vertical = 4

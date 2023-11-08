@@ -22,13 +22,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 bbcode_enabled = true
+text = "[center]This game is made by me[/center]"
 fit_content = true
 script = ExtResource("1_t8obb")
 file_path = "res://Credits.txt"
-
-[node name="BackButton" type="Button" parent="."]
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Back"
-flat = true

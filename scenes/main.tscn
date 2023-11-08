@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="PackedScene" uid="uid://bhgsvhdsjr8nd" path="res://ui/aircraft_hud.tscn" id="2_3c3kt"]
+[ext_resource type="PackedScene" uid="uid://u2g86u33j7xd" path="res://ui/pause_menu.tscn" id="3_fmeva"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
@@ -35,7 +36,8 @@ shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_8cmnw")
 
-[node name="UI" type="MarginContainer" parent="."]
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,7 +46,13 @@ grow_vertical = 2
 
 [node name="Aircraft HUD" parent="UI" node_paths=PackedStringArray("aircraft") instance=ExtResource("2_3c3kt")]
 layout_mode = 2
+offset_right = 640.0
+offset_bottom = 480.0
 aircraft = NodePath("../../Glider")
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("3_fmeva")]
+visible = false
+layout_mode = 1
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("aircraft")]
 stream = ExtResource("10_ipig2")
@@ -109,3 +117,6 @@ linear_velocity = Vector3(0, -2, 25)
 visible = false
 script = ExtResource("14_et8ln")
 width = 1
+
+[connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
+[connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

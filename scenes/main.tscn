@@ -33,8 +33,9 @@ shader = ExtResource("1_r6fcu")
 shader_parameter/fog_start = 0.9993
 shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D" type="Node3D" node_paths=PackedStringArray("aircraft")]
 script = ExtResource("1_8cmnw")
+aircraft = NodePath("Glider")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

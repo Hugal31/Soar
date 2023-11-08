@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhgsvhdsjr8nd"]
+[gd_scene load_steps=12 format=3 uid="uid://bhgsvhdsjr8nd"]
 
 [ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_tuy6s"]
 [ext_resource type="Texture2D" uid="uid://cjbir05tmfec0" path="res://ui/variometer_background.svg" id="2_hhfhn"]
 [ext_resource type="Texture2D" uid="uid://dhoo10kwun4gd" path="res://ui/needle.svg" id="3_8cwnx"]
 [ext_resource type="Texture2D" uid="uid://cndo312nfeatb" path="res://ui/arrow.png" id="4_a00rs"]
+[ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="5_i4m36"]
 
 [sub_resource type="SystemFont" id="SystemFont_f3y18"]
 subpixel_positioning = 0
@@ -29,7 +30,7 @@ font_size = 10
 outline_size = 3
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Aircraft HUD" type="Control" node_paths=PackedStringArray("horizontal_speed_label", "vertical_speed_label", "needle")]
+[node name="Aircraft HUD" type="Control" node_paths=PackedStringArray("horizontal_speed_label", "vertical_speed_label", "needle", "score_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,6 +41,7 @@ script = ExtResource("1_tuy6s")
 horizontal_speed_label = NodePath("HorizontalSpeed")
 vertical_speed_label = NodePath("Variometer/VerticalSpeed")
 needle = NodePath("Variometer/Needle")
+score_label = NodePath("ScoreContainer/ScoreValueLabel")
 
 [node name="Variometer" type="TextureRect" parent="."]
 layout_mode = 1
@@ -241,3 +243,16 @@ offset_right = 29.0
 grow_vertical = 0
 text = "100km/h"
 label_settings = SubResource("LabelSettings_8koof")
+
+[node name="ScoreContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("5_i4m36")
+
+[node name="ScoreLabel" type="Label" parent="ScoreContainer"]
+layout_mode = 2
+text = "Score:"
+
+[node name="ScoreValueLabel" type="Label" parent="ScoreContainer"]
+layout_mode = 2

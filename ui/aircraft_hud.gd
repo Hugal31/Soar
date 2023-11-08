@@ -1,3 +1,4 @@
+class_name AircraftHud
 extends Control
 
 @export var aircraft: RigidBody3D
@@ -6,6 +7,11 @@ extends Control
 @export var needle: Control
 @export var needle_degrees_per_ms: float = 25.
 @export var needle_max_ms: float = 6.
+@export var score_label: Label
+
+
+func set_score(score: int):
+	score_label.text = "%d" % score
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

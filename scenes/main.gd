@@ -6,6 +6,7 @@ extends Node3D
 
 @onready var _pause_menu := $UI/PauseMenu
 @onready var _hud := $"UI/Aircraft HUD"
+@onready var _game_over_menu = $UI/GameOverMenu
 
 var _aircraft_start_score: int = 0
 var _score: int = 0
@@ -42,6 +43,10 @@ func toggle_pause():
 		pause()
 
 
+func game_over():
+	_game_over_menu.visible = true
+
+
 func pause():
 	Engine.time_scale = 0
 	_pause_menu.visible = true
@@ -50,6 +55,10 @@ func pause():
 func unpause():
 	Engine.time_scale = engine_time_scale
 	_pause_menu.hide()
+
+
+func restart():
+	get_tree().change_scene_to_file("res://scenes/main.tscn")
 
 
 func _on_quit():

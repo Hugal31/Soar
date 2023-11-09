@@ -69,6 +69,7 @@ var _engine_running := false
 var _target_bank := 0.
 var _target_pitch := Pitch.Normal
 var _stop_engine_timer := Timer.new()
+var _crashed := false
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
@@ -113,7 +114,13 @@ func _on_body_entered(other: Node):
 
 
 func crash():
-	emit_signal("crashed")
+	if not _crashed:
+		_crashed = true
+		custom_integrator = false
+		gravity_scale = 1
+		collision_mask = 2
+		set_controller(null)
+		emit_signal("crashed")
 
 
 func set_controller(controller: AircraftController):
@@ -121,7 +128,8 @@ func set_controller(controller: AircraftController):
 		child.queue_free()
 
 	_controller = controller
-	_controller_container.add_child(controller)
+	if controller != null:
+		_controller_container.add_child(controller)
 
 
 func on_enter_wind_area(area: WindAreaComponent):
@@ -176,6 +184,8 @@ func set_pitch(pitch: Pitch):
 
 
 func _physics_process(delta):
+	if _crashed:
+		return
 	var target_rotation_z = _target_bank
 	var target_rotation_x = target_speed.pitch
 	rotation_degrees.z = clampf(
@@ -194,6 +204,9 @@ func _physics_process(delta):
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D):
+	if _crashed:
+		return
+
 	match fligth_model:
 		FlightModel.Arcade:
 			_integrate_forces_arcade(state)

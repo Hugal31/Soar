@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=19 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bhgsvhdsjr8nd" path="res://ui/aircraft_hud.tscn" id="2_3c3kt"]
 [ext_resource type="PackedScene" uid="uid://u2g86u33j7xd" path="res://ui/pause_menu.tscn" id="3_fmeva"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
+[ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="4_wsxeh"]
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
@@ -52,6 +53,49 @@ aircraft = NodePath("../../Glider")
 [node name="PauseMenu" parent="UI" instance=ExtResource("3_fmeva")]
 visible = false
 layout_mode = 1
+
+[node name="GameOverMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_wsxeh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="GameOverLabel" type="Label" parent="UI/GameOverMenu/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Game over!"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Restart" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Quit" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
 
 [node name="WindPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("aircraft")]
 stream = ExtResource("10_ipig2")
@@ -119,4 +163,7 @@ width = 1
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]
+[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Restart" to="." method="restart"]
+[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit"]
+[connection signal="crashed" from="Glider" to="." method="game_over"]
 [connection signal="fuel_level_changed" from="Glider" to="." method="_on_glider_fuel_level_changed"]

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Logger="*res://addons/godot-logger-master/logger.gd"
 LeaderboardManager="*res://scripts/LeaderboardManager.gd"
+RandomNumberGeneratorManager="*res://scripts/RandomNumberGeneratorManager.gd"
 
 [display]
 

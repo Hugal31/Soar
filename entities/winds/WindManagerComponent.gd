@@ -1,19 +1,19 @@
 class_name WindManagerComponent
 extends Node
 
-@export var randomize := true
-
-@onready var horizontal_winds := _discover_horizontal_winds()
+@export var horizontal_winds_groups: Node
 
 
-func _discover_horizontal_winds() -> Array[ProceduralRidgeLift]:
-	var horizontal_winds: Array[ProceduralRidgeLift] = []
-	for sibling in get_parent().get_children():
-		if sibling is ProceduralRidgeLift:
-			horizontal_winds.push_back(sibling)
-	return horizontal_winds
+func _ready():
+	pick_one_horizontal_wind_group()
 
 
-func set_horizontal_wind_strength(strength: float):
-	for horizontal_wind in horizontal_winds:
-		horizontal_wind.ridge_lift.strength = strength
+func pick_one_horizontal_wind_group():
+	var n_groups := horizontal_winds_groups.get_child_count()
+	var idx := RandomNumberGeneratorManager.rng.randi_range(0, n_groups - 1)
+	for i in range(0, n_groups):
+		var child := horizontal_winds_groups.get_child(i)
+		if i != idx:
+			child.queue_free()
+		else:
+			child.visible = true

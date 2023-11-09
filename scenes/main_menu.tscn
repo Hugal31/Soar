@@ -52,7 +52,6 @@ flat = true
 script = ExtResource("2_jfvdw")
 
 [node name="Task of the day" type="Button" parent="MainMenu/Menu"]
-visible = false
 layout_mode = 2
 text = "Task of the day"
 flat = true

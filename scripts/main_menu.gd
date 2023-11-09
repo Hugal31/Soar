@@ -12,10 +12,12 @@ extends Control
 
 
 func _on_start_pressed():
+	RandomNumberGeneratorManager.set_random()
 	_start_game()
 
 
 func _on_task_of_the_day_pressed():
+	RandomNumberGeneratorManager.use_day_seed()
 	_start_game()
 
 

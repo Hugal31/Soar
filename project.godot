@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Logger="*res://addons/godot-logger-master/logger.gd"
+LeaderboardManager="*res://scripts/LeaderboardManager.gd"
 
 [display]
 

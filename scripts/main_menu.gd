@@ -5,6 +5,7 @@ extends Control
 
 @onready var main_menu = $Menu
 @onready var tutorials = $Tutorial
+@onready var leaderboard = $Leaderboard
 @onready var settings = $Settings
 @onready var credits = $Credits
 @onready var back_button = $BackButton
@@ -44,5 +45,10 @@ func _on_back_button_pressed():
 	main_menu.visible = true
 	back_button.hide()
 	settings.hide()
+	leaderboard.hide()
 	tutorials.hide()
 	credits.hide()
+
+
+func _on_leaderboard_pressed():
+	_show_sub_menu(leaderboard)

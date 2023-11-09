@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://b73yiidt38bdm"]
+
+[ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_buf5h"]
+[ext_resource type="Script" path="res://ui/WinScreen.gd" id="2_5dqjl"]
+[ext_resource type="PackedScene" uid="uid://douhvu0444ko4" path="res://ui/score_list.tscn" id="3_ymxnc"]
+
+[node name="WinScreen" type="Control" node_paths=PackedStringArray("new_score_label", "new_best_score_label", "score_value_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_buf5h")
+script = ExtResource("2_5dqjl")
+new_score_label = NodePath("VBoxContainer/HBoxContainer/YourScore")
+new_best_score_label = NodePath("VBoxContainer/HBoxContainer/NewBestScore")
+score_value_label = NodePath("VBoxContainer/HBoxContainer/NewScoreValue")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.294118)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -37.0
+offset_right = 48.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
+
+[node name="GoodFlight" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+text = "Good flight!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="YourScore" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderMedium"
+text = "Your score:"
+
+[node name="NewBestScore" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderMedium"
+text = "New best score:"
+
+[node name="NewScoreValue" type="Label" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "42
+"
+
+[node name="ScoreList" parent="VBoxContainer" instance=ExtResource("3_ymxnc")]
+layout_mode = 2

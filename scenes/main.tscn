@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=21 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://u2g86u33j7xd" path="res://ui/pause_menu.tscn" id="3_fmeva"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="4_wsxeh"]
+[ext_resource type="PackedScene" uid="uid://b73yiidt38bdm" path="res://ui/win_screen.tscn" id="5_g54cm"]
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
@@ -98,6 +99,10 @@ layout_mode = 2
 text = "Quit
 "
 
+[node name="WinScreen" parent="UI" instance=ExtResource("5_g54cm")]
+visible = false
+layout_mode = 1
+
 [node name="WindPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("aircraft")]
 stream = ExtResource("10_ipig2")
 bus = &"Wind"
@@ -171,3 +176,4 @@ transform = Transform3D(0.978202, 0, -0.207656, 0, 1, 0, 0.207656, 0, 0.978202, 
 [connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit"]
 [connection signal="crashed" from="Glider" to="." method="game_over"]
 [connection signal="fuel_level_changed" from="Glider" to="." method="_on_glider_fuel_level_changed"]
+[connection signal="landed" from="Glider" to="." method="win"]

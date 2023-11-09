@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://douhvu0444ko4"]
+
+[ext_resource type="Script" path="res://ui/ScoreList.gd" id="1_l2gvx"]
+
+[node name="ScoreList" type="VBoxContainer"]
+size_flags_horizontal = 4
+script = ExtResource("1_l2gvx")
+
+[node name="Score1" type="Label" parent="."]
+layout_mode = 2
+text = "#1: 42"
+
+[node name="Score2" type="Label" parent="."]
+layout_mode = 2
+text = "#2: 15"

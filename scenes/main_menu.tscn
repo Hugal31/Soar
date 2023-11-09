@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://boqwd8cabt18h"]
+[gd_scene load_steps=11 format=3 uid="uid://boqwd8cabt18h"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_r1ay0"]
 [ext_resource type="Script" path="res://scripts/grab_focus.gd" id="2_jfvdw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
 [ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
 [ext_resource type="PackedScene" uid="uid://dng8hv0o82diu" path="res://scenes/tutorial.tscn" id="6_s5nen"]
+[ext_resource type="PackedScene" uid="uid://douhvu0444ko4" path="res://ui/score_list.tscn" id="7_1mrqa"]
 [ext_resource type="PackedScene" uid="uid://qfcb5fhfgwab" path="res://scenes/settings.tscn" id="7_vcc5x"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_f4d1o"]
@@ -61,6 +62,11 @@ layout_mode = 2
 text = "Tutorial"
 flat = true
 
+[node name="Leaderboard" type="Button" parent="MainMenu/Menu"]
+layout_mode = 2
+text = "Leaderboard"
+flat = true
+
 [node name="Settings" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Settings"
@@ -74,6 +80,38 @@ flat = true
 [node name="Tutorial" parent="MainMenu" instance=ExtResource("6_s5nen")]
 visible = false
 layout_mode = 1
+
+[node name="Leaderboard" type="Control" parent="MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Leaderboard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MainMenu/Leaderboard/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Leaderboard"
+
+[node name="ScoreList" parent="MainMenu/Leaderboard/VBoxContainer" instance=ExtResource("7_1mrqa")]
+layout_mode = 2
 
 [node name="Settings" parent="MainMenu" instance=ExtResource("7_vcc5x")]
 visible = false
@@ -95,6 +133,7 @@ flat = true
 [connection signal="pressed" from="MainMenu/Menu/Start" to="MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Task of the day" to="MainMenu" method="_on_task_of_the_day_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Tutorial" to="MainMenu" method="_on_tutorial_pressed"]
+[connection signal="pressed" from="MainMenu/Menu/Leaderboard" to="MainMenu" method="_on_leaderboard_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Settings" to="MainMenu" method="_on_settings_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Credits" to="MainMenu" method="_on_credits_pressed"]
 [connection signal="pressed" from="MainMenu/BackButton" to="MainMenu" method="_on_back_button_pressed"]

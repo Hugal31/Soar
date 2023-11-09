@@ -409,7 +409,7 @@ func add_module(name, output_level = default_output_level, output_strategies = d
 	default ones.
 	Returns a reference to the instanced module."""
 	if modules.has(name):
-		info("The module '%s' already exists; discarding the call to add it anew." % name, PLUGIN_NAME)
+		pass #info("The module '%s' already exists; discarding the call to add it anew." % name, PLUGIN_NAME)
 	else:
 		if logfile == null:
 			logfile = get_external_sink(default_logfile_path)

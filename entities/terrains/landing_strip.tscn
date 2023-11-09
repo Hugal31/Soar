@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bh7081k00240s"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_get3v"]
+size = Vector3(40, 50, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w30he"]
+size = Vector3(40, 50, 200)
+
+[node name="LandingStrip" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 297.913, 529.661, 0)
+collision_layer = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_get3v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_w30he")

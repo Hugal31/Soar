@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=20 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
+[ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_strip.tscn" id="14_b851a"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
 [ext_resource type="PackedScene" uid="uid://c6y53dkvqxqwc" path="res://entities/terrains/mountains_lake_1.tscn" id="16_stlg7"]
 
@@ -115,7 +116,7 @@ environment = SubResource("Environment_q57oy")
 transform = Transform3D(-0.446343, 0.320208, -0.83561, -0.248932, 0.8525, 0.459648, 0.859541, 0.413171, -0.300798, 0, 0, 0)
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -612.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 423.052, 578.121, -612.971)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
@@ -134,7 +135,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 578.121, -612.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 423.052, 578.121, -612.971)
 current = true
 near = 1.0
 far = 6000.0
@@ -150,7 +151,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 565.356, -583.993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 423.052, 565.356, -583.993)
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 
@@ -160,6 +161,8 @@ linear_velocity = Vector3(0, -2, 25)
 visible = false
 script = ExtResource("14_et8ln")
 width = 1
+
+[node name="LandingStrip" parent="." instance=ExtResource("14_b851a")]
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

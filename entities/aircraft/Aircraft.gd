@@ -38,6 +38,9 @@ enum FlightModel {
 @export var air_density: float = 1.293
 
 const LOGNAME := "Aircraft"
+# TODO Use game parameter
+const ENVIRONMENT_COLLISION_LAYER := 1 << 2
+const LANDING_STRIP_COLLISION_LAYER := 1 << 4
 
 var horizontal_speed := 0.0
 var base_vertical_speed := 0.0
@@ -70,6 +73,9 @@ var _target_bank := 0.
 var _target_pitch := Pitch.Normal
 var _stop_engine_timer := Timer.new()
 var _crashed := false
+var _ragdoll := false
+@onready var _original_gravity_scale := gravity_scale
+@onready var _original_collision_mask := collision_mask
 
 signal position_changed(Vector3)
 signal velocity_changed(Vector3)
@@ -97,12 +103,24 @@ func _ready():
 	add_child(_stop_engine_timer)
 
 	# While we have lifes, disable collisions
-	collision_mask = 0
+	collision_mask &= ~ENVIRONMENT_COLLISION_LAYER
 	$Area3D.body_entered.connect(_on_body_entered)
 
 
 func _on_body_entered(other: Node):
 	Logger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
+	var other_collision_layer: int = 0
+	if other is PhysicsBody3D:
+		other_collision_layer = other.collision_layer
+	elif other is Area3D:
+		other_collision_layer = other.collision_layer
+	if other_collision_layer & ENVIRONMENT_COLLISION_LAYER:
+		collide_with_environment()
+	elif other_collision_layer & LANDING_STRIP_COLLISION_LAYER:
+		land()
+
+
+func collide_with_environment():
 	if not _engine_running:
 		if fuel_level > 0:
 			rotation.y += PI
@@ -116,11 +134,23 @@ func _on_body_entered(other: Node):
 func crash():
 	if not _crashed:
 		_crashed = true
-		custom_integrator = false
-		gravity_scale = 1
-		collision_mask = 2
-		set_controller(null)
+		start_ragdolling()
 		emit_signal("crashed")
+
+
+func land():
+	if not _ragdoll:
+		Logger.info("Landed")
+		start_ragdolling()
+		emit_signal("landed")
+
+
+func start_ragdolling():
+	set_controller(null)
+	_ragdoll = true
+	custom_integrator = false
+	gravity_scale = _original_gravity_scale
+	collision_mask = _original_collision_mask
 
 
 func set_controller(controller: AircraftController):
@@ -184,7 +214,7 @@ func set_pitch(pitch: Pitch):
 
 
 func _physics_process(delta):
-	if _crashed:
+	if _ragdoll:
 		return
 	var target_rotation_z = _target_bank
 	var target_rotation_x = target_speed.pitch
@@ -204,7 +234,7 @@ func _physics_process(delta):
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D):
-	if _crashed:
+	if _ragdoll:
 		return
 
 	match fligth_model:

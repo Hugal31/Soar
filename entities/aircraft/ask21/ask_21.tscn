@@ -17,7 +17,9 @@ vertical_speed = 5.0
 pitch = -4.0
 
 [node name="ask21" type="RigidBody3D"]
-collision_mask = 2
+collision_mask = 18
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_gq5ev")
 brake_speed = SubResource("Resource_o1ufo")
 slow_speed = ExtResource("2_saeyy")

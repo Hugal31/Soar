@@ -1,17 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bh7081k00240s"]
+[gd_scene load_steps=6 format=3 uid="uid://bh7081k00240s"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_get3v"]
-size = Vector3(40, 50, 200)
+[ext_resource type="ArrayMesh" uid="uid://dk1dxikaqvxfd" path="res://entities/terrains/decor/assets/landing_strip.obj" id="1_olnl2"]
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit.gdshader" id="2_2rjj0"]
+[ext_resource type="Texture2D" uid="uid://drt1piaciupcp" path="res://entities/terrains/decor/assets/landing_strip.png" id="3_donod"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kho2r"]
+render_priority = 0
+shader = ExtResource("2_2rjj0")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader_parameter/billboard = false
+shader_parameter/y_billboard = false
+shader_parameter/albedoTex = ExtResource("3_donod")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w30he"]
 size = Vector3(40, 50, 200)
 
 [node name="LandingStrip" type="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 297.913, 529.661, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 collision_layer = 16
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_get3v")
+mesh = ExtResource("1_olnl2")
+surface_material_override/0 = SubResource("ShaderMaterial_kho2r")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_w30he")

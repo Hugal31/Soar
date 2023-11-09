@@ -163,6 +163,7 @@ script = ExtResource("14_et8ln")
 width = 1
 
 [node name="LandingStrip" parent="." instance=ExtResource("14_b851a")]
+transform = Transform3D(0.978202, 0, -0.207656, 0, 1, 0, 0.207656, 0, 0.978202, 365.141, 457.025, -155.064)
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

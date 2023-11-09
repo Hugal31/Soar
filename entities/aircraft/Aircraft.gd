@@ -121,7 +121,7 @@ func _on_body_entered(other: Node):
 
 
 func collide_with_environment():
-	if not _engine_running:
+	if not _engine_running and not _ragdoll:
 		if fuel_level > 0:
 			rotation.y += PI
 			start_engine()
@@ -214,20 +214,19 @@ func set_pitch(pitch: Pitch):
 
 
 func _physics_process(delta):
-	if _ragdoll:
-		return
-	var target_rotation_z = _target_bank
-	var target_rotation_x = target_speed.pitch
-	rotation_degrees.z = clampf(
-		target_rotation_z,
-		rotation_degrees.z - delta * bank_velocity,
-		rotation_degrees.z + delta * bank_velocity
-	)
-	rotation_degrees.x = clampf(
-		target_rotation_x,
-		rotation_degrees.x - delta * pitch_velocity,
-		rotation_degrees.x + delta * pitch_velocity
-	)
+	if not _ragdoll:
+		var target_rotation_z = _target_bank
+		var target_rotation_x = target_speed.pitch
+		rotation_degrees.z = clampf(
+			target_rotation_z,
+			rotation_degrees.z - delta * bank_velocity,
+			rotation_degrees.z + delta * bank_velocity
+		)
+		rotation_degrees.x = clampf(
+			target_rotation_x,
+			rotation_degrees.x - delta * pitch_velocity,
+			rotation_degrees.x + delta * pitch_velocity
+		)
 
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)

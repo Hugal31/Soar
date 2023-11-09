@@ -4,7 +4,7 @@ extends Node3D
 
 @export var ridge_lift: RidgeLift:
 	set(r):
-		if not is_node_ready() or not Engine.is_editor_hint():
+		if not is_node_ready():
 			ridge_lift = r
 			return
 
@@ -47,14 +47,13 @@ const curve_texture_resolution := 256
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if Engine.is_editor_hint():
-		if ridge_lift != null and not ridge_lift.changed.is_connected(_on_ridge_lift_changed):
-			ridge_lift.changed.connect(_on_ridge_lift_changed)
-		if curve != null and not curve.changed.is_connected(_on_curve_changed):
-			curve.changed.connect(_on_curve_changed)
+	if ridge_lift != null and not ridge_lift.changed.is_connected(_on_ridge_lift_changed):
+		ridge_lift.changed.connect(_on_ridge_lift_changed)
+	if curve != null and not curve.changed.is_connected(_on_curve_changed):
+		curve.changed.connect(_on_curve_changed)
 
-		if path != null:
-			path.curve = curve
+	if path != null:
+		path.curve = curve
 
 	if wind_component != null:
 		wind_component.curve = curve

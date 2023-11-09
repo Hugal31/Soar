@@ -39,7 +39,7 @@ enum FlightModel {
 
 const LOGNAME := "Aircraft"
 # TODO Use game parameter
-const ENVIRONMENT_COLLISION_LAYER := 1 << 2
+const ENVIRONMENT_COLLISION_LAYER := 1 << 1
 const LANDING_STRIP_COLLISION_LAYER := 1 << 4
 
 var horizontal_speed := 0.0

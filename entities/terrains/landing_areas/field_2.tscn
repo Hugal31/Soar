@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqi2jq4id33ro"]
+
+[ext_resource type="ArrayMesh" uid="uid://b50fnp7xb87l5" path="res://entities/terrains/decor/assets/field_2.obj" id="1_evcac"]
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit_notex.gdshader" id="2_aeebo"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcw6q"]
+render_priority = 0
+shader = ExtResource("2_aeebo")
+shader_parameter/modulate_color = Color(0.454902, 0.541176, 0.211765, 1)
+shader_parameter/billboard = false
+shader_parameter/y_billboard = false
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uxhi2"]
+points = PackedVector3Array(52.1212, 24.9998, 26.7267, 46.4479, 24.9998, 56.482, 52.1212, -25, 26.7267, 39.0807, 27.8612, -52.1212, 46.4479, -25, 56.482, -46.4581, 24.9998, 56.482, 39.0807, -25, -52.1212, -39.0909, 27.8612, -52.1212, -46.4581, -25, 56.482, -52.1212, 24.9998, 26.7267, -39.0909, -25, -52.1212, -52.1212, -25, 26.7267)
+
+[node name="Field2" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+collision_layer = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_evcac")
+surface_material_override/0 = SubResource("ShaderMaterial_vcw6q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_uxhi2")

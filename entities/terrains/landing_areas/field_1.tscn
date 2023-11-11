@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://crhg137ve8j53"]
+
+[ext_resource type="Shader" path="res://shaders/psx/psx_lit_notex.gdshader" id="1_1ugl7"]
+[ext_resource type="ArrayMesh" uid="uid://bs00wbvjcqocw" path="res://entities/terrains/decor/assets/field_1.obj" id="1_h5r7l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vcw6q"]
+render_priority = 0
+shader = ExtResource("1_1ugl7")
+shader_parameter/modulate_color = Color(0.290196, 0.34902, 0.121569, 1)
+shader_parameter/billboard = false
+shader_parameter/y_billboard = false
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v1bo7"]
+data = PackedVector3Array(-35.8259, 25, 49.0265, -35.8259, -25, 49.0265, -35.8259, 25, -49.0265, -35.8259, 25, -49.0265, -35.8259, -25, 49.0265, -35.8259, -25, -49.0265, -35.8259, 25, -49.0265, -35.8259, -25, -49.0265, -46.5513, 21.572, -78.4844, -46.5513, 21.572, -78.4844, -35.8259, -25, -49.0265, -46.5513, -24.5429, -78.4844, 35.8259, 25, -49.0265, 35.8259, -25, -49.0265, 22.306, 21.7774, 54.7033, 22.306, 21.7774, 54.7033, 35.8259, -25, -49.0265, 22.306, -25, 54.7033, 22.306, 21.7774, 54.7033, 22.306, -25, 54.7033, -35.8259, 25, 49.0265, -35.8259, 25, 49.0265, 22.306, -25, 54.7033, -35.8259, -25, 49.0265, 35.8259, -25, -49.0265, -35.8259, -25, -49.0265, 22.306, -25, 54.7033, 22.306, -25, 54.7033, -35.8259, -25, -49.0265, -35.8259, -25, 49.0265, -35.8259, 25, -49.0265, 35.8259, 25, -49.0265, -35.8259, 25, 49.0265, -35.8259, 25, 49.0265, 35.8259, 25, -49.0265, 22.306, 21.7774, 54.7033, -46.5513, 21.572, -78.4844, -46.5513, -24.5429, -78.4844, 23.7902, 24.5429, -78.4844, 23.7902, 24.5429, -78.4844, -46.5513, -24.5429, -78.4844, 23.7902, -24.5429, -78.4844, 35.8259, -25, -49.0265, 35.8259, 25, -49.0265, 23.7902, -24.5429, -78.4844, 23.7902, -24.5429, -78.4844, 35.8259, 25, -49.0265, 23.7902, 24.5429, -78.4844, -35.8259, -25, -49.0265, 35.8259, -25, -49.0265, -46.5513, -24.5429, -78.4844, -46.5513, -24.5429, -78.4844, 35.8259, -25, -49.0265, 23.7902, -24.5429, -78.4844, 35.8259, 25, -49.0265, -35.8259, 25, -49.0265, 23.7902, 24.5429, -78.4844, 23.7902, 24.5429, -78.4844, -35.8259, 25, -49.0265, -46.5513, 21.572, -78.4844)
+
+[node name="Field1" type="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+collision_layer = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_h5r7l")
+surface_material_override/0 = SubResource("ShaderMaterial_vcw6q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConcavePolygonShape3D_v1bo7")

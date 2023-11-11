@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyj54n3pn8bjy"]
+
+[ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="1_pt6o4"]
+[ext_resource type="PackedScene" uid="uid://crhg137ve8j53" path="res://entities/terrains/landing_areas/field_1.tscn" id="2_c3h30"]
+[ext_resource type="PackedScene" uid="uid://bqi2jq4id33ro" path="res://entities/terrains/landing_areas/field_2.tscn" id="3_pjarc"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="LandingStrip" parent="." instance=ExtResource("1_pt6o4")]
+
+[node name="Field1" parent="." instance=ExtResource("2_c3h30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.8739, -20, 0)
+
+[node name="Field2" parent="." instance=ExtResource("3_pjarc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 124.664, -20, 0)

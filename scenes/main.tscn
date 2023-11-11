@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=20 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -12,7 +12,6 @@
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
-[ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_strip.tscn" id="14_b851a"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
 [ext_resource type="PackedScene" uid="uid://c6y53dkvqxqwc" path="res://entities/terrains/mountains_lake_1.tscn" id="16_stlg7"]
 
@@ -166,9 +165,6 @@ linear_velocity = Vector3(0, -2, 25)
 visible = false
 script = ExtResource("14_et8ln")
 width = 1
-
-[node name="LandingStrip" parent="." instance=ExtResource("14_b851a")]
-transform = Transform3D(0.978202, 0, -0.207656, 0, 1, 0, 0.207656, 0, 0.978202, 365.141, 457.025, -155.064)
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

@@ -74,7 +74,7 @@ void fragment()
 #endif
 
 #ifndef NO_BASE_COLOR
-	vec4 color_base = COLOR;// * modulate_color;
+	vec4 color_base = COLOR * modulate_color;
 #else
 	vec4 color_base = vec4(1);
 #endif

@@ -20,11 +20,11 @@ void vertex(){
 void fragment(){
 	float zdepth = textureLod(depth, SCREEN_UV, 0.0).r * 2.0 - 1.0;
 	vec4 pos = inv_model_view_matrix * INV_PROJECTION_MATRIX * vec4(SCREEN_UV * 2.0 - 1.0, zdepth, 1.0);
-	
+
 	pos.xyz /= pos.w;
-	
+
 	bool inside = all(greaterThanEqual(pos.xyz, vec3(-1.0))) && all(lessThanEqual(pos.xyz, vec3(1.0)));
-	
+
 	if(inside){
 		vec4 color = texture(decal, (pos.xy * -.5 -0.5) * scale + offset);
 #ifdef ENABLE_BRIGHTNESS

@@ -92,7 +92,7 @@ void start() {
 		if (RESTART_VELOCITY) {
 			VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
 		}
-		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;		
+		TRANSFORM = EMISSION_TRANSFORM * TRANSFORM;
 	}
 }
 
@@ -105,7 +105,7 @@ void process() {
 	vec4 position = local_transform[3];
 	position.x = cos(new_angle) * xz_distance;
 	position.z = sin(new_angle) * xz_distance;
-	
+
 	float radial_velocity = orbit_speed * xz_distance;
 	float x_angle = atan(VELOCITY.y / radial_velocity) - PI / 2.;
 

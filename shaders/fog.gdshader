@@ -15,7 +15,7 @@ void fragment() {
 	float depth = texture(depth_texture, SCREEN_UV).x;
 	if (depth == 1. || depth < fog_start)
 	{
-		ALPHA = 0.;	
+		ALPHA = 0.;
 	}
 	else
 	{

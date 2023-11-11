@@ -387,6 +387,7 @@ visibility_aabb = AABB(0, -1168, -1000, 6459.08, 2335.99, 2000)
 process_material = SubResource("ShaderMaterial_c3rk2")
 
 [node name="RidgeLiftWindAreaComponent" parent="Winds/HorizontalWinds/Y/RidgeLift" index="3"]
+ridge_lift = SubResource("Resource_glqfv")
 curve = SubResource("Curve3D_g3tw2")
 
 [node name="RidgeLift2" parent="Winds/HorizontalWinds/Y" instance=ExtResource("12_wpq72")]
@@ -407,6 +408,7 @@ visibility_aabb = AABB(0, -1101.88, -1000, 5467.84, 2203.76, 2000)
 process_material = SubResource("ShaderMaterial_vdd4v")
 
 [node name="RidgeLiftWindAreaComponent" parent="Winds/HorizontalWinds/Y/RidgeLift2" index="3"]
+ridge_lift = SubResource("Resource_glqfv")
 curve = SubResource("Curve3D_sdh7e")
 
 [editable path="Winds/HorizontalWinds/X/RidgeLift"]

@@ -6,6 +6,7 @@ var aircraft: Aircraft
 var bank_command := BankCommand.new()
 var pitch_command := PitchCommand.new()
 var pull_out_airbrakes_command = PullOutAirbrakesCommand.new()
+var start_engine_command = StartEngingeCommand.new()
 var store_airbrakes_command = StoreAirbrakesCommand.new()
 
 

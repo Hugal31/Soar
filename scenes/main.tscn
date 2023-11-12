@@ -356,7 +356,7 @@ libraries = {
 environment = SubResource("Environment_q57oy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvAndLight"]
-transform = Transform3D(0.457858, 5.96046e-08, -0.889025, 0.889025, 5.96046e-08, 0.457858, 5.96046e-08, -1, 0, 0, 0, 0)
+transform = Transform3D(0.457859, 0, -0.889024, 0.889024, 0, 0.457859, 0, -1, 0, 0, 0, 0)
 rotation_edit_mode = 1
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene load_steps=23 format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -13,6 +13,7 @@
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
 [ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
 [ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
+[ext_resource type="Script" path="res://scripts/WindRandomizer.gd" id="14_vdw7m"]
 
 [sub_resource type="Animation" id="Animation_4hst6"]
 resource_name = "DayNight"
@@ -400,6 +401,9 @@ linear_velocity = Vector3(0, -2, 25)
 [node name="Terrain" type="Node3D" parent="."]
 script = ExtResource("14_et8ln")
 tiles_directory = "res://entities/terrains/tiles"
+
+[node name="WindRandomizer" type="Node" parent="."]
+script = ExtResource("14_vdw7m")
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

@@ -109,7 +109,7 @@ func _update_shape():
 	if cloud != null:
 		if randomize_cloud_rotation:
 			cloud.rotation.y = randf_range(-PI, PI)
-		cloud.scale = Vector3.ONE * thermal.strength
+		cloud.scale = Vector3.ONE * thermal.radius / 20
 
 	if shadow != null:
 		shadow.scale = Vector3(thermal.radius * 2, thermal.radius * 2, half_height)

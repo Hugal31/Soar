@@ -7,3 +7,6 @@
 
 [node name="Landscape_004" parent="." index="0"]
 surface_material_override/0 = ExtResource("2_qyjsk")
+
+[node name="StaticBody3D" parent="Landscape_004" index="0"]
+collision_layer = 2

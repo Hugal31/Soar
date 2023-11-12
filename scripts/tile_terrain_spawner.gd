@@ -85,6 +85,8 @@ func _spawn_tile(scene: PackedScene):
 	var length: float = tile.get_meta("tile_length", DEFAULT_LENGTH)
 	tile.position.z = _last_terrain_z_end + length / 2.
 	_last_terrain_z_end = _last_terrain_z_end + length
+	if not tile.get_meta("disable_rotation", false) and _rng.randi() % 2 == 0:
+		tile.rotation.y = PI
 	Logger.info("Spawning tile %s at z=%.0f" % [tile.name, tile.position.z], LOGNAME)
 	add_child(tile)
 

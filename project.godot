@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Logger="*res://addons/godot-logger-master/logger.gd"
 LeaderboardManager="*res://scripts/LeaderboardManager.gd"
 RandomNumberGeneratorManager="*res://scripts/RandomNumberGeneratorManager.gd"
+WindManager="*res://entities/winds/wind/wind_manager.gd"
 
 [display]
 
@@ -122,4 +123,20 @@ textures/default_filters/anisotropic_filtering_level=0
 precision_multiplier={
 "type": "float",
 "value": 1.0
+}
+wind_height_falloff={
+"type": "float",
+"value": 500.0
+}
+height_map_scale={
+"type": "float",
+"value": 1000.0
+}
+wind_direction={
+"type": "vec3",
+"value": Vector3(1, 0, 0)
+}
+wind_strength={
+"type": "float",
+"value": 10.0
 }

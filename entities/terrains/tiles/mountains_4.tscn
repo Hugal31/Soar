@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8oeto8d8n2kw"]
+[gd_scene load_steps=33 format=3 uid="uid://c8oeto8d8n2kw"]
 
 [ext_resource type="PackedScene" uid="uid://54bc3lo5gvca" path="res://entities/terrains/base/terrains_4.tscn" id="1_4ktdc"]
+[ext_resource type="Image" uid="uid://hx4arynmksbe" path="res://entities/terrains/assets/terrain4_hm_lowres.png" id="1_u8jiy"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="2_vp38l"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_lbvbu"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_3vf8p"]
@@ -15,8 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="13_av388"]
 [ext_resource type="Script" path="res://scripts/PickNSiblings.gd" id="13_tfgtq"]
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="14_3fws4"]
+[ext_resource type="PackedScene" uid="uid://da7ohuyh5cnj5" path="res://entities/winds/wind/wind_square_area.tscn" id="17_0q1gx"]
 
-[sub_resource type="Resource" id="Resource_pj7h0"]
+[sub_resource type="Resource" id="Resource_25afk"]
 script = ExtResource("5_ucee1")
 amount = 600
 enabled = true
@@ -25,7 +27,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_conwd"]
+[sub_resource type="Resource" id="Resource_l1m1g"]
 script = ExtResource("6_pbbb1")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -41,7 +43,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_vmjap"]
+[sub_resource type="Resource" id="Resource_477qv"]
 script = ExtResource("7_d7gtl")
 rotation = Vector3(10, 360, 10)
 snap_angle = Vector3(0, 0, 0)
@@ -51,15 +53,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_r40f3"]
+[sub_resource type="Resource" id="Resource_jaw28"]
 script = ExtResource("4_3vf8p")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_pj7h0"), SubResource("Resource_conwd"), SubResource("Resource_vmjap")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_25afk"), SubResource("Resource_l1m1g"), SubResource("Resource_477qv")])
 
 [sub_resource type="Resource" id="Resource_gtvb0"]
 script = ExtResource("9_x25d6")
 size = Vector3(5000, 1, 5000)
 
-[sub_resource type="Resource" id="Resource_e35ck"]
+[sub_resource type="Resource" id="Resource_03x3x"]
 script = ExtResource("5_ucee1")
 amount = 600
 enabled = true
@@ -68,7 +70,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_d6wgq"]
+[sub_resource type="Resource" id="Resource_yu8dm"]
 script = ExtResource("6_pbbb1")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -84,7 +86,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_0emq8"]
+[sub_resource type="Resource" id="Resource_erwff"]
 script = ExtResource("11_fhwo6")
 operation = 1
 scale = Vector3(16, 16, 8)
@@ -94,7 +96,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_pt3os"]
+[sub_resource type="Resource" id="Resource_5xany"]
 script = ExtResource("12_61jbb")
 operation = 0
 rotation = Vector3(-90, 0, 0)
@@ -104,9 +106,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_jeti6"]
+[sub_resource type="Resource" id="Resource_0lk0p"]
 script = ExtResource("4_3vf8p")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_e35ck"), SubResource("Resource_d6wgq"), SubResource("Resource_0emq8"), SubResource("Resource_pt3os")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_03x3x"), SubResource("Resource_yu8dm"), SubResource("Resource_erwff"), SubResource("Resource_5xany")])
 
 [sub_resource type="Resource" id="Resource_5om65"]
 script = ExtResource("9_x25d6")
@@ -127,7 +129,11 @@ script = ExtResource("14_3fws4")
 radius = 75.0
 strength = 15.0
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_11w40"]
+size = Vector3(6000, 2000, 6000)
+
 [node name="Mountains4" type="Node3D"]
+metadata/height_map = ExtResource("1_u8jiy")
 
 [node name="terrains_5" parent="." instance=ExtResource("1_4ktdc")]
 
@@ -140,7 +146,7 @@ cache_file = "res://addons/proton_scatter/cache/943042265_scatter_cache.res"
 [node name="ProtonScatter" type="Node3D" parent="Decor"]
 script = ExtResource("3_lbvbu")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_r40f3")
+modifier_stack = SubResource("Resource_jaw28")
 
 [node name="ScatterShape" type="Node3D" parent="Decor/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)
@@ -163,7 +169,7 @@ path = "res://entities/terrains/decor/trees/pine_3.tscn"
 [node name="ProtonScatter2" type="Node3D" parent="Decor"]
 script = ExtResource("3_lbvbu")
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_jeti6")
+modifier_stack = SubResource("Resource_0lk0p")
 
 [node name="ScatterShape2" type="Node3D" parent="Decor/ProtonScatter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)
@@ -192,3 +198,8 @@ thermal = SubResource("Resource_6cbdf")
 [node name="Thermal3" parent="Thermals" instance=ExtResource("13_av388")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1622.59, 1326.43, -627.002)
 thermal = SubResource("Resource_31yqe")
+
+[node name="WindSquareArea" parent="." instance=ExtResource("17_0q1gx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+height_map = ExtResource("1_u8jiy")
+shape = SubResource("BoxShape3D_11w40")

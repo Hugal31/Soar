@@ -1,0 +1,14 @@
+[remap]
+
+importer="image"
+type="Image"
+uid="uid://hx4arynmksbe"
+path="res://.godot/imported/terrain4_hm_lowres.png-b51128683c2ccda454a2e8389660cae8.image"
+
+[deps]
+
+source_file="res://entities/terrains/assets/terrain4_hm_lowres.png"
+dest_files=["res://.godot/imported/terrain4_hm_lowres.png-b51128683c2ccda454a2e8389660cae8.image"]
+
+[params]
+

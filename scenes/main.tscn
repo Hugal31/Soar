@@ -388,7 +388,6 @@ script = ExtResource("3_yq5g2")
 
 [node name="Fog" type="MeshInstance3D" parent="Camera3D"]
 transform = Transform3D(-1, 1.77636e-15, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, -5.24164e-07, 1.55182, -5.79144)
-visible = false
 mesh = SubResource("QuadMesh_svkgt")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")

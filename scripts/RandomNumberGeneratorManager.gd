@@ -15,6 +15,11 @@ func set_random():
 	rng = RandomNumberGenerator.new()
 
 
+func get_sub_rng() -> RandomNumberGenerator:
+	var sub_rng := RandomNumberGenerator.new()
+	sub_rng.seed = randi()
+	return sub_rng
+
 func use_day_seed():
 	var timestamp := int(Time.get_unix_time_from_system())
 	# TODO Make something more explicitely synced with a specific hour.

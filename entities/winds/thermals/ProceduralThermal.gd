@@ -84,7 +84,7 @@ func _update_shape():
 			* particles.visibility_aabb.size.y
 			* particles.visibility_aabb.size.z
 		)
-		particles.amount = particle_density * volume / 1000000.0
+		particles.amount = int(particle_density * volume / 1000000.0)
 
 		if particles.process_material is ParticleProcessMaterial:
 			var material := particles.process_material as ParticleProcessMaterial

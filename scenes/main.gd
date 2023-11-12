@@ -36,7 +36,7 @@ func _process(_delta):
 
 
 func _get_aircraft_current_score() -> int:
-	return aircraft.global_position.z / score_scale - _aircraft_start_score
+	return int(aircraft.global_position.z / score_scale - _aircraft_start_score)
 
 
 func toggle_pause():

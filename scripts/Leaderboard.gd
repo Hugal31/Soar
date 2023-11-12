@@ -13,7 +13,7 @@ func is_new_best_score(score: int) -> bool:
 
 func add_score(score: int):
 	if scores.is_empty() or score > scores.back():
-		var insert_index := scores.bsearch_custom(score, func(a, b): a > b)
+		var insert_index := scores.bsearch_custom(score, func(a, b): return a > b)
 		scores.insert(insert_index, score)
 		if scores.size() > MAX_SCORES:
 			scores.pop_back()

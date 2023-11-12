@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://c6y53dkvqxqwc"]
+[gd_scene load_steps=55 format=3 uid="uid://c6y53dkvqxqwc"]
 
 [ext_resource type="PackedScene" uid="uid://rjj52oy76h4k" path="res://entities/terrains/base/terrains_1.tscn" id="1_3afkg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="2_4ukva"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="16_mdtuo"]
 [ext_resource type="PackedScene" uid="uid://bgvsce3iw33dm" path="res://entities/terrains/Wrapper.tscn" id="17_87im6"]
 [ext_resource type="Script" path="res://entities/winds/WindManagerComponent.gd" id="17_poxqe"]
+[ext_resource type="Script" path="res://scripts/PickNSiblings.gd" id="21_w7hx7"]
+[ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="21_y4rpv"]
 
 [sub_resource type="Resource" id="Resource_u3gx7"]
 script = ExtResource("4_x4a5s")
@@ -403,13 +405,30 @@ shape = SubResource("BoxShape3D_q1ao4")
 curve = SubResource("Curve3D_sdh7e")
 
 [node name="GPUParticles3D" parent="Winds/HorizontalWinds/Y/RidgeLift2" index="2"]
-amount = 4819
-visibility_aabb = AABB(0, -1101.88, -1000, 5467.84, 2203.76, 2000)
+amount = 6024
+visibility_aabb = AABB(0, -1101.88, -1250, 5467.84, 2203.76, 2500)
 process_material = SubResource("ShaderMaterial_vdd4v")
 
 [node name="RidgeLiftWindAreaComponent" parent="Winds/HorizontalWinds/Y/RidgeLift2" index="3"]
 ridge_lift = SubResource("Resource_glqfv")
 curve = SubResource("Curve3D_sdh7e")
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="PickNSiblings" type="Node" parent="Node3D"]
+script = ExtResource("21_w7hx7")
+
+[node name="LandingStrip" parent="Node3D" instance=ExtResource("21_y4rpv")]
+transform = Transform3D(0.853478, 0.0310697, -0.520202, -9.31323e-10, 0.998221, 0.05962, 0.521129, -0.0508843, 0.85196, -1953.46, 427.396, -921.745)
+metadata/pick_chance = 1.0
+
+[node name="LandingStrip2" parent="Node3D" instance=ExtResource("21_y4rpv")]
+transform = Transform3D(0.694759, 0, 0.719243, 0, 1, 0, -0.719243, 0, 0.694759, 2487.88, 67.2812, -2347)
+metadata/pick_chance = 1.0
+
+[node name="LandingStrip3" parent="Node3D" instance=ExtResource("21_y4rpv")]
+transform = Transform3D(-0.733339, 0.0914568, 0.673684, 6.51926e-09, 0.990911, -0.134522, -0.679864, -0.0986504, -0.726673, 144.819, 522.872, 1235.2)
+metadata/pick_chance = 0.5
 
 [editable path="Winds/HorizontalWinds/X/RidgeLift"]
 [editable path="Winds/HorizontalWinds/X/RidgeLift2"]

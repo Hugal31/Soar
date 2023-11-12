@@ -10,9 +10,9 @@ const LOGNAME = "TiledTerrainSpawner"
 
 func _ready():
 	Logger.add_module(LOGNAME)
-	
+
 	var tiles = get_children()
-	
+
 	if tiles.is_empty():
 		push_warning("No child in the terrin tiler")
 		return

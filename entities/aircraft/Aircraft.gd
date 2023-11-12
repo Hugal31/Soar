@@ -228,6 +228,9 @@ func _physics_process(delta):
 			rotation_degrees.x + delta * pitch_velocity
 		)
 
+		if global_position.y <= 0:
+			collide_with_environment()
+
 	emit_signal("position_changed", position)
 	emit_signal("velocity_changed", linear_velocity)
 

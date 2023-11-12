@@ -314,7 +314,13 @@ func _integrate_forces_realist(state):
 
 
 func _get_wind() -> Vector3:
+	if wind_areas.is_empty():
+		return Vector3()
+
 	var wind := Vector3()
+	var max_wind_y := -INF
 	for wind_area in wind_areas:
-		wind += wind_area.get_wind_at_position(global_position)
-	return wind
+		var wind_dir := wind_area.get_wind_at_position(global_position)
+		wind += wind_dir
+		max_wind_y = maxf(max_wind_y, wind_dir.y)
+	return Vector3(wind.x, maxf(max_wind_y, wind.y), wind.z)

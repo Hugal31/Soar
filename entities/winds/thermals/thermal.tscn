@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=16 format=3 uid="uid://k5uuocnk37nr"]
 
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
@@ -7,7 +7,9 @@
 [ext_resource type="PlaneMesh" uid="uid://bu66q72ei5kmj" path="res://entities/winds/thermals/wind_whirl_dissolving_mesh_z.tres" id="6_ht70n"]
 [ext_resource type="PackedScene" uid="uid://frfogyw6dujl" path="res://entities/clouds/cloud_1.tscn" id="7_qsxoq"]
 [ext_resource type="Script" path="res://scripts/NodeRandomizer.gd" id="8_psnwb"]
+[ext_resource type="Shader" path="res://shaders/decal.gdshader" id="9_hrolk"]
 [ext_resource type="PackedScene" uid="uid://oundxfntq103" path="res://entities/clouds/cloud_2.tscn" id="9_nervw"]
+[ext_resource type="Texture2D" uid="uid://ci51hyfkhlqgm" path="res://entities/winds/assets/cloud_shadow.png" id="10_jixri"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_uknh0"]
 resource_local_to_scene = true
@@ -26,11 +28,24 @@ shader_parameter/speed = 28.0
 shader_parameter/height = 500.0
 shader_parameter/orbit_speed = 0.2
 
-[node name="Thermal" type="Area3D" node_paths=PackedStringArray("cloud", "area_collision", "particles", "wind_component")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yao46"]
+render_priority = 0
+shader = ExtResource("9_hrolk")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/scale = Vector2(1, 1)
+shader_parameter/decal = ExtResource("10_jixri")
+
+[sub_resource type="BoxMesh" id="BoxMesh_wpjla"]
+material = SubResource("ShaderMaterial_yao46")
+size = Vector3(2, 2, 2)
+
+[node name="Thermal" type="Area3D" node_paths=PackedStringArray("cloud", "shadow", "area_collision", "particles", "wind_component")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 0)
 collision_layer = 12
 script = ExtResource("3_nenhj")
+particle_density = 1.5
 cloud = NodePath("CloudRandomizer")
+shadow = NodePath("Shadow")
 area_collision = NodePath("CollisionShape3D")
 particles = NodePath("GPUParticles3D")
 wind_component = NodePath("ThermalWindAreaComponent")
@@ -52,6 +67,10 @@ process_material = SubResource("ShaderMaterial_uq7tf")
 draw_pass_1 = ExtResource("6_ht70n")
 
 [node name="CloudRandomizer" type="Node3D" parent="."]
-transform = Transform3D(-2.9608, 0, -4.02911, 0, 5, 0, 4.02911, 0, -2.9608, 0, 0, 0)
+transform = Transform3D(-0.592159, 0, -0.805821, 0, 1, 0, 0.805821, 0, -0.592159, 0, 0, 0)
 script = ExtResource("8_psnwb")
 scenes = Array[PackedScene]([ExtResource("7_qsxoq"), ExtResource("9_nervw")])
+
+[node name="Shadow" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("BoxMesh_wpjla")

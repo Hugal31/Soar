@@ -40,7 +40,7 @@ orientation = 2
 [node name="RidgeLift" type="Node3D" node_paths=PackedStringArray("path", "wind_component", "collision_shape", "particles")]
 script = ExtResource("1_vqtdo")
 path = NodePath("Path3D")
-particle_density = 0.2
+particle_density = 0.1
 wind_component = NodePath("RidgeLiftWindAreaComponent")
 collision_shape = NodePath("Area3D/CollisionShape3D")
 particles = NodePath("GPUParticles3D")

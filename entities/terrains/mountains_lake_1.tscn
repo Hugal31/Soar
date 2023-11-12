@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://c6y53dkvqxqwc"]
+[gd_scene load_steps=56 format=3 uid="uid://c6y53dkvqxqwc"]
 
 [ext_resource type="PackedScene" uid="uid://rjj52oy76h4k" path="res://entities/terrains/base/terrains_1.tscn" id="1_3afkg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="2_4ukva"]
@@ -130,11 +130,6 @@ stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.
 script = ExtResource("10_vc2js")
 size = Vector3(4500, 1, 4500)
 
-[sub_resource type="Resource" id="Resource_m2650"]
-script = ExtResource("16_mdtuo")
-radius = 75.0
-strength = 7.0
-
 [sub_resource type="Resource" id="Resource_glqfv"]
 script = ExtResource("13_ubqs6")
 strength = 15.0
@@ -258,6 +253,16 @@ shader_parameter/lift_radius = 750.0
 shader_parameter/lift_strength = 15.0
 shader_parameter/height_texture = SubResource("ImageTexture_a048n")
 
+[sub_resource type="Resource" id="Resource_m2650"]
+script = ExtResource("16_mdtuo")
+radius = 100.0
+strength = 7.0
+
+[sub_resource type="Resource" id="Resource_ur7cb"]
+script = ExtResource("16_mdtuo")
+radius = 75.0
+strength = 10.0
+
 [node name="mountains_lake_1" type="Node3D"]
 
 [node name="terrains_1" parent="." instance=ExtResource("1_3afkg")]
@@ -305,11 +310,6 @@ shape = SubResource("Resource_boxdl")
 script = ExtResource("4_f4ssn")
 lod_generate = false
 path = "res://entities/terrains/decor/trees/tree_shadow_decal.tscn"
-
-[node name="Thermal" parent="." instance=ExtResource("15_u8iil")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 612.31, 1420.46, 217.75)
-thermal = SubResource("Resource_m2650")
-metadata/_edit_group_ = true
 
 [node name="Wrapper" parent="." instance=ExtResource("17_87im6")]
 
@@ -413,22 +413,38 @@ process_material = SubResource("ShaderMaterial_vdd4v")
 ridge_lift = SubResource("Resource_glqfv")
 curve = SubResource("Curve3D_sdh7e")
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="LandingStrips" type="Node3D" parent="."]
 
-[node name="PickNSiblings" type="Node" parent="Node3D"]
+[node name="PickNSiblings" type="Node" parent="LandingStrips"]
 script = ExtResource("21_w7hx7")
 
-[node name="LandingStrip" parent="Node3D" instance=ExtResource("21_y4rpv")]
+[node name="LandingStrip" parent="LandingStrips" instance=ExtResource("21_y4rpv")]
 transform = Transform3D(0.853478, 0.0310697, -0.520202, -9.31323e-10, 0.998221, 0.05962, 0.521129, -0.0508843, 0.85196, -1953.46, 427.396, -921.745)
 metadata/pick_chance = 1.0
 
-[node name="LandingStrip2" parent="Node3D" instance=ExtResource("21_y4rpv")]
+[node name="LandingStrip2" parent="LandingStrips" instance=ExtResource("21_y4rpv")]
 transform = Transform3D(0.694759, 0, 0.719243, 0, 1, 0, -0.719243, 0, 0.694759, 2487.88, 67.2812, -2347)
 metadata/pick_chance = 1.0
 
-[node name="LandingStrip3" parent="Node3D" instance=ExtResource("21_y4rpv")]
+[node name="LandingStrip3" parent="LandingStrips" instance=ExtResource("21_y4rpv")]
 transform = Transform3D(-0.733339, 0.0914568, 0.673684, 6.51926e-09, 0.990911, -0.134522, -0.679864, -0.0986504, -0.726673, 144.819, 522.872, 1235.2)
 metadata/pick_chance = 0.5
+
+[node name="Thermals" type="Node3D" parent="."]
+
+[node name="PickNSiblings" type="Node" parent="Thermals"]
+script = ExtResource("21_w7hx7")
+pick_max = 2
+
+[node name="Thermal" parent="Thermals" instance=ExtResource("15_u8iil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 704.682, 1420.46, 217.75)
+thermal = SubResource("Resource_m2650")
+metadata/_edit_group_ = true
+
+[node name="Thermal2" parent="Thermals" instance=ExtResource("15_u8iil")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.6105, 1249.86, -217)
+thermal = SubResource("Resource_ur7cb")
+metadata/_edit_group_ = true
 
 [editable path="Winds/HorizontalWinds/X/RidgeLift"]
 [editable path="Winds/HorizontalWinds/X/RidgeLift2"]

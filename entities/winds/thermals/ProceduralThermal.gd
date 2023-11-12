@@ -26,6 +26,7 @@ class_name ProceduralThermal
 
 @export var cloud: Node3D
 @export var randomize_cloud_rotation: bool = true
+@export var shadow: Node3D
 
 # TODO Maybe export instead of searching?
 @export var area_collision: CollisionShape3D
@@ -108,3 +109,8 @@ func _update_shape():
 	if cloud != null:
 		if randomize_cloud_rotation:
 			cloud.rotation.y = randf_range(-PI, PI)
+		cloud.scale = Vector3.ONE * thermal.strength
+
+	if shadow != null:
+		shadow.scale = Vector3(thermal.radius * 2, thermal.radius * 2, half_height)
+		shadow.position = Vector3(0, -half_height - 100, 0)

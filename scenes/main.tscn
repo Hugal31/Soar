@@ -361,7 +361,7 @@ transform = Transform3D(0.457859, 0, -0.889024, 0.889024, 0, 0.457859, 0, -1, 0,
 rotation_edit_mode = 1
 
 [node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 423.052, 578.121, -612.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 712.765, -1025.21)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
@@ -380,7 +380,7 @@ inactive_update_mode = 0
 camera_3D_resource = null
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 423.052, 578.121, -612.971)
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 712.765, -1025.21)
 current = true
 near = 1.0
 far = 6000.0
@@ -395,7 +395,7 @@ skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
 
 [node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 423.052, 565.356, -583.993)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 700, -996.235)
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 

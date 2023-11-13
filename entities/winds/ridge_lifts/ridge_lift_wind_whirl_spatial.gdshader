@@ -11,9 +11,9 @@ varying flat float lifespan;
 void vertex() {
 	float spawn_time = INSTANCE_CUSTOM[2];
 	float lifetime = INSTANCE_CUSTOM[3];
-	float expiration_time = spawn_time + lifetime;	
+	float expiration_time = spawn_time + lifetime;
 	lifespan = 1. - ((expiration_time - TIME) / lifetime);
-	
+
 	// Y-billboard
 	/*mat4 n_out2p0;
 	{

@@ -4,17 +4,16 @@
 [ext_resource type="Material" uid="uid://shgji07t3gvc" path="res://entities/terrains/decor/trees/poly_adventure_1_material.tres" id="2_5mqe5"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4slyi"]
-height = 7.88197
-radius = 1.54169
+height = 78.0
+radius = 15.0
 
 [node name="Pine1" type="StaticBody3D"]
 collision_layer = 2
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 mesh = ExtResource("1_k5rtm")
 surface_material_override/0 = ExtResource("2_5mqe5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.78904, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 37.9765, 0)
 shape = SubResource("CylinderShape3D_4slyi")

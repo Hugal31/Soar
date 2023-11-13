@@ -34,6 +34,7 @@ class_name ProceduralThermal
 
 
 func _ready():
+	super()
 	if Engine.is_editor_hint():
 		set_notify_local_transform(true)
 		if thermal != null:

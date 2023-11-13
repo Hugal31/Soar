@@ -16,7 +16,7 @@ const LOGNAME := "WindRandomizer"
 var wind_angle: float = 0:
 	set(a):
 		wind_angle = a
-		WindManager.wind_direction = Vector3(1, 0, 0).rotated(Vector3.UP, wind_angle)
+		WindManager.wind_direction = Vector3(0, 0, 1).rotated(Vector3.UP, wind_angle)
 
 var timer: Timer
 @onready var rng := RandomNumberGeneratorManager.get_sub_rng()

@@ -5,10 +5,11 @@ const DEFAULT_LENGTH := 6000
 
 @export_dir() var tiles_directory: String
 @export var player: Node3D
-@export var n_terrains_back := 0
+@export var n_terrains_back := 1
 @export var n_terrains_ahead := 2
 
 @onready var _rng := RandomNumberGeneratorManager.get_sub_rng()
+@onready var first_tile: Node3D = get_children().front()
 var _tiles_files: PackedStringArray
 var _first_terrain_z_end := 0.
 var _last_terrain_z_end := 0.
@@ -19,23 +20,14 @@ var _next_tile_path := ""
 func _ready():
 	Logger.add_module(LOGNAME)
 
-	var start_time := Time.get_ticks_msec()
-
 	var tiles_dir := DirAccess.open(tiles_directory)
 	if tiles_dir == null:
 		Logger.error("Could not open tiles directory", LOGNAME, DirAccess.get_open_error())
 
 	_tiles_files = _filter_scenes(tiles_dir.get_files())
 
-	# Spawn the first tile
-	var tile_res := load(_get_random_tile_path())
-	var tile = tile_res.instantiate()
-	add_child(tile)
-	_last_terrain_z_end = tile.get_meta("tile_length", DEFAULT_LENGTH) / 2
+	_last_terrain_z_end = first_tile.get_meta("tile_length", DEFAULT_LENGTH) / 2
 	_first_terrain_z_end = _last_terrain_z_end
-
-	var end_time := Time.get_ticks_msec()
-	Logger.info("Terrain spawning took %dms" % (end_time - start_time), LOGNAME)
 
 
 static func _filter_scenes(files: PackedStringArray) -> PackedStringArray:

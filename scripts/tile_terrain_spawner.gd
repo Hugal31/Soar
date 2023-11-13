@@ -24,7 +24,9 @@ func _ready():
 	if tiles_dir == null:
 		Logger.error("Could not open tiles directory", LOGNAME, DirAccess.get_open_error())
 
-	_tiles_files = _filter_scenes(tiles_dir.get_files())
+	var files := tiles_dir.get_files()
+	_tiles_files = _filter_scenes(files)
+	Logger.debug("Tiles are %s (from %s)" % [_tiles_files, files], LOGNAME)
 
 	_last_terrain_z_end = first_tile.get_meta("tile_length", DEFAULT_LENGTH) / 2
 	_first_terrain_z_end = _last_terrain_z_end
@@ -33,8 +35,13 @@ func _ready():
 static func _filter_scenes(files: PackedStringArray) -> PackedStringArray:
 	var res := PackedStringArray()
 	for f in files:
-		if f.ends_with(".tscn") or f.ends_with(".scn"):
-			res.push_back(f)
+		if (
+			f.ends_with(".tscn")
+			or f.ends_with(".scn")
+			or f.ends_with(".tscn.remap")
+			or f.ends_with(".scn.remap")
+		):
+			res.push_back(f.replace(".remap", ""))
 	return res
 
 
@@ -61,6 +68,7 @@ func _load_next():
 
 	_loading = true
 	_next_tile_path = _get_random_tile_path()
+	Logger.debug("Loading %s" % _next_tile_path, LOGNAME)
 	var error := ResourceLoader.load_threaded_request(_next_tile_path, "PackedScene")
 	if error != OK:
 		Logger.error("Could not load %s" % _next_tile_path, LOGNAME, error)

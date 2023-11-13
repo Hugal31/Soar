@@ -1,6 +1,17 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dw8tap3ih7i5s"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://dw8tap3ih7i5s"]
 
 [ext_resource type="FontFile" uid="uid://bj58e05ml3uko" path="res://fonts/emulogic.ttf" id="1_cwq2e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l7dj"]
+bg_color = Color(0, 0, 0, 0.501961)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="FontVariation" id="FontVariation_roxod"]
 base_font = ExtResource("1_cwq2e")
@@ -10,6 +21,7 @@ Button/fonts/font = ExtResource("1_cwq2e")
 GridContainer/constants/h_separation = 8
 GridContainer/constants/v_separation = 8
 Label/fonts/font = ExtResource("1_cwq2e")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_4l7dj")
 RichTextLabel/font_sizes/bold_font_size = 8
 RichTextLabel/font_sizes/bold_italics_font_size = 8
 RichTextLabel/font_sizes/italics_font_size = 8

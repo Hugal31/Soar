@@ -11,28 +11,31 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_t80jr")
 
-[node name="Page1" type="GridContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.5
-offset_top = -20.0
-offset_right = 35.5
-offset_bottom = 20.0
+offset_left = -268.0
+offset_top = -44.0
+offset_right = 268.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Page1" type="GridContainer" parent="PanelContainer"]
+layout_mode = 2
 columns = 2
 
-[node name="GoalLabel" type="Label" parent="Page1"]
+[node name="GoalLabel" type="Label" parent="PanelContainer/Page1"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Goal"
 
-[node name="GoalExplanation" type="RichTextLabel" parent="Page1"]
+[node name="GoalExplanation" type="RichTextLabel" parent="PanelContainer/Page1"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -41,13 +44,13 @@ But don't forget to land safely or your score won't be counted!"
 fit_content = true
 autowrap_mode = 2
 
-[node name="ControlsLabel" type="Label" parent="Page1"]
+[node name="ControlsLabel" type="Label" parent="PanelContainer/Page1"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Controls"
 
-[node name="Controls explanation" type="RichTextLabel" parent="Page1"]
+[node name="Controls explanation" type="RichTextLabel" parent="PanelContainer/Page1"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -56,5 +59,20 @@ text = "[b]Up arrow[/b] or [b]W[/b] to go faster.
 [b]Right and left[/b] arrows or [b]A[/b] and [b]D[/b] to turn.
 [b]Shift[/b] to allow steeper turns.
 [b]Control[/b] to extend the airbrakes."
+fit_content = true
+autowrap_mode = 2
+
+[node name="TaskLabel" type="Label" parent="PanelContainer/Page1"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Tasks"
+
+[node name="TaskExplanation" type="RichTextLabel" parent="PanelContainer/Page1"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "The start button starts a randomized run.
+The \"Task of the day\" button start a randomized run that is the same for a day"
 fit_content = true
 autowrap_mode = 2

@@ -29,7 +29,7 @@ resource_local_to_scene = true
 height = 866.417
 radius = 75.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e847b"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7p1eo"]
 shader = ExtResource("5_5acyk")
 shader_parameter/radius = 75.0
 shader_parameter/speed = 28.0
@@ -51,23 +51,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 866.417, 253.691)
 thermal = SubResource("Resource_u2bv6")
 
 [node name="CollisionShape3D" parent="Thermal" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -433.209, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -433.208, 0)
 shape = SubResource("CylinderShape3D_co23e")
 
 [node name="ThermalWindAreaComponent" parent="Thermal" index="1"]
 thermal = SubResource("Resource_u2bv6")
 
 [node name="GPUParticles3D" parent="Thermal" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -503.209, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -503.208, 0)
 amount = 31
-visibility_aabb = AABB(-75, -363.209, -75, 150, 936.417, 150)
-process_material = SubResource("ShaderMaterial_e847b")
+visibility_aabb = AABB(-75, -363.208, -75, 150, 936.417, 150)
+process_material = SubResource("ShaderMaterial_7p1eo")
 
 [node name="CloudRandomizer" parent="Thermal" index="3"]
-transform = Transform3D(3.54609, 0, 1.21975, 0, 3.75, 0, -1.21975, 0, 3.54609, 0, 0, 0)
+transform = Transform3D(3.41314, 0, -1.55337, 0, 3.75, 0, 1.55337, 0, 3.41314, 0, 0, 0)
 
 [node name="Shadow" parent="Thermal" index="4"]
-transform = Transform3D(150, 0, 0, 0, -6.55671e-06, 433.209, 0, -150, -1.89362e-05, 0, -533.209, 0)
+transform = Transform3D(150, 0, 0, 0, -6.55671e-06, 433.208, 0, -150, -1.89361e-05, 0, -533.208, 0)
 
 [node name="ask21" parent="." instance=ExtResource("2_xy3bf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 710.792, 0)

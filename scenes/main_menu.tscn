@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://boqwd8cabt18h"]
+[gd_scene load_steps=12 format=3 uid="uid://boqwd8cabt18h"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_r1ay0"]
 [ext_resource type="Script" path="res://scripts/grab_focus.gd" id="2_jfvdw"]
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="2_khxp2"]
 [ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
 [ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
+[ext_resource type="Texture2D" uid="uid://cwuwvqoutedxh" path="res://banner.png" id="5_uwh1k"]
 [ext_resource type="PackedScene" uid="uid://dng8hv0o82diu" path="res://scenes/tutorial.tscn" id="6_s5nen"]
 [ext_resource type="PackedScene" uid="uid://douhvu0444ko4" path="res://ui/score_list.tscn" id="7_1mrqa"]
 [ext_resource type="PackedScene" uid="uid://qfcb5fhfgwab" path="res://scenes/settings.tscn" id="7_vcc5x"]
@@ -30,6 +31,15 @@ script = ExtResource("2_khxp2")
 game_scene = ExtResource("3_m8k1r")
 credits_scene = ExtResource("3_pnlio")
 
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_uwh1k")
+
 [node name="Menu" type="VBoxContainer" parent="MainMenu"]
 layout_mode = 1
 anchors_preset = 8
@@ -44,37 +54,42 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="MainMenu/Menu"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"HeaderLarge"
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+text = "Soar!
+
+
+"
+
 [node name="Start" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Start
 "
-flat = true
 script = ExtResource("2_jfvdw")
 
 [node name="Task of the day" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Task of the day"
-flat = true
 
 [node name="Tutorial" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Tutorial"
-flat = true
 
 [node name="Leaderboard" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Leaderboard"
-flat = true
 
 [node name="Settings" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Settings"
-flat = true
 
 [node name="Credits" type="Button" parent="MainMenu/Menu"]
 layout_mode = 2
 text = "Credits"
-flat = true
 
 [node name="Tutorial" parent="MainMenu" instance=ExtResource("6_s5nen")]
 visible = false
@@ -89,27 +104,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Leaderboard"]
+[node name="PanelContainer" type="PanelContainer" parent="MainMenu/Leaderboard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -154.0
+offset_top = -54.5
+offset_right = 154.0
+offset_bottom = 54.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Leaderboard/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MainMenu/Leaderboard/VBoxContainer"]
+[node name="Label" type="Label" parent="MainMenu/Leaderboard/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Leaderboard"
 
-[node name="ScoreList" parent="MainMenu/Leaderboard/VBoxContainer" instance=ExtResource("7_1mrqa")]
+[node name="ScoreList" parent="MainMenu/Leaderboard/PanelContainer/VBoxContainer" instance=ExtResource("7_1mrqa")]
 layout_mode = 2
 
 [node name="Settings" parent="MainMenu" instance=ExtResource("7_vcc5x")]
@@ -122,12 +141,13 @@ layout_mode = 1
 
 [node name="BackButton" type="Button" parent="MainMenu"]
 visible = false
-layout_mode = 0
-offset_right = 72.0
-offset_bottom = 28.0
+layout_mode = 1
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 74.0
+offset_bottom = 30.0
 shortcut = SubResource("Shortcut_eo0h8")
 text = "Back"
-flat = true
 
 [connection signal="pressed" from="MainMenu/Menu/Start" to="MainMenu" method="_on_start_pressed"]
 [connection signal="pressed" from="MainMenu/Menu/Task of the day" to="MainMenu" method="_on_task_of_the_day_pressed"]

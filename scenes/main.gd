@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var engine_time_scale := 2.
+@export var engine_time_scale := 3.
 @export var aircraft: Node3D
 @export var score_scale := 20
 

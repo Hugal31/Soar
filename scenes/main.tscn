@@ -348,7 +348,7 @@ bus = &"Music"
 
 [node name="DayNightAnimationPlayer" type="AnimationPlayer" parent="EnvAndLight"]
 autoplay = "DayNight"
-speed_scale = 0.1
+speed_scale = 0.03
 libraries = {
 "": SubResource("AnimationLibrary_46m1x")
 }

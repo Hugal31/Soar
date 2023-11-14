@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://k5uuocnk37nr"]
+[gd_scene load_steps=17 format=3 uid="uid://k5uuocnk37nr"]
 
+[ext_resource type="Script" path="res://entities/winds/thermals/autowrap.gd" id="2_0csli"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
 [ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
 [ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="4_cht7p"]
@@ -49,6 +50,9 @@ shadow = NodePath("Shadow")
 area_collision = NodePath("CollisionShape3D")
 particles = NodePath("GPUParticles3D")
 wind_component = NodePath("ThermalWindAreaComponent")
+
+[node name="Autowrap" type="Node3D" parent="."]
+script = ExtResource("2_0csli")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -250, 0)

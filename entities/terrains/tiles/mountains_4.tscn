@@ -20,7 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://crhg137ve8j53" path="res://entities/terrains/landing_areas/field_1.tscn" id="18_ywo8b"]
 [ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="19_qxdxx"]
 
-[sub_resource type="Resource" id="Resource_4hhjm"]
+[sub_resource type="Resource" id="Resource_8t435"]
 script = ExtResource("5_ucee1")
 amount = 600
 enabled = true
@@ -29,7 +29,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_3j4oy"]
+[sub_resource type="Resource" id="Resource_hqy78"]
 script = ExtResource("6_pbbb1")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -45,7 +45,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_svvqx"]
+[sub_resource type="Resource" id="Resource_ulocl"]
 script = ExtResource("7_d7gtl")
 rotation = Vector3(10, 360, 10)
 snap_angle = Vector3(0, 0, 0)
@@ -55,15 +55,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_n3iuc"]
+[sub_resource type="Resource" id="Resource_p7id0"]
 script = ExtResource("4_3vf8p")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_4hhjm"), SubResource("Resource_3j4oy"), SubResource("Resource_svvqx")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8t435"), SubResource("Resource_hqy78"), SubResource("Resource_ulocl")])
 
 [sub_resource type="Resource" id="Resource_gtvb0"]
 script = ExtResource("9_x25d6")
 size = Vector3(5000, 1, 5000)
 
-[sub_resource type="Resource" id="Resource_4hrfh"]
+[sub_resource type="Resource" id="Resource_sh4p6"]
 script = ExtResource("5_ucee1")
 amount = 600
 enabled = true
@@ -72,7 +72,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_7plml"]
+[sub_resource type="Resource" id="Resource_baso4"]
 script = ExtResource("6_pbbb1")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -88,7 +88,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_job4c"]
+[sub_resource type="Resource" id="Resource_lsl5a"]
 script = ExtResource("11_fhwo6")
 operation = 1
 scale = Vector3(16, 16, 8)
@@ -98,7 +98,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_ufvnf"]
+[sub_resource type="Resource" id="Resource_ihymd"]
 script = ExtResource("12_61jbb")
 operation = 0
 rotation = Vector3(-90, 0, 0)
@@ -108,9 +108,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_b767q"]
+[sub_resource type="Resource" id="Resource_xm7w1"]
 script = ExtResource("4_3vf8p")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_4hrfh"), SubResource("Resource_7plml"), SubResource("Resource_job4c"), SubResource("Resource_ufvnf")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_sh4p6"), SubResource("Resource_baso4"), SubResource("Resource_lsl5a"), SubResource("Resource_ihymd")])
 
 [sub_resource type="Resource" id="Resource_5om65"]
 script = ExtResource("9_x25d6")
@@ -159,7 +159,7 @@ cache_file = "res://addons/proton_scatter/cache/mountains_4_1449716985_scatter_c
 script = ExtResource("3_lbvbu")
 chunk_dimensions = Vector3(3000, 3000, 3000)
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_n3iuc")
+modifier_stack = SubResource("Resource_p7id0")
 
 [node name="ScatterShape" type="Node3D" parent="Decor/ProtonScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)
@@ -183,7 +183,7 @@ path = "res://entities/terrains/decor/trees/pine_3.tscn"
 script = ExtResource("3_lbvbu")
 chunk_dimensions = Vector3(3000, 3000, 3000)
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_b767q")
+modifier_stack = SubResource("Resource_xm7w1")
 
 [node name="ScatterShape2" type="Node3D" parent="Decor/ProtonScatter2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 0)

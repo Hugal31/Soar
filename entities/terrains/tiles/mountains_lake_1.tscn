@@ -21,7 +21,7 @@
 [ext_resource type="Script" path="res://scripts/PickNSiblings.gd" id="21_w7hx7"]
 [ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="21_y4rpv"]
 
-[sub_resource type="Resource" id="Resource_n8tqg"]
+[sub_resource type="Resource" id="Resource_2u7fj"]
 script = ExtResource("4_x4a5s")
 amount = 1000
 enabled = true
@@ -30,7 +30,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_hi5t0"]
+[sub_resource type="Resource" id="Resource_00gi4"]
 script = ExtResource("5_c1knw")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -46,7 +46,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_x0d6a"]
+[sub_resource type="Resource" id="Resource_hha8a"]
 script = ExtResource("7_pcdx0")
 operation = 0
 position = Vector3(0, -10, 0)
@@ -56,7 +56,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_adfmh"]
+[sub_resource type="Resource" id="Resource_h1y84"]
 script = ExtResource("6_q58qg")
 position = Vector3(0, 0, 0)
 rotation = Vector3(10, 360, 10)
@@ -67,15 +67,15 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_2032y"]
+[sub_resource type="Resource" id="Resource_hv4m0"]
 script = ExtResource("3_htk0c")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_n8tqg"), SubResource("Resource_hi5t0"), SubResource("Resource_x0d6a"), SubResource("Resource_adfmh")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_2u7fj"), SubResource("Resource_00gi4"), SubResource("Resource_hha8a"), SubResource("Resource_h1y84")])
 
 [sub_resource type="Resource" id="Resource_i2s6c"]
 script = ExtResource("10_vc2js")
 size = Vector3(4500, 1, 4500)
 
-[sub_resource type="Resource" id="Resource_gcymk"]
+[sub_resource type="Resource" id="Resource_qnghd"]
 script = ExtResource("4_x4a5s")
 amount = 1000
 enabled = true
@@ -84,7 +84,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_piaur"]
+[sub_resource type="Resource" id="Resource_25dkw"]
 script = ExtResource("5_c1knw")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 600.0
@@ -100,7 +100,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_3jd3s"]
+[sub_resource type="Resource" id="Resource_qu7cp"]
 script = ExtResource("12_7lqm6")
 operation = 1
 scale = Vector3(16, 16, 8)
@@ -110,7 +110,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_tnf3c"]
+[sub_resource type="Resource" id="Resource_7hx3m"]
 script = ExtResource("13_rsagy")
 operation = 0
 rotation = Vector3(-90, 0, 0)
@@ -120,9 +120,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_861jw"]
+[sub_resource type="Resource" id="Resource_5tixd"]
 script = ExtResource("3_htk0c")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_gcymk"), SubResource("Resource_piaur"), SubResource("Resource_3jd3s"), SubResource("Resource_tnf3c")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_qnghd"), SubResource("Resource_25dkw"), SubResource("Resource_qu7cp"), SubResource("Resource_7hx3m")])
 
 [sub_resource type="Resource" id="Resource_boxdl"]
 script = ExtResource("10_vc2js")
@@ -172,7 +172,7 @@ cache_file = "res://addons/proton_scatter/cache/mountains_lake_1_2506636082_scat
 script = ExtResource("2_bpd8l")
 chunk_dimensions = Vector3(3000, 3000, 3000)
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_2032y")
+modifier_stack = SubResource("Resource_hv4m0")
 
 [node name="ScatterShape" type="Node3D" parent="Decor/TreeScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.6425, 670.717, -128.077)
@@ -193,7 +193,7 @@ path = "res://entities/terrains/decor/trees/pine_2.tscn"
 script = ExtResource("2_bpd8l")
 chunk_dimensions = Vector3(3000, 3000, 3000)
 force_rebuild_on_load = false
-modifier_stack = SubResource("Resource_861jw")
+modifier_stack = SubResource("Resource_5tixd")
 
 [node name="ScatterShape" type="Node3D" parent="Decor/ShadowsScatter"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 99.6425, 670.717, -128.077)

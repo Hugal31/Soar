@@ -103,7 +103,8 @@ func _ready():
 	add_child(_stop_engine_timer)
 
 	# While we have lifes, disable collisions
-	collision_mask &= ~ENVIRONMENT_COLLISION_LAYER
+	axis_lock_angular_x = true
+	axis_lock_angular_z = true
 	$Area3D.body_entered.connect(_on_body_entered)
 
 
@@ -149,6 +150,9 @@ func start_ragdolling():
 	set_controller(null)
 	_ragdoll = true
 	custom_integrator = false
+	axis_lock_angular_x = false
+	axis_lock_angular_y = false
+	axis_lock_angular_z = false
 	gravity_scale = _original_gravity_scale
 	collision_mask = _original_collision_mask
 

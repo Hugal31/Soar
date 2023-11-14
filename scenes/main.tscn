@@ -410,6 +410,7 @@ tiles_directory = "res://entities/terrains/tiles"
 
 [node name="WindRandomizer" type="Node" parent="."]
 script = ExtResource("14_vdw7m")
+max_strength_change = 4.0
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]

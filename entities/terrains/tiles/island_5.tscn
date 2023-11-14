@@ -1,0 +1,204 @@
+[gd_scene load_steps=33 format=3 uid="uid://bg1kjkco6b56s"]
+
+[ext_resource type="PackedScene" uid="uid://brahvgc0tmhim" path="res://entities/terrains/base/terrains_5.tscn" id="1_6k8sh"]
+[ext_resource type="PackedScene" uid="uid://da7ohuyh5cnj5" path="res://entities/winds/wind/wind_square_area.tscn" id="1_xr1sl"]
+[ext_resource type="Image" uid="uid://mbnt5v7bxonh" path="res://entities/terrains/assets/terrain5_hm_lowres.png" id="2_wijbq"]
+[ext_resource type="Script" path="res://scripts/PickNSiblings.gd" id="4_xjegv"]
+[ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="5_rb5kb"]
+[ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="6_64pci"]
+[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="7_kxxka"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="8_jcv86"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="9_lmr3a"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_haybu"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_lt2qo"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_4v3de"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="12_oo5id"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_ufxbb"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="14_gresj"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="16_1uj4r"]
+[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="17_fdb8m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2uc22"]
+size = Vector3(3000, 2000, 3000)
+
+[sub_resource type="Resource" id="Resource_kkjl3"]
+script = ExtResource("7_kxxka")
+radius = 100.0
+strength = 18.158
+
+[sub_resource type="Resource" id="Resource_433fy"]
+script = ExtResource("7_kxxka")
+radius = 110.644
+strength = 9.911
+
+[sub_resource type="Resource" id="Resource_08up7"]
+script = ExtResource("7_kxxka")
+radius = 75.0
+strength = 14.277
+
+[sub_resource type="Resource" id="Resource_iollm"]
+script = ExtResource("7_kxxka")
+radius = 130.288
+strength = 14.277
+
+[sub_resource type="Resource" id="Resource_8rt2w"]
+script = ExtResource("11_lt2qo")
+amount = 200
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_w6c50"]
+script = ExtResource("12_oo5id")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 400.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 2
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_lwvno"]
+script = ExtResource("10_haybu")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8rt2w"), SubResource("Resource_w6c50")])
+
+[sub_resource type="Resource" id="Resource_jlwsm"]
+script = ExtResource("14_gresj")
+size = Vector3(4000, 1, 4000)
+
+[sub_resource type="Resource" id="Resource_dqexl"]
+script = ExtResource("11_lt2qo")
+amount = 200
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 1
+
+[sub_resource type="Resource" id="Resource_jtyid"]
+script = ExtResource("12_oo5id")
+ray_direction = Vector3(0, -1, 0)
+ray_length = 400.0
+ray_offset = 1.0
+remove_points_on_miss = true
+align_with_collision_normal = false
+max_slope = 90.0
+collision_mask = 2
+exclude_mask = 0
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 0
+
+[sub_resource type="Resource" id="Resource_6nf42"]
+script = ExtResource("16_1uj4r")
+operation = 1
+scale = Vector3(16, 16, 8)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_vb5jp"]
+script = ExtResource("17_fdb8m")
+operation = 0
+rotation = Vector3(-90, 0, 0)
+enabled = true
+override_global_seed = false
+custom_seed = 0
+restrict_height = false
+reference_frame = 2
+
+[sub_resource type="Resource" id="Resource_o8kej"]
+script = ExtResource("10_haybu")
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_dqexl"), SubResource("Resource_jtyid"), SubResource("Resource_6nf42"), SubResource("Resource_vb5jp")])
+
+[sub_resource type="Resource" id="Resource_yv2ex"]
+script = ExtResource("14_gresj")
+size = Vector3(4000, 1, 4000)
+
+[node name="Island_5" type="Node3D"]
+
+[node name="WindSquareArea" parent="." instance=ExtResource("1_xr1sl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1000, 0)
+height_map = ExtResource("2_wijbq")
+shape = SubResource("BoxShape3D_2uc22")
+
+[node name="terrains_5" parent="." instance=ExtResource("1_6k8sh")]
+
+[node name="LandingStrips" type="Node3D" parent="."]
+
+[node name="LandingStrip" parent="LandingStrips" instance=ExtResource("5_rb5kb")]
+transform = Transform3D(0.82269, 0, 0.56849, 0, 1, 0, -0.56849, 0, 0.82269, -1030, 350.719, 942.823)
+
+[node name="LandingStrip2" parent="LandingStrips" instance=ExtResource("5_rb5kb")]
+transform = Transform3D(-0.0648432, 0.0660475, -0.995707, 0.00429211, 0.997817, 0.0659079, 0.997886, 2.00753e-10, -0.0649851, 1414.08, 155.146, -685.876)
+
+[node name="Thermals" type="Node3D" parent="."]
+
+[node name="PickNSiblings" type="Node" parent="Thermals"]
+script = ExtResource("4_xjegv")
+pick_min = 2
+pick_max = 3
+
+[node name="Thermal" parent="Thermals" instance=ExtResource("6_64pci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -965.523, 1675.26, 0)
+thermal = SubResource("Resource_kkjl3")
+
+[node name="Thermal3" parent="Thermals" instance=ExtResource("6_64pci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.5439, 1829.81, 983.109)
+thermal = SubResource("Resource_433fy")
+
+[node name="Thermal2" parent="Thermals" instance=ExtResource("6_64pci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1154.48, 1329.81, -732.64)
+thermal = SubResource("Resource_08up7")
+
+[node name="Thermal4" parent="Thermals" instance=ExtResource("6_64pci")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1167.91, 1515.11, 1034.19)
+thermal = SubResource("Resource_iollm")
+
+[node name="Decor" type="Node3D" parent="."]
+
+[node name="ScatterCache" type="Node3D" parent="Decor"]
+script = ExtResource("8_jcv86")
+cache_file = "res://addons/proton_scatter/cache/island_5_2675929463_scatter_cache.res"
+
+[node name="ProtonScatter" type="Node3D" parent="Decor"]
+script = ExtResource("9_lmr3a")
+chunk_dimensions = Vector3(3000, 500, 3000)
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_lwvno")
+
+[node name="ScatterItem" type="Node3D" parent="Decor/ProtonScatter"]
+script = ExtResource("12_4v3de")
+path = "res://entities/terrains/decor/trees/poly_tree_1.tscn"
+
+[node name="ScatterShape3" type="Node3D" parent="Decor/ProtonScatter"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.1858, 500, 64.8723)
+script = ExtResource("13_ufxbb")
+shape = SubResource("Resource_jlwsm")
+
+[node name="ProtonScatter2" type="Node3D" parent="Decor"]
+script = ExtResource("9_lmr3a")
+chunk_dimensions = Vector3(3000, 500, 300)
+force_rebuild_on_load = false
+modifier_stack = SubResource("Resource_o8kej")
+
+[node name="ScatterShape2" type="Node3D" parent="Decor/ProtonScatter2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.1858, 500, 64.8723)
+script = ExtResource("13_ufxbb")
+shape = SubResource("Resource_yv2ex")
+
+[node name="ScatterItem" type="Node3D" parent="Decor/ProtonScatter2"]
+script = ExtResource("12_4v3de")
+path = "res://entities/terrains/decor/trees/tree_shadow_decal.tscn"

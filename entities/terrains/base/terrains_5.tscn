@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://brahvgc0tmhim"]
+
+[ext_resource type="PackedScene" uid="uid://csnxk5wwyb4e2" path="res://entities/terrains/assets/terrains_5.glb" id="1_4ucxk"]
+[ext_resource type="Material" uid="uid://bep2l1fda1hns" path="res://entities/terrains/terrain_palette_material.tres" id="2_6svhn"]
+
+[node name="terrains_5" instance=ExtResource("1_4ucxk")]
+
+[node name="Landscape_005" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_6svhn")
+
+[node name="StaticBody3D" parent="Landscape_005" index="0"]
+collision_layer = 2

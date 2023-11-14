@@ -39,4 +39,5 @@ func _physics_process(delta):
 		for wind_area in effective_wind_areas:
 			speed += wind_area.get_wind_at_position(median_position)
 		speed.y = 0
-		parent.position += speed * delta
+		var local_speed := parent.global_transform.basis.inverse() * speed
+		parent.position += local_speed * delta

@@ -55,6 +55,11 @@ float height_at(vec2 xy) {
 	return height_map_scale * texture(height_map, uv).r;
 }
 
+vec3 get_local_wind_direction(mat4 emission_transform) {
+	mat3 emission_basis_inv = inverse(mat3(emission_transform));
+	return emission_basis_inv * wind_direction;
+}
+
 void start() {
 	uint seed = __hash(NUMBER + uint(1) + RANDOM_SEED);
 
@@ -62,7 +67,7 @@ void start() {
 	float x = spawn_margin * __randf_range(seed, -.5, .5) * box_size.x;
 	float z = spawn_margin * __randf_range(seed, -.5, .5) * box_size.z;
 	float y = __randf_range(seed, height_at(vec2(x, z)), box_size.y / 2.) - box_size.y / 2.;
-	VELOCITY = wind_direction * wind_strength * strength_multiplier;
+	VELOCITY = get_local_wind_direction(EMISSION_TRANSFORM) * wind_strength * strength_multiplier;
 
 	vec3 position = vec3(x, y, z);
     if (RESTART_POSITION) {
@@ -84,7 +89,8 @@ void process() {
 	vec3 new_next_pos = next_pos + vec3(0, next_height - curr_height, 0);
 	vec3 new_wind_direction = normalize(new_next_pos - pos);
 	float weight = 1. - clamp((pos.y - curr_height) / wind_height_falloff, 0., 1.);
-	VELOCITY = mix(wind_direction, new_wind_direction, weight) * wind_strength * strength_multiplier;
+	vec3 local_wind_dir = get_local_wind_direction(EMISSION_TRANSFORM);
+	VELOCITY = mix(local_wind_dir, new_wind_direction, weight) * wind_strength * strength_multiplier;
 
 	float y_angle = atan2(VELOCITY.y, VELOCITY.x);
 	float z_angle = atan(length(VELOCITY.xz) / VELOCITY.y) - PI * 0.5;

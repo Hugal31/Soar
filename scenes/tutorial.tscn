@@ -58,7 +58,7 @@ text = "[b]Up arrow[/b] or [b]W[/b] to go faster.
 [b]Down arrow[/b] or [b]S[/b] to slow.
 [b]Right and left[/b] arrows or [b]A[/b] and [b]D[/b] to turn.
 [b]Shift[/b] to allow steeper turns.
-[b]Control[/b] to extend the airbrakes."
+[b]CapsLock[/b] or [b]Tab[/b] to extend the airbrakes."
 fit_content = true
 autowrap_mode = 2
 

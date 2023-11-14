@@ -4,8 +4,8 @@ const LOGNAME := "WindRandomizer"
 
 ## Max angle change in degrees.
 @export_range(10, 180) var max_angle_change := 45.0
-## Max ratio to change the wind strenght: 0.5 means the wind won't change more than 50%
-@export var max_strength_change := 0.5
+## Max ratio to change the wind strenght in m/s.
+@export var max_strength_change := 10
 @export var strength_mean := 10.
 @export var strength_stddev := 10.
 @export var duration_mean := 120.
@@ -42,8 +42,8 @@ func randomize_wind(instant: bool = false):
 	var new_angle := rng.randf_range(-max_rad_change, max_rad_change)
 	var new_strength := clampf(
 		absf(rng.randfn(strength_mean, strength_stddev)),
-		WindManager.wind_strength - WindManager.wind_strength * max_strength_change,
-		WindManager.wind_strength + WindManager.wind_strength * max_strength_change
+		WindManager.wind_strength - max_strength_change,
+		WindManager.wind_strength + max_strength_change
 	)
 	var duration := maxf(10., rng.randfn(duration_mean, duration_stddev))
 	if instant:

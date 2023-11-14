@@ -63,10 +63,10 @@ tracks/3/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_top_
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 48, 55, 60),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 43, 49, 55, 60),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(0.385, 0.454, 0.55, 1), Color(0.385, 0.454, 0.55, 1), Color(0.533333, 0.329412, 0.407843, 1), Color(0, 0, 0, 1)]
+"values": [Color(0.385, 0.454, 0.55, 1), Color(0.385, 0.454, 0.55, 1), Color(0.490196, 0.427451, 0.184314, 1), Color(0.533333, 0.329412, 0.407843, 1), Color(0, 0, 0, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -75,7 +75,7 @@ tracks/4/path = NodePath("WorldEnvironment:environment:sky:sky_material:sky_hori
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 48, 55, 60),
+"times": PackedFloat32Array(0, 43, 55, 60),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.6463, 0.6558, 0.6708, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.686275, 0.278431, 0.329412, 1), Color(0, 0, 0, 1)]
@@ -87,7 +87,7 @@ tracks/5/path = NodePath("WorldEnvironment:environment:sky:sky_material:ground_h
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 48, 55, 60),
+"times": PackedFloat32Array(0, 43, 55, 60),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.6463, 0.6558, 0.6708, 1), Color(0.6463, 0.6558, 0.6708, 1), Color(0.686275, 0.278431, 0.329412, 1), Color(0, 0, 0, 1)]

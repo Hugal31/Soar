@@ -1,12 +1,12 @@
 [gd_scene load_steps=11 format=3 uid="uid://chji78mhvr35x"]
 
-[ext_resource type="Script" path="res://entities/aircraft/Aircraft.gd" id="1_gq5ev"]
-[ext_resource type="Script" path="res://entities/aircraft/SpeedData.gd" id="2_qdjqe"]
+[ext_resource type="Script" uid="uid://ct1ddnii37obi" path="res://entities/aircraft/Aircraft.gd" id="1_gq5ev"]
+[ext_resource type="Script" uid="uid://br7vl43hc66df" path="res://entities/aircraft/SpeedData.gd" id="2_qdjqe"]
 [ext_resource type="Resource" uid="uid://b1dx8m0bsrpcj" path="res://entities/aircraft/ask21/slow_speed.tres" id="2_saeyy"]
 [ext_resource type="Resource" uid="uid://60r8fvkamvhg" path="res://entities/aircraft/ask21/normal_speed.tres" id="3_3mxvj"]
 [ext_resource type="Resource" uid="uid://wmm6gicxsb5g" path="res://entities/aircraft/ask21/fast_speed.tres" id="4_81j7w"]
 [ext_resource type="PackedScene" uid="uid://dhvskjiuonp7d" path="res://entities/aircraft/ask21/ask_21_mesh.tscn" id="8_0komx"]
-[ext_resource type="Script" path="res://entities/aircraft/lock_xz_rotation.gd" id="8_tx0os"]
+[ext_resource type="Script" uid="uid://bkn5s0xpfwfxx" path="res://entities/aircraft/lock_xz_rotation.gd" id="8_tx0os"]
 [ext_resource type="AudioStream" uid="uid://dsjqawhmiobia" path="res://sounds/engine.wav" id="9_edjg6"]
 [ext_resource type="PackedScene" uid="uid://4cwnl5extw5r" path="res://entities/aircraft/shadow_decal.tscn" id="10_0xnd4"]
 

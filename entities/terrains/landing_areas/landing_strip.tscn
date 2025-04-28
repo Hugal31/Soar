@@ -1,19 +1,19 @@
 [gd_scene load_steps=6 format=3 uid="uid://bh7081k00240s"]
 
 [ext_resource type="ArrayMesh" uid="uid://dk1dxikaqvxfd" path="res://entities/terrains/decor/assets/landing_strip.obj" id="1_olnl2"]
-[ext_resource type="Shader" path="res://shaders/psx/psx_lit.gdshader" id="2_2rjj0"]
+[ext_resource type="Shader" uid="uid://c5x3nok3al6ma" path="res://shaders/psx/psx_lit.gdshader" id="2_2rjj0"]
 [ext_resource type="Texture2D" uid="uid://drt1piaciupcp" path="res://entities/terrains/decor/assets/landing_strip.png" id="3_donod"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kho2r"]
 render_priority = 0
 shader = ExtResource("2_2rjj0")
 shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/albedoTex = ExtResource("3_donod")
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_pan_velocity = Vector2(0, 0)
 shader_parameter/billboard = false
 shader_parameter/y_billboard = false
-shader_parameter/albedoTex = ExtResource("3_donod")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_w30he"]
 size = Vector3(40, 50, 200)

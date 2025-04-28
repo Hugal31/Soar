@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://4cwnl5extw5r"]
 
-[ext_resource type="Shader" path="res://shaders/decal.gdshader" id="1_qdlfq"]
+[ext_resource type="Shader" uid="uid://b8fj34qte7m0q" path="res://shaders/decal.gdshader" id="1_qdlfq"]
 [ext_resource type="Texture2D" uid="uid://cuqnqshf1tv1q" path="res://entities/aircraft/ask21/assets/aircraft_shadow.png" id="2_l3px2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ardrp"]
 render_priority = 0
 shader = ExtResource("1_qdlfq")
+shader_parameter/decal = ExtResource("2_l3px2")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = Vector2(1, 1)
-shader_parameter/decal = ExtResource("2_l3px2")
 
 [sub_resource type="BoxMesh" id="BoxMesh_jn6gt"]
 material = SubResource("ShaderMaterial_ardrp")

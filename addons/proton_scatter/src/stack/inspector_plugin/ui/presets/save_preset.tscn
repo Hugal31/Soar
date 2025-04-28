@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cb5whyoxq2sa4"]
 
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/presets/save_preset.gd" id="1"]
+[ext_resource type="Script" uid="uid://dlnr1qgfm360c" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/presets/save_preset.gd" id="1"]
 
 [node name="SavePresetPopup" type="WindowDialog"]
 visible = true

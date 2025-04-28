@@ -1,14 +1,14 @@
 [gd_scene load_steps=17 format=3 uid="uid://k5uuocnk37nr"]
 
-[ext_resource type="Script" path="res://entities/winds/thermals/autowrap.gd" id="2_0csli"]
-[ext_resource type="Script" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
-[ext_resource type="Script" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
-[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="4_cht7p"]
-[ext_resource type="Shader" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_gxknx"]
+[ext_resource type="Script" uid="uid://brdh4qo35n6tv" path="res://entities/winds/thermals/autowrap.gd" id="2_0csli"]
+[ext_resource type="Script" uid="uid://dcw4juuv7a4yp" path="res://entities/winds/thermals/ThermalWindAreaComponent.gd" id="2_fn4cx"]
+[ext_resource type="Script" uid="uid://p6bulmcse3ee" path="res://entities/winds/thermals/ProceduralThermal.gd" id="3_nenhj"]
+[ext_resource type="Script" uid="uid://cvijbtwepf1iw" path="res://entities/winds/thermals/Thermal.gd" id="4_cht7p"]
+[ext_resource type="Shader" uid="uid://cu3raglmoq06p" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_gxknx"]
 [ext_resource type="PlaneMesh" uid="uid://bu66q72ei5kmj" path="res://entities/winds/thermals/wind_whirl_dissolving_mesh_z.tres" id="6_ht70n"]
 [ext_resource type="PackedScene" uid="uid://frfogyw6dujl" path="res://entities/clouds/cloud_1.tscn" id="7_qsxoq"]
-[ext_resource type="Script" path="res://scripts/NodeRandomizer.gd" id="8_psnwb"]
-[ext_resource type="Shader" path="res://shaders/decal.gdshader" id="9_hrolk"]
+[ext_resource type="Script" uid="uid://k6yjxutex16" path="res://scripts/NodeRandomizer.gd" id="8_psnwb"]
+[ext_resource type="Shader" uid="uid://b8fj34qte7m0q" path="res://shaders/decal.gdshader" id="9_hrolk"]
 [ext_resource type="PackedScene" uid="uid://oundxfntq103" path="res://entities/clouds/cloud_2.tscn" id="9_nervw"]
 [ext_resource type="Texture2D" uid="uid://ci51hyfkhlqgm" path="res://entities/winds/assets/cloud_shadow.png" id="10_jixri"]
 
@@ -32,9 +32,9 @@ shader_parameter/orbit_speed = 0.2
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yao46"]
 render_priority = 0
 shader = ExtResource("9_hrolk")
+shader_parameter/decal = ExtResource("10_jixri")
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/scale = Vector2(1, 1)
-shader_parameter/decal = ExtResource("10_jixri")
 
 [sub_resource type="BoxMesh" id="BoxMesh_wpjla"]
 material = SubResource("ShaderMaterial_yao46")

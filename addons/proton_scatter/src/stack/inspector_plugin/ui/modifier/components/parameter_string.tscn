@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dcy0dus6bg27e"]
 
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/components/parameter_string.gd" id="1"]
+[ext_resource type="Script" uid="uid://d0t4xhsigeo62" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/components/parameter_string.gd" id="1"]
 
 [sub_resource type="StyleBoxFlat" id="1"]
 bg_color = Color(0, 0, 0, 0.392157)

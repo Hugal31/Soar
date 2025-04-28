@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bqi2jq4id33ro"]
 
 [ext_resource type="ArrayMesh" uid="uid://b50fnp7xb87l5" path="res://entities/terrains/decor/assets/field_2.obj" id="1_evcac"]
-[ext_resource type="Shader" path="res://shaders/psx/psx_lit_notex.gdshader" id="2_aeebo"]
+[ext_resource type="Shader" uid="uid://dpkxh72yxkd4o" path="res://shaders/psx/psx_lit_notex.gdshader" id="2_aeebo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vcw6q"]
 render_priority = 0

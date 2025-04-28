@@ -1,15 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvj6bg2eucfp"]
+[gd_scene load_steps=18 format=3 uid="uid://bvj6bg2eucfp"]
 
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="1_c011g"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_vsw7m"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="3_gmhcl"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="4_03mdx"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="5_8fhs6"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="6_fjx16"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_t5a4h"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="8_8pvwf"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="9_vyqgk"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/common/physics_helper.gd" id="10_3ntye"]
+[ext_resource type="Script" uid="uid://dhudch3xnbant" path="res://addons/proton_scatter/src/scatter.gd" id="1_c011g"]
+[ext_resource type="Script" uid="uid://ypaahlgj6kb6" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="2_vsw7m"]
+[ext_resource type="Script" uid="uid://d0kjpd55520ib" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="3_g20xh"]
+[ext_resource type="Script" uid="uid://0xkp5j6pagcu" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="3_gmhcl"]
+[ext_resource type="Script" uid="uid://c80sv6kl7y4gi" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="4_03mdx"]
+[ext_resource type="Script" uid="uid://c0birjcqtkrva" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="5_8fhs6"]
+[ext_resource type="Script" uid="uid://c4mprfujsqioi" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="6_fjx16"]
+[ext_resource type="Script" uid="uid://dg6t5jo3ifp8u" path="res://addons/proton_scatter/src/scatter_shape.gd" id="7_t5a4h"]
+[ext_resource type="Script" uid="uid://btrpkbi37xuxl" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="8_8pvwf"]
+[ext_resource type="Script" uid="uid://drblaxccew1b4" path="res://addons/proton_scatter/src/scatter_item.gd" id="9_vyqgk"]
+[ext_resource type="Script" uid="uid://ghlx3m8piwg7" path="res://addons/proton_scatter/src/common/physics_helper.gd" id="10_3ntye"]
 
 [sub_resource type="Resource" id="Resource_hodqc"]
 script = ExtResource("3_gmhcl")
@@ -58,7 +59,7 @@ reference_frame = 2
 
 [sub_resource type="Resource" id="Resource_nhkhw"]
 script = ExtResource("2_vsw7m")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_hodqc"), SubResource("Resource_aigpb"), SubResource("Resource_l5vaq"), SubResource("Resource_bbwof")])
+stack = Array[ExtResource("3_g20xh")]([SubResource("Resource_hodqc"), SubResource("Resource_aigpb"), SubResource("Resource_l5vaq"), SubResource("Resource_bbwof")])
 
 [sub_resource type="Resource" id="Resource_boxdl"]
 script = ExtResource("8_8pvwf")

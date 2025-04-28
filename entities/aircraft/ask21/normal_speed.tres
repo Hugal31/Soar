@@ -1,8 +1,9 @@
 [gd_resource type="Resource" script_class="SpeedData" load_steps=2 format=3 uid="uid://60r8fvkamvhg"]
 
-[ext_resource type="Script" path="res://entities/aircraft/SpeedData.gd" id="1_6161x"]
+[ext_resource type="Script" uid="uid://br7vl43hc66df" path="res://entities/aircraft/SpeedData.gd" id="1_6161x"]
 
 [resource]
 script = ExtResource("1_6161x")
 horizontal_speed = 28.0
 vertical_speed = 0.9
+pitch = 0.0

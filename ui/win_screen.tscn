@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b73yiidt38bdm"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_buf5h"]
-[ext_resource type="Script" path="res://ui/WinScreen.gd" id="2_5dqjl"]
+[ext_resource type="Script" uid="uid://bidgtpasbx3jl" path="res://ui/WinScreen.gd" id="2_5dqjl"]
 [ext_resource type="PackedScene" uid="uid://douhvu0444ko4" path="res://ui/score_list.tscn" id="3_ymxnc"]
 
 [node name="WinScreen" type="Control" node_paths=PackedStringArray("new_score_label", "new_best_score_label", "score_value_label")]

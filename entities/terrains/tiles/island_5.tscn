@@ -1,22 +1,23 @@
-[gd_scene load_steps=33 format=3 uid="uid://bg1kjkco6b56s"]
+[gd_scene load_steps=34 format=3 uid="uid://bg1kjkco6b56s"]
 
 [ext_resource type="PackedScene" uid="uid://brahvgc0tmhim" path="res://entities/terrains/base/terrains_5.tscn" id="1_6k8sh"]
 [ext_resource type="PackedScene" uid="uid://da7ohuyh5cnj5" path="res://entities/winds/wind/wind_square_area.tscn" id="1_xr1sl"]
 [ext_resource type="Image" uid="uid://mbnt5v7bxonh" path="res://entities/terrains/assets/terrain5_hm_lowres.png" id="2_wijbq"]
-[ext_resource type="Script" path="res://scripts/PickNSiblings.gd" id="4_xjegv"]
+[ext_resource type="Script" uid="uid://dinj0w0aa25" path="res://scripts/PickNSiblings.gd" id="4_xjegv"]
 [ext_resource type="PackedScene" uid="uid://bh7081k00240s" path="res://entities/terrains/landing_areas/landing_strip.tscn" id="5_rb5kb"]
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="6_64pci"]
-[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="7_kxxka"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="8_jcv86"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="9_lmr3a"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_haybu"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_lt2qo"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_4v3de"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="12_oo5id"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_ufxbb"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="14_gresj"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="16_1uj4r"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="17_fdb8m"]
+[ext_resource type="Script" uid="uid://cvijbtwepf1iw" path="res://entities/winds/thermals/Thermal.gd" id="7_kxxka"]
+[ext_resource type="Script" uid="uid://bsus7c2a4hc8v" path="res://addons/proton_scatter/src/cache/scatter_cache.gd" id="8_jcv86"]
+[ext_resource type="Script" uid="uid://dhudch3xnbant" path="res://addons/proton_scatter/src/scatter.gd" id="9_lmr3a"]
+[ext_resource type="Script" uid="uid://ypaahlgj6kb6" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="10_haybu"]
+[ext_resource type="Script" uid="uid://d0kjpd55520ib" path="res://addons/proton_scatter/src/modifiers/base_modifier.gd" id="11_d42ju"]
+[ext_resource type="Script" uid="uid://0xkp5j6pagcu" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="11_lt2qo"]
+[ext_resource type="Script" uid="uid://drblaxccew1b4" path="res://addons/proton_scatter/src/scatter_item.gd" id="12_4v3de"]
+[ext_resource type="Script" uid="uid://c80sv6kl7y4gi" path="res://addons/proton_scatter/src/modifiers/project_on_geometry.gd" id="12_oo5id"]
+[ext_resource type="Script" uid="uid://dg6t5jo3ifp8u" path="res://addons/proton_scatter/src/scatter_shape.gd" id="13_ufxbb"]
+[ext_resource type="Script" uid="uid://btrpkbi37xuxl" path="res://addons/proton_scatter/src/shapes/box_shape.gd" id="14_gresj"]
+[ext_resource type="Script" uid="uid://c0birjcqtkrva" path="res://addons/proton_scatter/src/modifiers/offset_scale.gd" id="16_1uj4r"]
+[ext_resource type="Script" uid="uid://c4mprfujsqioi" path="res://addons/proton_scatter/src/modifiers/offset_rotation.gd" id="17_fdb8m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2uc22"]
 size = Vector3(3000, 2000, 3000)
@@ -68,7 +69,7 @@ reference_frame = 0
 
 [sub_resource type="Resource" id="Resource_lwvno"]
 script = ExtResource("10_haybu")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_8rt2w"), SubResource("Resource_w6c50")])
+stack = Array[ExtResource("11_d42ju")]([SubResource("Resource_8rt2w"), SubResource("Resource_w6c50")])
 
 [sub_resource type="Resource" id="Resource_jlwsm"]
 script = ExtResource("14_gresj")
@@ -121,7 +122,7 @@ reference_frame = 2
 
 [sub_resource type="Resource" id="Resource_o8kej"]
 script = ExtResource("10_haybu")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_dqexl"), SubResource("Resource_jtyid"), SubResource("Resource_6nf42"), SubResource("Resource_vb5jp")])
+stack = Array[ExtResource("11_d42ju")]([SubResource("Resource_dqexl"), SubResource("Resource_jtyid"), SubResource("Resource_6nf42"), SubResource("Resource_vb5jp")])
 
 [sub_resource type="Resource" id="Resource_yv2ex"]
 script = ExtResource("14_gresj")

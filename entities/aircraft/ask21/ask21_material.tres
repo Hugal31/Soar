@@ -1,15 +1,15 @@
 [gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bgmqlo2qq40t"]
 
-[ext_resource type="Shader" path="res://shaders/psx/psx_lit.gdshader" id="1_cc0h4"]
+[ext_resource type="Shader" uid="uid://c5x3nok3al6ma" path="res://shaders/psx/psx_lit.gdshader" id="1_cc0h4"]
 [ext_resource type="Texture2D" uid="uid://cs6iparfs3230" path="res://entities/aircraft/ask21/assets/ask21_ask21.png" id="2_ja2ev"]
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_cc0h4")
 shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/albedoTex = ExtResource("2_ja2ev")
 shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_pan_velocity = Vector2(0, 0)
 shader_parameter/billboard = false
 shader_parameter/y_billboard = false
-shader_parameter/albedoTex = ExtResource("2_ja2ev")

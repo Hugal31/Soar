@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://pj0eaentnadx"]
 
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_fwvyq"]
-[ext_resource type="Script" path="res://entities/aircraft/lock_xz_rotation.gd" id="2_rdrti"]
+[ext_resource type="Script" uid="uid://bkn5s0xpfwfxx" path="res://entities/aircraft/lock_xz_rotation.gd" id="2_rdrti"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sk13l"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://douhvu0444ko4"]
 
-[ext_resource type="Script" path="res://ui/ScoreList.gd" id="1_l2gvx"]
+[ext_resource type="Script" uid="uid://dsuwtqej20hkt" path="res://ui/ScoreList.gd" id="1_l2gvx"]
 
 [node name="ScoreList" type="VBoxContainer"]
 size_flags_horizontal = 4

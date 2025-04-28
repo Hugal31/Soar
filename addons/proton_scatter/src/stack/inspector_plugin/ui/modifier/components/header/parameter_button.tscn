@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://w6ycb4oveqhd"]
 
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/components/header/parameter_button.gd" id="1_f6puy"]
-[ext_resource type="Script" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/toggle_button.gd" id="2_167vc"]
+[ext_resource type="Script" uid="uid://bv48ilf7hhn3y" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/components/header/parameter_button.gd" id="1_f6puy"]
+[ext_resource type="Script" uid="uid://tcuk7puitht7" path="res://addons/proton_scatter/src/stack/inspector_plugin/ui/modifier/toggle_button.gd" id="2_167vc"]
 
 [node name="MarginContainer" type="MarginContainer"]
 offset_right = 40.0

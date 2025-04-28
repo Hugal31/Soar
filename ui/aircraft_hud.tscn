@@ -1,8 +1,8 @@
 [gd_scene load_steps=20 format=3 uid="uid://bhgsvhdsjr8nd"]
 
-[ext_resource type="Script" path="res://ui/aircraft_hud.gd" id="1_tuy6s"]
+[ext_resource type="Script" uid="uid://lv4xhd7lp7k0" path="res://ui/aircraft_hud.gd" id="1_tuy6s"]
 [ext_resource type="Texture2D" uid="uid://cjbir05tmfec0" path="res://ui/variometer_background.svg" id="2_hhfhn"]
-[ext_resource type="Script" path="res://ui/FuelIndicator.gd" id="2_l4t0t"]
+[ext_resource type="Script" uid="uid://baq4nxequjf22" path="res://ui/FuelIndicator.gd" id="2_l4t0t"]
 [ext_resource type="Texture2D" uid="uid://beacm6uwl2opy" path="res://ui/assets/jerican_background.svg" id="2_tslv2"]
 [ext_resource type="Texture2D" uid="uid://dhoo10kwun4gd" path="res://ui/needle.svg" id="3_8cwnx"]
 [ext_resource type="Texture2D" uid="uid://bog4vhxlg2scy" path="res://ui/assets/jerican_green.svg" id="3_xmpto"]

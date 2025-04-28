@@ -1,19 +1,19 @@
 [gd_scene load_steps=24 format=3 uid="uid://l25byk5j4gus"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
-[ext_resource type="Script" path="res://scenes/main.gd" id="1_8cmnw"]
+[ext_resource type="Script" uid="uid://2escb2wg1wg8" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
+[ext_resource type="Script" uid="uid://72v2s1utf5lk" path="res://scenes/main.gd" id="1_8cmnw"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
-[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="1_r6fcu"]
+[ext_resource type="Shader" uid="uid://5d12r1g27e44" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="PackedScene" uid="uid://bhgsvhdsjr8nd" path="res://ui/aircraft_hud.tscn" id="2_3c3kt"]
 [ext_resource type="PackedScene" uid="uid://u2g86u33j7xd" path="res://ui/pause_menu.tscn" id="3_fmeva"]
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
+[ext_resource type="Script" uid="uid://ngt7ji5hbhxq" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_yq5g2"]
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="4_wsxeh"]
 [ext_resource type="PackedScene" uid="uid://b73yiidt38bdm" path="res://ui/win_screen.tscn" id="5_g54cm"]
 [ext_resource type="AudioStream" uid="uid://crtmv4bwcv7s7" path="res://musics/Theme_-_Time_Machine.ogg" id="5_m8nfw"]
 [ext_resource type="AudioStream" uid="uid://cm0pp5fwiat4q" path="res://sounds/wind1.wav" id="10_ipig2"]
-[ext_resource type="Script" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
-[ext_resource type="Script" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
-[ext_resource type="Script" path="res://scripts/WindRandomizer.gd" id="14_vdw7m"]
+[ext_resource type="Script" uid="uid://bkjux6a18kqkk" path="res://scripts/WindPlayer.gd" id="11_hmsp1"]
+[ext_resource type="Script" uid="uid://br6bew348g82p" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
+[ext_resource type="Script" uid="uid://5rlly3e5rcak" path="res://scripts/WindRandomizer.gd" id="14_vdw7m"]
 [ext_resource type="PackedScene" uid="uid://c8oeto8d8n2kw" path="res://entities/terrains/tiles/mountains_4.tscn" id="14_ytrm2"]
 
 [sub_resource type="Animation" id="Animation_4hst6"]
@@ -242,8 +242,8 @@ tracks/8/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_46m1x"]
 _data = {
-"DayNight": SubResource("Animation_4hst6"),
-"RESET": SubResource("Animation_ucvvs")
+&"DayNight": SubResource("Animation_4hst6"),
+&"RESET": SubResource("Animation_ucvvs")
 }
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0tj77"]

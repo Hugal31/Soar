@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bhgsvhdsjr8nd" path="res://ui/aircraft_hud.tscn" id="1_lskma"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="2_xy3bf"]
 [ext_resource type="PackedScene" uid="uid://k5uuocnk37nr" path="res://entities/winds/thermals/thermal.tscn" id="3_s67jg"]
-[ext_resource type="Script" path="res://entities/winds/thermals/Thermal.gd" id="4_7dmpc"]
-[ext_resource type="Shader" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_5acyk"]
+[ext_resource type="Script" uid="uid://cvijbtwepf1iw" path="res://entities/winds/thermals/Thermal.gd" id="4_7dmpc"]
+[ext_resource type="Shader" uid="uid://cu3raglmoq06p" path="res://entities/winds/thermals/thermal_particles_shader_v2.gdshader" id="5_5acyk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fvy8j"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

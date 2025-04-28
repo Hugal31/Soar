@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dbkr3d716wtx0"]
 
-[ext_resource type="Script" path="res://addons/phantom_camera/scripts/viewfinder/viewfinder.gd" id="1_lgg6a"]
+[ext_resource type="Script" uid="uid://cx083eo2ev1n0" path="res://addons/phantom_camera/scripts/viewfinder/viewfinder.gd" id="1_lgg6a"]
 [ext_resource type="StyleBox" uid="uid://dpa7yvxlq043a" path="res://addons/phantom_camera/framed_viewfinder/deadzone_style_box.tres" id="2_cvat1"]
 [ext_resource type="FontFile" uid="uid://dve7mgsjik4dg" path="res://addons/phantom_camera/fonts/Nunito-Regular.ttf" id="3_6wxxp"]
 [ext_resource type="Texture2D" uid="uid://b671h5enwiljg" path="res://addons/phantom_camera/icons/PhantomCameraGizmoIcon2D.svg" id="3_rn5hf"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bgvsce3iw33dm"]
 
-[ext_resource type="Script" path="res://entities/terrains/Wrapper.gd" id="1_xe8kb"]
+[ext_resource type="Script" uid="uid://c186h5p5dypx0" path="res://entities/terrains/Wrapper.gd" id="1_xe8kb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0x68"]
 size = Vector3(10, 2000, 3000)

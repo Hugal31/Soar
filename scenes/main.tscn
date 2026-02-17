@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://l25byk5j4gus"]
+[gd_scene format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" uid="uid://2escb2wg1wg8" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
 [ext_resource type="Script" uid="uid://72v2s1utf5lk" path="res://scenes/main.gd" id="1_8cmnw"]
@@ -266,12 +266,12 @@ shader = ExtResource("1_r6fcu")
 shader_parameter/fog_start = 0.9993
 shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 
-[node name="Node3D" type="Node3D" node_paths=PackedStringArray("aircraft")]
+[node name="Node3D" type="Node3D" unique_id=1336041736 node_paths=PackedStringArray("aircraft")]
 script = ExtResource("1_8cmnw")
 engine_time_scale = 4.0
 aircraft = NodePath("Glider")
 
-[node name="UI" type="Control" parent="."]
+[node name="UI" type="Control" parent="." unique_id=347147925]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -279,15 +279,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Aircraft HUD" parent="UI" node_paths=PackedStringArray("aircraft") instance=ExtResource("2_3c3kt")]
+[node name="Aircraft HUD" parent="UI" unique_id=51384475 node_paths=PackedStringArray("aircraft") instance=ExtResource("2_3c3kt")]
 layout_mode = 1
 aircraft = NodePath("../../Glider")
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("3_fmeva")]
+[node name="PauseMenu" parent="UI" unique_id=963102540 instance=ExtResource("3_fmeva")]
 visible = false
 layout_mode = 1
 
-[node name="GameOverMenu" type="Control" parent="UI"]
+[node name="GameOverMenu" type="Control" parent="UI" unique_id=46580194]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -297,7 +297,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_wsxeh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu" unique_id=1265007304]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

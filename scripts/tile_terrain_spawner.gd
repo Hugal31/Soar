@@ -31,6 +31,8 @@ func _ready():
 	_last_terrain_z_end = first_tile.get_meta("tile_length", DEFAULT_LENGTH) / 2
 	_first_terrain_z_end = _last_terrain_z_end
 
+	_on_player_position_changed(Vector3.ZERO)
+
 
 static func _filter_scenes(files: PackedStringArray) -> PackedStringArray:
 	var res := PackedStringArray()
@@ -46,9 +48,9 @@ static func _filter_scenes(files: PackedStringArray) -> PackedStringArray:
 
 
 func _on_player_position_changed(player_global_pos: Vector3):
-	if player_global_pos.z > _last_terrain_z_end - DEFAULT_LENGTH * n_terrains_ahead:
+	while player_global_pos.z > _last_terrain_z_end - DEFAULT_LENGTH * n_terrains_ahead:
 		_load_next()
-	if player_global_pos.z > _first_terrain_z_end + DEFAULT_LENGTH * n_terrains_back:
+	while player_global_pos.z > _first_terrain_z_end + DEFAULT_LENGTH * n_terrains_back:
 		_delete_front()
 
 

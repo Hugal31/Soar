@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded, depth_draw_never, cull_front, depth_test_disabled;
+render_mode unshaded, depth_draw_never, cull_front, depth_test_inverted;
 
 uniform sampler2D decal : hint_default_black, filter_nearest;
 #ifdef ENABLE_BRIGHTNESS

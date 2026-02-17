@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dng8hv0o82diu"]
+[gd_scene format=3 uid="uid://dng8hv0o82diu"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_t80jr"]
 
-[node name="Tutorial" type="Control"]
+[node name="Tutorial" type="Control" unique_id=2048542509]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_t80jr")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1516290649]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -25,17 +25,17 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Page1" type="GridContainer" parent="PanelContainer"]
+[node name="Page1" type="GridContainer" parent="PanelContainer" unique_id=2121997904]
 layout_mode = 2
 columns = 2
 
-[node name="GoalLabel" type="Label" parent="PanelContainer/Page1"]
+[node name="GoalLabel" type="Label" parent="PanelContainer/Page1" unique_id=177908452]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Goal"
 
-[node name="GoalExplanation" type="RichTextLabel" parent="PanelContainer/Page1"]
+[node name="GoalExplanation" type="RichTextLabel" parent="PanelContainer/Page1" unique_id=597570559]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -44,13 +44,13 @@ But don't forget to land safely or your score won't be counted!"
 fit_content = true
 autowrap_mode = 2
 
-[node name="ControlsLabel" type="Label" parent="PanelContainer/Page1"]
+[node name="ControlsLabel" type="Label" parent="PanelContainer/Page1" unique_id=773961973]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Controls"
 
-[node name="Controls explanation" type="RichTextLabel" parent="PanelContainer/Page1"]
+[node name="Controls explanation" type="RichTextLabel" parent="PanelContainer/Page1" unique_id=696892075]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -62,13 +62,13 @@ text = "[b]Up arrow[/b] or [b]W[/b] to go faster.
 fit_content = true
 autowrap_mode = 2
 
-[node name="TaskLabel" type="Label" parent="PanelContainer/Page1"]
+[node name="TaskLabel" type="Label" parent="PanelContainer/Page1" unique_id=1576651861]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "Tasks"
 
-[node name="TaskExplanation" type="RichTextLabel" parent="PanelContainer/Page1"]
+[node name="TaskExplanation" type="RichTextLabel" parent="PanelContainer/Page1" unique_id=1078128723]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://chji78mhvr35x"]
+[gd_scene format=3 uid="uid://chji78mhvr35x"]
 
 [ext_resource type="Script" uid="uid://ct1ddnii37obi" path="res://entities/aircraft/Aircraft.gd" id="1_gq5ev"]
 [ext_resource type="Script" uid="uid://br7vl43hc66df" path="res://entities/aircraft/SpeedData.gd" id="2_qdjqe"]
@@ -16,39 +16,39 @@ horizontal_speed = 20.0
 vertical_speed = 5.0
 pitch = -4.0
 
-[node name="ask21" type="RigidBody3D"]
+[node name="ask21" type="RigidBody3D" unique_id=1413735755]
 collision_mask = 18
-max_contacts_reported = 1
 contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_gq5ev")
 brake_speed = SubResource("Resource_o1ufo")
 slow_speed = ExtResource("2_saeyy")
 normal_speed = ExtResource("3_3mxvj")
 fast_speed = ExtResource("4_81j7w")
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." unique_id=1640421823]
 transform = Transform3D(-1.06026e-07, 1, -4.66791e-08, 0.0538864, -4.0898e-08, -0.998547, -0.998547, -1.08387e-07, -0.0538864, 0, 0.113548, 0)
 polygon = PackedVector2Array(-0.627743, 0.75361, -3.66507, 0.00490045, -0.627743, -0.654979, -0.691039, -9.69715, 0.0794209, -9.56664, 1.08599, -0.310126, 4.25735, -0.182176, 4.50561, -1.6456, 4.9621, -1.60562, 5.00214, 1.61712, 4.45756, 1.64111, 4.27337, 0.161689, 1.07798, 0.313629, 0.19498, 9.38716, -0.761184, 9.49433)
 margin = 0.24
 
-[node name="Shadow Decal" parent="." instance=ExtResource("10_0xnd4")]
+[node name="Shadow Decal" parent="." unique_id=1596396659 instance=ExtResource("10_0xnd4")]
 transform = Transform3D(10, 0, 0, 0, -2.18557e-07, -20, 0, 5, -8.74228e-07, 0, -20.8992, 0)
 skeleton = NodePath("")
 script = ExtResource("8_tx0os")
 
-[node name="Model" parent="." instance=ExtResource("8_0komx")]
+[node name="Model" parent="." unique_id=1601577082 instance=ExtResource("8_0komx")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="ControllerContainer" type="Node" parent="."]
+[node name="ControllerContainer" type="Node" parent="." unique_id=1511403015]
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="Area3D" type="Area3D" parent="." unique_id=1216201101]
 collision_mask = 2
 
-[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Area3D"]
+[node name="CollisionPolygon3D2" type="CollisionPolygon3D" parent="Area3D" unique_id=1330518027]
 transform = Transform3D(-1.06026e-07, 1, -4.66791e-08, 0.0538864, -4.0898e-08, -0.998547, -0.998547, -1.08387e-07, -0.0538864, 0, 0.113548, 0)
 polygon = PackedVector2Array(-0.627743, 0.75361, -3.66507, 0.00490045, -0.627743, -0.654979, -0.691039, -9.69715, 0.0794209, -9.56664, 1.08599, -0.310126, 4.25735, -0.182176, 4.50561, -1.6456, 4.9621, -1.60562, 5.00214, 1.61712, 4.45756, 1.64111, 4.27337, 0.161689, 1.07798, 0.313629, 0.19498, 9.38716, -0.761184, 9.49433)
 margin = 0.24
 
-[node name="EngineAudioPlayer" type="AudioStreamPlayer" parent="."]
+[node name="EngineAudioPlayer" type="AudioStreamPlayer" parent="." unique_id=206839287]
 stream = ExtResource("9_edjg6")
 bus = &"Effects"

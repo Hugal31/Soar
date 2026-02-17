@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://pj0eaentnadx"]
+[gd_scene format=3 uid="uid://pj0eaentnadx"]
 
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_fwvyq"]
 [ext_resource type="Script" uid="uid://bkn5s0xpfwfxx" path="res://entities/aircraft/lock_xz_rotation.gd" id="2_rdrti"]
@@ -24,38 +24,38 @@ size = Vector2(1000, 1000)
 [sub_resource type="BoxShape3D" id="BoxShape3D_a874v"]
 size = Vector3(1000, 1, 1000)
 
-[node name="test_shadow" type="Node3D"]
+[node name="test_shadow" type="Node3D" unique_id=239296277]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1148329180]
 environment = SubResource("Environment_e4di7")
 
-[node name="ask21" parent="." instance=ExtResource("1_fwvyq")]
+[node name="ask21" parent="." unique_id=1034289500 instance=ExtResource("1_fwvyq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.6294, 26.967)
 axis_lock_linear_x = true
 axis_lock_linear_y = true
 axis_lock_linear_z = true
 
-[node name="x" type="MeshInstance3D" parent="ask21"]
+[node name="x" type="MeshInstance3D" parent="ask21" unique_id=188910160]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -20, 0)
 visible = false
 mesh = SubResource("BoxMesh_251b3")
 skeleton = NodePath("../..")
 script = ExtResource("2_rdrti")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=611985512]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.85457, 53.0591)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1310183977]
 mesh = SubResource("PlaneMesh_jbwax")
 skeleton = NodePath("../..")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=314756382]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 shape = SubResource("BoxShape3D_a874v")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1792826931]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.85457, 1149.93)
 mesh = SubResource("PlaneMesh_jbwax")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1966369339]
 transform = Transform3D(-1, 0, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, 0, 24.3128, -8.60739)

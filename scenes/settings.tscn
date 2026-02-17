@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://qfcb5fhfgwab"]
+[gd_scene format=3 uid="uid://qfcb5fhfgwab"]
 
 [ext_resource type="Script" uid="uid://b6nhure0yujuc" path="res://scripts/VolumeSlider.gd" id="2_jel0o"]
 
@@ -10,7 +10,7 @@ func _ready():
 	get_parent().queue_free()
 "
 
-[node name="Settings" type="Control"]
+[node name="Settings" type="Control" unique_id=521340827]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=730129476]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,49 +31,51 @@ offset_right = 99.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+current_tab = 0
 clip_tabs = false
 
-[node name="Game" type="GridContainer" parent="TabContainer"]
-visible = false
+[node name="Game" type="GridContainer" parent="TabContainer" unique_id=840312733]
 layout_mode = 2
 columns = 2
+metadata/_tab_index = 0
 
-[node name="Air speed2" type="Label" parent="TabContainer/Game"]
+[node name="Air speed2" type="Label" parent="TabContainer/Game" unique_id=1095157578]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Speed instrument"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Game"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Game" unique_id=644590410]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Air speed" type="Label" parent="TabContainer/Game/HBoxContainer"]
+[node name="Air speed" type="Label" parent="TabContainer/Game/HBoxContainer" unique_id=105636728]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Air speed"
 
-[node name="SpeedCheckBox" type="CheckButton" parent="TabContainer/Game/HBoxContainer"]
+[node name="SpeedCheckBox" type="CheckButton" parent="TabContainer/Game/HBoxContainer" unique_id=1425762916]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Ground speed" type="Label" parent="TabContainer/Game/HBoxContainer"]
+[node name="Ground speed" type="Label" parent="TabContainer/Game/HBoxContainer" unique_id=389752683]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Ground speed"
 
-[node name="Node" type="Node" parent="TabContainer/Game"]
+[node name="Node" type="Node" parent="TabContainer/Game" unique_id=1860071584]
 script = SubResource("GDScript_gqhoo")
 
-[node name="Music" type="GridContainer" parent="TabContainer"]
+[node name="Music" type="GridContainer" parent="TabContainer" unique_id=491134830]
 visible = false
 layout_mode = 2
 columns = 2
+metadata/_tab_index = 1
 
-[node name="GeneralLabel" type="Label" parent="TabContainer/Music"]
+[node name="GeneralLabel" type="Label" parent="TabContainer/Music" unique_id=2144382487]
 layout_mode = 2
 text = "General"
 
-[node name="MasterSlider" type="HSlider" parent="TabContainer/Music"]
+[node name="MasterSlider" type="HSlider" parent="TabContainer/Music" unique_id=1847565709]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -82,11 +84,11 @@ step = 0.01
 script = ExtResource("2_jel0o")
 channel = &"Master"
 
-[node name="MusicLabel" type="Label" parent="TabContainer/Music"]
+[node name="MusicLabel" type="Label" parent="TabContainer/Music" unique_id=1401913336]
 layout_mode = 2
 text = "Music"
 
-[node name="MusicSlider" type="HSlider" parent="TabContainer/Music"]
+[node name="MusicSlider" type="HSlider" parent="TabContainer/Music" unique_id=721624510]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -95,11 +97,11 @@ step = 0.01
 script = ExtResource("2_jel0o")
 channel = &"Music"
 
-[node name="EffectsLabel" type="Label" parent="TabContainer/Music"]
+[node name="EffectsLabel" type="Label" parent="TabContainer/Music" unique_id=1122733078]
 layout_mode = 2
 text = "Effects"
 
-[node name="EffectsSlider" type="HSlider" parent="TabContainer/Music"]
+[node name="EffectsSlider" type="HSlider" parent="TabContainer/Music" unique_id=472368880]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4
@@ -108,12 +110,12 @@ step = 0.01
 script = ExtResource("2_jel0o")
 channel = &"Effects"
 
-[node name="WindLabel" type="Label" parent="TabContainer/Music"]
+[node name="WindLabel" type="Label" parent="TabContainer/Music" unique_id=1341173150]
 layout_mode = 2
 text = "Winds
 "
 
-[node name="WindSlider" type="HSlider" parent="TabContainer/Music"]
+[node name="WindSlider" type="HSlider" parent="TabContainer/Music" unique_id=252894177]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_vertical = 4

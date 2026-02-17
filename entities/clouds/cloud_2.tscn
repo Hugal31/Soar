@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://oundxfntq103"]
+[gd_scene format=4 uid="uid://oundxfntq103"]
 
 [ext_resource type="PackedScene" uid="uid://bdfrogdyuh2si" path="res://entities/clouds/assets/cloud_2.glb" id="1_npufk"]
 [ext_resource type="Material" uid="uid://cb4hc6bbqwaar" path="res://entities/clouds/cloud_material.tres" id="2_jgget"]
@@ -34,7 +34,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_17p7q")
 
-[node name="cloud_2" instance=ExtResource("1_npufk")]
+[node name="cloud_2" unique_id=1938493822 instance=ExtResource("1_npufk")]
 
 [node name="Cloud_2_001" parent="." index="0"]
 mesh = SubResource("ArrayMesh_glus2")

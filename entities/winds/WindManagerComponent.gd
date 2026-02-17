@@ -13,7 +13,7 @@ const LOGNAME := "WindManagerComponent"
 
 
 func _ready():
-	Logger.add_module(LOGNAME)
+	KLogger.add_module(LOGNAME)
 	pick_one_horizontal_wind_group()
 	randomize_wind()
 
@@ -35,7 +35,7 @@ func randomize_wind():
 	var wind_strenght := rng.randfn(wind_distribution_mu, wind_distribution_sigma)
 	if rng.randi() % 2 == 0:
 		wind_strenght *= -1.
-	Logger.info("Set wind to %.2f" % wind_strenght, LOGNAME)
+	KLogger.info("Set wind to %.2f" % wind_strenght, LOGNAME)
 	for wind in _chosen_wind_group.get_children():
 		if not wind is ProceduralRidgeLift:
 			continue

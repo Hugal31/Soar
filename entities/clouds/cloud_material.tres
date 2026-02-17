@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cb4hc6bbqwaar"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cb4hc6bbqwaar"]
 
 [ext_resource type="Shader" uid="uid://dpkxh72yxkd4o" path="res://shaders/psx/psx_lit_notex.gdshader" id="1_jgp8s"]
 

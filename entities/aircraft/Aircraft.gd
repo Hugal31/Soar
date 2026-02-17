@@ -83,7 +83,7 @@ signal velocity_changed(Vector3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Logger.add_module(LOGNAME)
+	KLogger.add_module(LOGNAME)
 
 	match fligth_model:
 		FlightModel.Arcade:
@@ -109,7 +109,7 @@ func _ready():
 
 
 func _on_body_entered(other: Node):
-	Logger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
+	KLogger.info("Entered %s (%s)" % [other, other.get_path()], LOGNAME)
 	var other_collision_layer: int = 0
 	if other is PhysicsBody3D:
 		other_collision_layer = other.collision_layer
@@ -141,7 +141,7 @@ func crash():
 
 func land():
 	if not _ragdoll:
-		Logger.info("Landed")
+		KLogger.info("Landed")
 		start_ragdolling()
 		emit_signal("landed")
 

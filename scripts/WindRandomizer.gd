@@ -27,7 +27,7 @@ func set_wind_angle(angle: float):
 
 
 func _ready():
-	Logger.add_module(LOGNAME)
+	KLogger.add_module(LOGNAME)
 	timer = Timer.new()
 	timer.autostart = false
 	timer.timeout.connect(self._on_timeout)
@@ -59,7 +59,7 @@ func randomize_wind(instant: bool = false):
 	timer.start(duration)
 	while new_angle < 0:
 		new_angle += PI
-	Logger.info(
+	KLogger.info(
 		"Set wind %03d %02d for %.1f seconds" % [rad_to_deg(new_angle), new_strength, duration],
 		LOGNAME
 	)

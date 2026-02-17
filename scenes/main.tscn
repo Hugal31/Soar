@@ -312,57 +312,55 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="GameOverLabel" type="Label" parent="UI/GameOverMenu/VBoxContainer"]
+[node name="GameOverLabel" type="Label" parent="UI/GameOverMenu/VBoxContainer" unique_id=1470156231]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Game over!"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu/VBoxContainer" unique_id=1838199634]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Restart" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer"]
+[node name="Restart" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer" unique_id=914568003]
 layout_mode = 2
 text = "Restart"
 
-[node name="Quit" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer" unique_id=1562691708]
 layout_mode = 2
 text = "Quit
 "
 
-[node name="WinScreen" parent="UI" instance=ExtResource("5_g54cm")]
+[node name="WinScreen" parent="UI" unique_id=826395890 instance=ExtResource("5_g54cm")]
 visible = false
 layout_mode = 1
 
-[node name="WindPlayer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("aircraft")]
+[node name="WindPlayer" type="AudioStreamPlayer" parent="." unique_id=1875564349 node_paths=PackedStringArray("aircraft")]
 stream = ExtResource("10_ipig2")
 bus = &"Wind"
 script = ExtResource("11_hmsp1")
 aircraft = NodePath("../Glider")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1228348648]
 stream = ExtResource("5_m8nfw")
 autoplay = true
 bus = &"Music"
 
-[node name="EnvAndLight" type="Node3D" parent="."]
+[node name="EnvAndLight" type="Node3D" parent="." unique_id=601576773]
 
-[node name="DayNightAnimationPlayer" type="AnimationPlayer" parent="EnvAndLight"]
-autoplay = "DayNight"
+[node name="DayNightAnimationPlayer" type="AnimationPlayer" parent="EnvAndLight" unique_id=1369950844]
+libraries/ = SubResource("AnimationLibrary_46m1x")
+autoplay = &"DayNight"
 speed_scale = 0.03
-libraries = {
-"": SubResource("AnimationLibrary_46m1x")
-}
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="EnvAndLight"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="EnvAndLight" unique_id=657918465]
 environment = SubResource("Environment_q57oy")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvAndLight"]
-transform = Transform3D(0.457859, 0, -0.889024, 0.889024, 0, 0.457859, 0, -1, 0, 0, 0, 0)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvAndLight" unique_id=535270586]
+transform = Transform3D(0.45785865, 0, -0.8890242, 0.8890242, 0, 0.45785868, 0, -1, 0, 0, 0, 0)
 rotation_edit_mode = 1
 
-[node name="PhantomCamera3D" type="Node3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 712.765, -1025.21)
+[node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1097733063]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.533317e-06, 712.7646, -1025.2128)
 script = ExtResource("1_5j3ov")
 priority_override = false
 priority = 0
@@ -380,35 +378,35 @@ tween_on_load = true
 inactive_update_mode = 0
 camera_3D_resource = null
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.53332e-06, 712.765, -1025.21)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1120167246]
+transform = Transform3D(-1, -2.26267e-08, 8.44439e-08, 0, 0.965926, 0.258819, -8.74228e-08, 0.258819, -0.965926, 2.533317e-06, 712.7646, -1025.2128)
 current = true
 near = 1.0
 far = 6000.0
 
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="Camera3D" unique_id=1275425090]
 script = ExtResource("3_yq5g2")
 
-[node name="Fog" type="MeshInstance3D" parent="Camera3D"]
+[node name="Fog" type="MeshInstance3D" parent="Camera3D" unique_id=1264629672]
 transform = Transform3D(-1, 1.77636e-15, -8.74228e-08, -2.26267e-08, 0.965926, 0.258819, 8.44439e-08, 0.258819, -0.965926, -5.24164e-07, 1.55182, -5.79144)
 mesh = SubResource("QuadMesh_svkgt")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("ShaderMaterial_hdb7h")
 
-[node name="Glider" parent="." instance=ExtResource("1_mpoqe")]
+[node name="Glider" parent="." unique_id=1186628829 instance=ExtResource("1_mpoqe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 700, -996.235)
 mass = 400.0
 linear_velocity = Vector3(0, -2, 25)
 bank_velocity = 40.0
 pitch_velocity = 8.0
 
-[node name="Terrain" type="Node3D" parent="."]
+[node name="Terrain" type="Node3D" parent="." unique_id=828136469]
 script = ExtResource("14_et8ln")
 tiles_directory = "res://entities/terrains/tiles"
 
-[node name="Mountains4" parent="Terrain" instance=ExtResource("14_ytrm2")]
+[node name="Mountains4" parent="Terrain" unique_id=1609505480 instance=ExtResource("14_ytrm2")]
 
-[node name="WindRandomizer" type="Node" parent="."]
+[node name="WindRandomizer" type="Node" parent="." unique_id=702878323]
 script = ExtResource("14_vdw7m")
 
 [connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]

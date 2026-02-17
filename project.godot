@@ -8,11 +8,15 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Soar"
 run/main_scene="res://scenes/main_menu.tscn"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
@@ -21,6 +25,7 @@ Logger="*res://addons/godot-logger-master/logger.gd"
 LeaderboardManager="*res://scripts/LeaderboardManager.gd"
 RandomNumberGeneratorManager="*res://scripts/RandomNumberGeneratorManager.gd"
 WindManager="*res://entities/winds/wind/wind_manager.gd"
+KLogger="*uid://berth0g5ikm3q"
 
 [display]
 

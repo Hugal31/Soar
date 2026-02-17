@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://frfogyw6dujl"]
+[gd_scene format=4 uid="uid://frfogyw6dujl"]
 
 [ext_resource type="PackedScene" uid="uid://gw7yhfit3tux" path="res://entities/clouds/assets/cloud_1.glb" id="1_enyr4"]
 [ext_resource type="Material" uid="uid://cb4hc6bbqwaar" path="res://entities/clouds/cloud_material.tres" id="2_c4yyi"]
@@ -34,7 +34,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rusyn")
 
-[node name="cloud_1" instance=ExtResource("1_enyr4")]
+[node name="cloud_1" unique_id=216195860 instance=ExtResource("1_enyr4")]
 
 [node name="Cloud_001" parent="." index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.91907, 0, 3.70784)

@@ -14,5 +14,5 @@ func _ready():
 
 func _on_value_changed(new_value: float):
 	var db_value := linear_to_db(new_value)
-	Logger.debug("Set %s volume to %.1f dB" % [channel, db_value], LOGNAME)
+	KLogger.debug("Set %s volume to %.1f dB" % [channel, db_value], LOGNAME)
 	AudioServer.set_bus_volume_db(channel_index, db_value)

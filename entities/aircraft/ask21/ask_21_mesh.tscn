@@ -1,80 +1,70 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhvskjiuonp7d"]
+[gd_scene format=3 uid="uid://dhvskjiuonp7d"]
 
 [ext_resource type="PackedScene" uid="uid://ca1jknwxamv7s" path="res://entities/aircraft/ask21/assets/ask21.glb" id="1_sc7gx"]
 [ext_resource type="Material" uid="uid://bgmqlo2qq40t" path="res://entities/aircraft/ask21/ask21_material.tres" id="2_ralff"]
 
-[node name="ask22" instance=ExtResource("1_sc7gx")]
+[node name="ask22" unique_id=45186084 instance=ExtResource("1_sc7gx")]
 
 [node name="Skeleton3D" parent="Armature" index="0"]
 bones/13/position = Vector3(-0.0586679, 1.39893, 3.20436e-16)
 bones/14/position = Vector3(-0.0687806, 0.314266, -1.19951e-07)
 
 [node name="Ask21_cone" parent="Armature/Skeleton3D" index="0"]
-transform = Transform3D(-6.79258e-08, -1, 9.74817e-10, 1, -6.79258e-08, -2.38496e-07, 2.38496e-07, 9.7482e-10, 1, 0.0236894, 2.435, -8.73193e-08)
-bone_idx = 3
+transform = Transform3D(-6.7925825e-08, -0.99999994, 9.74824e-10, 0.99999994, -6.792579e-08, -2.384956e-07, 2.3849566e-07, 9.748267e-10, 1, 0.023689382, 2.435, -8.731927e-08)
 
 [node name="Ask21_cone" parent="Armature/Skeleton3D/Ask21_cone" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_propeller" parent="Armature/Skeleton3D" index="1"]
-transform = Transform3D(1.70493e-07, -1, 9.74813e-10, 1, 1.70493e-07, -2.38496e-07, 2.38496e-07, 9.74872e-10, 1, 0.0409438, 2.43725, -0.00307941)
-bone_idx = 4
+transform = Transform3D(1.7049274e-07, -0.99999994, 9.748197e-10, 0.99999994, 1.7049277e-07, -2.384956e-07, 2.3849566e-07, 9.748793e-10, 1, 0.040943857, 2.4372537, -0.0030794104)
 
 [node name="Ask21_propeller" parent="Armature/Skeleton3D/Ask21_propeller" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_motor_mast" parent="Armature/Skeleton3D" index="2"]
-transform = Transform3D(7.07805e-08, -1, 3.83552e-08, 1, 7.07805e-08, 9.62135e-10, -9.62135e-10, 3.83552e-08, 1, 0.0825581, 1.39158, -0.00307937)
-bone_idx = 5
+transform = Transform3D(7.078052e-08, -0.99999994, 3.8355218e-08, 0.99999994, 7.078053e-08, 9.621317e-10, -9.621424e-10, 3.8355246e-08, 1, 0.08255808, 1.391579, -0.0030793732)
 
 [node name="Ask21_motor_mast" parent="Armature/Skeleton3D/Ask21_motor_mast" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_lowPoly_engine_door_l" parent="Armature/Skeleton3D" index="3"]
-transform = Transform3D(1.19209e-07, -1, 4.54238e-08, 1, 1.3411e-07, -1.00874e-07, 1.24972e-07, 7.00275e-08, 1, 0.157545, 0.618254, -0.00307959)
-bone_idx = 7
+transform = Transform3D(1.3038516e-07, -0.9999999, 4.5434717e-08, 1.0000001, 2.6077032e-08, -5.6112185e-08, 6.362097e-08, 4.301546e-08, 1.0000004, 0.157545, 0.61825395, -0.0030794889)
 
 [node name="Ask21_lowPoly_engine_door_l" parent="Armature/Skeleton3D/Ask21_lowPoly_engine_door_l" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_lowPoly_engine_door_r" parent="Armature/Skeleton3D" index="4"]
-transform = Transform3D(-7.45058e-08, -1, 7.06605e-08, 1, 2.23517e-08, 1.69966e-07, -1.45636e-07, 8.56453e-08, 1, 0.157545, 0.618254, -0.00307915)
-bone_idx = 9
+transform = Transform3D(0, -1, -1.8819264e-08, 0.9999999, -4.4703484e-08, 1.9976869e-07, -1.9947765e-07, 5.8673322e-08, 1.0000002, 0.15754521, 0.61825395, -0.0030790567)
 
 [node name="Ask21_lowPoly_engine_door_r" parent="Armature/Skeleton3D/Ask21_lowPoly_engine_door_r" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_lowPoly_aileron_l" parent="Armature/Skeleton3D" index="5"]
-transform = Transform3D(1.04308e-07, -1, -2.99547e-08, 1, 1.04308e-07, -1.10686e-09, 1.10686e-09, -2.99547e-08, 1, 0.157545, 0.618254, -0.00307935)
-bone_idx = 10
+transform = Transform3D(1.1175871e-07, -0.99999994, -2.9954705e-08, 0.99999994, 1.1175871e-07, -1.1068515e-09, 1.106855e-09, -2.9954705e-08, 0.99999994, 0.15754505, 0.61825424, -0.0030793464)
 
 [node name="Ask21_lowPoly_aileron_l" parent="Armature/Skeleton3D/Ask21_lowPoly_aileron_l" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_lowPoly_body" parent="Armature/Skeleton3D" index="6"]
-transform = Transform3D(1.04308e-07, -1, -2.99547e-08, 1, 1.04308e-07, -1.10686e-09, 1.10686e-09, -2.99547e-08, 1, 0.157545, 0.618254, -0.00307935)
-bone_idx = 11
+transform = Transform3D(1.1175871e-07, -0.99999994, -2.9954705e-08, 0.99999994, 1.1175871e-07, -1.1068515e-09, 1.106855e-09, -2.9954705e-08, 0.99999994, 0.15754505, 0.61825424, -0.0030793464)
 
 [node name="Ask21_lowPoly_body" parent="Armature/Skeleton3D/Ask21_lowPoly_body" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Ask21_lowPoly_wings" parent="Armature/Skeleton3D" index="7"]
-transform = Transform3D(1.04308e-07, -1, -2.99547e-08, 1, 1.04308e-07, -1.10686e-09, 1.10686e-09, -2.99547e-08, 1, 0.157545, 0.618254, -0.00307935)
-bone_idx = 12
+transform = Transform3D(1.1175871e-07, -0.99999994, -2.9954705e-08, 0.99999994, 1.1175871e-07, -1.1068515e-09, 1.106855e-09, -2.9954705e-08, 0.99999994, 0.15754505, 0.61825424, -0.0030793464)
 
 [node name="Ask21_lowPoly_wings" parent="Armature/Skeleton3D/Ask21_lowPoly_wings" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Airbrakes top" parent="Armature/Skeleton3D" index="8"]
-transform = Transform3D(-0.00160119, -0.998947, -0.0458535, 0.999391, 4.24217e-08, -0.0348993, 0.0348626, -0.0458815, 0.998338, -0.425164, 0.597746, 3.51169)
-bone_idx = 15
+transform = Transform3D(-0.0016011938, -0.99894696, -0.04585353, 0.9993909, 4.0559016e-08, -0.03489932, 0.034862604, -0.045881484, 0.99833834, -0.42516413, 0.59774595, 3.5116925)
 
 [node name="Airbrakes top" parent="Armature/Skeleton3D/Airbrakes top" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")
 
 [node name="Airbrakes bottom" parent="Armature/Skeleton3D" index="9"]
-transform = Transform3D(-0.00160119, -0.998947, -0.0458535, 0.999391, 4.0476e-08, -0.0348993, 0.0348626, -0.0458815, 0.998338, -0.34495, 0.597746, 3.44291)
-bone_idx = 16
+transform = Transform3D(-0.0016011952, -0.9989469, -0.04585353, 0.9993909, 3.8613393e-08, -0.034899328, 0.034862638, -0.04588148, 0.99833834, -0.3449505, 0.59774613, 3.4429119)
 
 [node name="Airbrakes bottom" parent="Armature/Skeleton3D/Airbrakes bottom" index="0"]
 surface_material_override/0 = ExtResource("2_ralff")

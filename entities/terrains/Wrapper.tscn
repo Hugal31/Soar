@@ -1,21 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgvsce3iw33dm"]
+[gd_scene format=3 uid="uid://bgvsce3iw33dm"]
 
 [ext_resource type="Script" uid="uid://c186h5p5dypx0" path="res://entities/terrains/Wrapper.gd" id="1_xe8kb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t0x68"]
 size = Vector3(10, 2000, 3000)
 
-[node name="Wrapper" type="Area3D"]
+[node name="Wrapper" type="Area3D" unique_id=1676422334]
 collision_layer = 0
 collision_mask = 8
 input_ray_pickable = false
 monitorable = false
 script = ExtResource("1_xe8kb")
 
-[node name="PosX" type="CollisionShape3D" parent="."]
+[node name="PosX" type="CollisionShape3D" parent="." unique_id=1850035071]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3100, 1000, 0)
 shape = SubResource("BoxShape3D_t0x68")
 
-[node name="NegX" type="CollisionShape3D" parent="."]
+[node name="NegX" type="CollisionShape3D" parent="." unique_id=1108658642]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3100, 1000, 0)
 shape = SubResource("BoxShape3D_t0x68")

@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4lvfyrs6hmib"]
+[gd_scene format=3 uid="uid://b4lvfyrs6hmib"]
 
 [ext_resource type="Script" uid="uid://deumf28bnjy1k" path="res://scripts/set_text_from_file.gd" id="1_t8obb"]
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_u4sp8"]
 
-[node name="credits" type="Control"]
+[node name="credits" type="Control" unique_id=1166474455]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_u4sp8")
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1830197058]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -26,7 +26,7 @@ offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer" unique_id=850951204]
 custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
 size_flags_horizontal = 4

@@ -18,15 +18,15 @@ var _next_tile_path := ""
 
 
 func _ready():
-	Logger.add_module(LOGNAME)
+	KLogger.add_module(LOGNAME)
 
 	var tiles_dir := DirAccess.open(tiles_directory)
 	if tiles_dir == null:
-		Logger.error("Could not open tiles directory", LOGNAME, DirAccess.get_open_error())
+		KLogger.error("Could not open tiles directory", LOGNAME, DirAccess.get_open_error())
 
 	var files := tiles_dir.get_files()
 	_tiles_files = _filter_scenes(files)
-	Logger.debug("Tiles are %s (from %s)" % [_tiles_files, files], LOGNAME)
+	KLogger.debug("Tiles are %s (from %s)" % [_tiles_files, files], LOGNAME)
 
 	_last_terrain_z_end = first_tile.get_meta("tile_length", DEFAULT_LENGTH) / 2
 	_first_terrain_z_end = _last_terrain_z_end
@@ -60,7 +60,7 @@ func _load_next():
 				_spawn_tile(ResourceLoader.load_threaded_get(_next_tile_path))
 				_loading = false
 			ResourceLoader.THREAD_LOAD_FAILED:
-				Logger.error("Could not load %s" % _next_tile_path, LOGNAME)
+				KLogger.error("Could not load %s" % _next_tile_path, LOGNAME)
 				_loading = false
 			_:
 				pass
@@ -68,10 +68,10 @@ func _load_next():
 
 	_loading = true
 	_next_tile_path = _get_random_tile_path()
-	Logger.debug("Loading %s" % _next_tile_path, LOGNAME)
+	KLogger.debug("Loading %s" % _next_tile_path, LOGNAME)
 	var error := ResourceLoader.load_threaded_request(_next_tile_path, "PackedScene")
 	if error != OK:
-		Logger.error("Could not load %s" % _next_tile_path, LOGNAME, error)
+		KLogger.error("Could not load %s" % _next_tile_path, LOGNAME, error)
 		_loading = false
 
 
@@ -87,7 +87,7 @@ func _spawn_tile(scene: PackedScene):
 	_last_terrain_z_end = _last_terrain_z_end + length
 	if not tile.get_meta("disable_rotation", false) and _rng.randi() % 2 == 0:
 		tile.rotation.y = PI
-	Logger.info("Spawning tile %s at z=%.0f" % [tile.name, tile.position.z], LOGNAME)
+	KLogger.info("Spawning tile %s at z=%.0f" % [tile.name, tile.position.z], LOGNAME)
 	add_child(tile)
 
 
@@ -95,6 +95,6 @@ func _delete_front():
 	for child in get_children():
 		var length: float = child.get_meta("tile_length", DEFAULT_LENGTH)
 		if child.position.z + length / 2. <= _first_terrain_z_end:
-			Logger.info("Delete tile %s at z=%.0f" % [child.name, child.position.z], LOGNAME)
+			KLogger.info("Delete tile %s at z=%.0f" % [child.name, child.position.z], LOGNAME)
 			child.queue_free()
 			return

@@ -6,12 +6,12 @@ const LOGNAME := "RandomNumberGeneratorManager"
 
 
 func _ready():
-	Logger.add_module(LOGNAME)
+	KLogger.add_module(LOGNAME)
 	set_random()
 
 
 func set_random():
-	Logger.info("Use random seed", LOGNAME)
+	KLogger.info("Use random seed", LOGNAME)
 	rng = RandomNumberGenerator.new()
 
 
@@ -20,12 +20,13 @@ func get_sub_rng() -> RandomNumberGenerator:
 	sub_rng.seed = randi()
 	return sub_rng
 
+
 func use_day_seed():
 	var timestamp := int(Time.get_unix_time_from_system())
 	# TODO Make something more explicitely synced with a specific hour.
 	@warning_ignore("integer_division")
 	rng.seed = timestamp / (60 * 60 * 24)
-	Logger.info("Use day seed %d" % rng.seed, LOGNAME)
+	KLogger.info("Use day seed %d" % rng.seed, LOGNAME)
 
 
 ## Returns a pseudo-random float between 0.0 and 1.0 (inclusive).

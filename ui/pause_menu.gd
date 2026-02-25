@@ -10,6 +10,9 @@ signal quit
 
 
 func enter():
+	_buttons.visible = true
+	_back_button.hide()
+	_settings.hide()
 	$PauseMenuButtons/Resume.grab_focus()
 
 
@@ -25,6 +28,7 @@ func _on_settings_pressed():
 	_buttons.hide()
 	_back_button.visible = true
 	_settings.visible = true
+	_settings.enter()
 
 
 func _on_back_button_pressed():

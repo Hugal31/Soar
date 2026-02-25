@@ -54,11 +54,11 @@ text = "Controls"
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "[b]Up arrow[/b] or [b]W[/b] to go faster.
-[b]Down arrow[/b] or [b]S[/b] to slow.
+text = "[b]Up arrow[/b], [b]W[/b] or [b]forward[/b] to go faster.
+[b]Down arrow[/b] [b]S[/b], or [b]backward[/b] to slow.
 [b]Right and left[/b] arrows or [b]A[/b] and [b]D[/b] to turn.
-[b]Shift[/b] to allow steeper turns.
-[b]CapsLock[/b] or [b]Tab[/b] to extend the airbrakes."
+[b]Shift[/b] or [b]L2, R2,[/b] to allow steeper turns.
+[b]CapsLock[/b] or [b]L1, R1[/b] or [b]Tab[/b] to extend the airbrakes."
 fit_content = true
 autowrap_mode = 2
 

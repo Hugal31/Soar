@@ -269,6 +269,7 @@ shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 [node name="Node3D" type="Node3D" unique_id=1336041736]
 
 [node name="GameManager" type="Node" parent="." unique_id=1580589865 node_paths=PackedStringArray("aircraft")]
+process_mode = 3
 script = ExtResource("1_8cmnw")
 engine_time_scale = 4.0
 aircraft = NodePath("../Glider")
@@ -286,6 +287,7 @@ layout_mode = 1
 aircraft = NodePath("../../Glider")
 
 [node name="PauseMenu" parent="UI" unique_id=963102540 instance=ExtResource("3_fmeva")]
+process_mode = 2
 visible = false
 layout_mode = 1
 
@@ -343,6 +345,7 @@ script = ExtResource("11_hmsp1")
 aircraft = NodePath("../Glider")
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1228348648]
+process_mode = 3
 stream = ExtResource("5_m8nfw")
 autoplay = true
 bus = &"Music"

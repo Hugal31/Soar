@@ -55,12 +55,12 @@ func game_over():
 
 
 func pause():
-	Engine.time_scale = 0
+	get_tree().paused = true
 	_pause_menu.visible = true
 
 
 func unpause():
-	Engine.time_scale = engine_time_scale
+	get_tree().paused = false
 	_pause_menu.hide()
 
 

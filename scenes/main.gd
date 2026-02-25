@@ -24,10 +24,13 @@ func _ready():
 	_aircraft_start_score = _get_aircraft_current_score()
 
 
-func _process(_delta):
-	if Input.is_action_just_pressed("pause"):
+func _input(event: InputEvent):
+	if event.is_action_pressed("pause"):
 		toggle_pause()
+		get_viewport().set_input_as_handled()
 
+
+func _process(_delta):
 	if not _lock_score:
 		var aircraft_score := _get_aircraft_current_score()
 		if aircraft_score > _score:

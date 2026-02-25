@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bep2l1fda1hns"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bep2l1fda1hns"]
 
 [ext_resource type="Shader" uid="uid://c5x3nok3al6ma" path="res://shaders/psx/psx_lit.gdshader" id="1_vm5gq"]
 [ext_resource type="Texture2D" uid="uid://cxttu884yu3wy" path="res://entities/terrains/assets/palette.png" id="2_vni3g"]

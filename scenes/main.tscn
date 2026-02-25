@@ -15,6 +15,7 @@
 [ext_resource type="Script" uid="uid://br6bew348g82p" path="res://scripts/tile_terrain_spawner.gd" id="14_et8ln"]
 [ext_resource type="Script" uid="uid://5rlly3e5rcak" path="res://scripts/WindRandomizer.gd" id="14_vdw7m"]
 [ext_resource type="PackedScene" uid="uid://c8oeto8d8n2kw" path="res://entities/terrains/tiles/mountains_4.tscn" id="14_ytrm2"]
+[ext_resource type="Script" uid="uid://ri8uuwmfs48k" path="res://scripts/follow_node_xz.gd" id="16_jbj1t"]
 
 [sub_resource type="GDScript" id="GDScript_jkv2x"]
 script/source = "extends Menu
@@ -274,6 +275,15 @@ shader = ExtResource("1_r6fcu")
 shader_parameter/fog_start = 0.9993
 shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_jkv2x"]
+size = Vector2(60000, 60000)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbj1t"]
+shading_mode = 2
+diffuse_mode = 1
+specular_mode = 2
+albedo_color = Color(0.6039216, 0.8117647, 1, 1)
+
 [node name="Node3D" type="Node3D" unique_id=1336041736]
 
 [node name="GameManager" type="Node" parent="." unique_id=1580589865 node_paths=PackedStringArray("aircraft")]
@@ -424,6 +434,13 @@ tiles_directory = "res://entities/terrains/tiles"
 
 [node name="WindRandomizer" type="Node" parent="." unique_id=702878323]
 script = ExtResource("14_vdw7m")
+
+[node name="Sea" type="MeshInstance3D" parent="." unique_id=394301754 node_paths=PackedStringArray("to_follow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+mesh = SubResource("PlaneMesh_jkv2x")
+surface_material_override/0 = SubResource("StandardMaterial3D_jbj1t")
+script = ExtResource("16_jbj1t")
+to_follow = NodePath("../Camera3D")
 
 [connection signal="quit" from="UI/PauseMenu" to="GameManager" method="_on_quit"]
 [connection signal="resume" from="UI/PauseMenu" to="GameManager" method="unpause"]

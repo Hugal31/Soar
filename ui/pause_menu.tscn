@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://u2g86u33j7xd"]
+[gd_scene format=3 uid="uid://u2g86u33j7xd"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_lygf8"]
 [ext_resource type="Script" uid="uid://yilambohln3s" path="res://ui/pause_menu.gd" id="2_pw0ui"]
 [ext_resource type="PackedScene" uid="uid://qfcb5fhfgwab" path="res://scenes/settings.tscn" id="3_h3hsw"]
 
-[node name="PauseMenu" type="Control"]
+[node name="PauseMenu" type="Control" unique_id=1290661568]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,7 +14,7 @@ grow_vertical = 2
 theme = ExtResource("1_lygf8")
 script = ExtResource("2_pw0ui")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=86305069]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.294118)
 
-[node name="PauseMenuButtons" type="VBoxContainer" parent="."]
+[node name="PauseMenuButtons" type="VBoxContainer" parent="." unique_id=914319790]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,25 +37,27 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Resume" type="Button" parent="PauseMenuButtons"]
+[node name="Resume" type="Button" parent="PauseMenuButtons" unique_id=1767748655]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
 text = "Resume"
 
-[node name="Settings" type="Button" parent="PauseMenuButtons"]
+[node name="Settings" type="Button" parent="PauseMenuButtons" unique_id=1808401043]
 layout_mode = 2
 text = "Settings
 "
 
-[node name="Quit" type="Button" parent="PauseMenuButtons"]
+[node name="Quit" type="Button" parent="PauseMenuButtons" unique_id=123283624]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Resume")
 text = "Quit
 "
 
-[node name="Settings" parent="." instance=ExtResource("3_h3hsw")]
+[node name="Settings" parent="." unique_id=1194057840 instance=ExtResource("3_h3hsw")]
 visible = false
 layout_mode = 1
 
-[node name="BackButton" type="Button" parent="."]
+[node name="BackButton" type="Button" parent="." unique_id=980147307]
 visible = false
 layout_mode = 1
 offset_right = 8.0

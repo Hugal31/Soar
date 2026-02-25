@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://boqwd8cabt18h"]
 
 [ext_resource type="Theme" uid="uid://dw8tap3ih7i5s" path="res://ui/theme.tres" id="1_r1ay0"]
-[ext_resource type="Script" uid="uid://2desax0pkq74" path="res://scripts/grab_focus.gd" id="2_jfvdw"]
 [ext_resource type="Script" uid="uid://rldk62atm7wa" path="res://scripts/main_menu.gd" id="2_khxp2"]
 [ext_resource type="PackedScene" uid="uid://l25byk5j4gus" path="res://scenes/main.tscn" id="3_m8k1r"]
 [ext_resource type="PackedScene" uid="uid://b4lvfyrs6hmib" path="res://scenes/credits.tscn" id="3_pnlio"]
@@ -20,9 +19,7 @@ keycode = 4194308
 [sub_resource type="Shortcut" id="Shortcut_eo0h8"]
 events = [SubResource("InputEventAction_jk1qb"), SubResource("InputEventKey_5dd4i")]
 
-[node name="main_menu" type="Node3D" unique_id=162333225]
-
-[node name="MainMenu" type="Control" parent="." unique_id=1434741746]
+[node name="MainMenu" type="Control" unique_id=1434741746]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,7 +31,7 @@ script = ExtResource("2_khxp2")
 game_scene = ExtResource("3_m8k1r")
 credits_scene = ExtResource("3_pnlio")
 
-[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=409864160]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=409864160]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("5_uwh1k")
 
-[node name="Menu" type="VBoxContainer" parent="MainMenu" unique_id=434590227]
+[node name="Menu" type="VBoxContainer" parent="." unique_id=434590227]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -57,7 +54,7 @@ offset_bottom = 85.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MainMenu/Menu" unique_id=89429382]
+[node name="Label" type="Label" parent="Menu" unique_id=89429382]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_type_variation = &"HeaderLarge"
@@ -68,37 +65,38 @@ text = "Soar!
 
 "
 
-[node name="Start" type="Button" parent="MainMenu/Menu" unique_id=50656534]
+[node name="Start" type="Button" parent="Menu" unique_id=50656534]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Credits")
 text = "Start
 "
-script = ExtResource("2_jfvdw")
 
-[node name="Task of the day" type="Button" parent="MainMenu/Menu" unique_id=981363001]
+[node name="Task of the day" type="Button" parent="Menu" unique_id=981363001]
 layout_mode = 2
 text = "Task of the day"
 
-[node name="Tutorial" type="Button" parent="MainMenu/Menu" unique_id=283241988]
+[node name="Tutorial" type="Button" parent="Menu" unique_id=283241988]
 layout_mode = 2
 text = "Tutorial"
 
-[node name="Leaderboard" type="Button" parent="MainMenu/Menu" unique_id=738652462]
+[node name="Leaderboard" type="Button" parent="Menu" unique_id=738652462]
 layout_mode = 2
 text = "Leaderboard"
 
-[node name="Settings" type="Button" parent="MainMenu/Menu" unique_id=1667844124]
+[node name="Settings" type="Button" parent="Menu" unique_id=1667844124]
 layout_mode = 2
 text = "Settings"
 
-[node name="Credits" type="Button" parent="MainMenu/Menu" unique_id=471654057]
+[node name="Credits" type="Button" parent="Menu" unique_id=471654057]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Start")
 text = "Credits"
 
-[node name="Tutorial" parent="MainMenu" unique_id=2046271477 instance=ExtResource("6_s5nen")]
+[node name="Tutorial" parent="." unique_id=2046271477 instance=ExtResource("6_s5nen")]
 visible = false
 layout_mode = 1
 
-[node name="Leaderboard" type="Control" parent="MainMenu" unique_id=1457868776]
+[node name="Leaderboard" type="Control" parent="." unique_id=1457868776]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -107,7 +105,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMenu/Leaderboard" unique_id=1473324484]
+[node name="PanelContainer" type="PanelContainer" parent="Leaderboard" unique_id=1473324484]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -121,28 +119,28 @@ offset_bottom = 54.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Leaderboard/PanelContainer" unique_id=549351425]
+[node name="VBoxContainer" type="VBoxContainer" parent="Leaderboard/PanelContainer" unique_id=549351425]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MainMenu/Leaderboard/PanelContainer/VBoxContainer" unique_id=1439375818]
+[node name="Label" type="Label" parent="Leaderboard/PanelContainer/VBoxContainer" unique_id=1439375818]
 layout_mode = 2
 theme_type_variation = &"HeaderLarge"
 text = "Leaderboard"
 
-[node name="ScoreList" parent="MainMenu/Leaderboard/PanelContainer/VBoxContainer" unique_id=743594945 instance=ExtResource("7_1mrqa")]
+[node name="ScoreList" parent="Leaderboard/PanelContainer/VBoxContainer" unique_id=743594945 instance=ExtResource("7_1mrqa")]
 layout_mode = 2
 
-[node name="Settings" parent="MainMenu" unique_id=2040983550 instance=ExtResource("7_vcc5x")]
+[node name="Settings" parent="." unique_id=2040983550 instance=ExtResource("7_vcc5x")]
 visible = false
 layout_mode = 1
 
-[node name="Credits" parent="MainMenu" unique_id=1434271297 instance=ExtResource("3_pnlio")]
+[node name="Credits" parent="." unique_id=1434271297 instance=ExtResource("3_pnlio")]
 visible = false
 layout_mode = 1
 
-[node name="BackButton" type="Button" parent="MainMenu" unique_id=673546675]
+[node name="BackButton" type="Button" parent="." unique_id=673546675]
 visible = false
 layout_mode = 1
 offset_left = 2.0
@@ -152,10 +150,10 @@ offset_bottom = 30.0
 shortcut = SubResource("Shortcut_eo0h8")
 text = "Back"
 
-[connection signal="pressed" from="MainMenu/Menu/Start" to="MainMenu" method="_on_start_pressed"]
-[connection signal="pressed" from="MainMenu/Menu/Task of the day" to="MainMenu" method="_on_task_of_the_day_pressed"]
-[connection signal="pressed" from="MainMenu/Menu/Tutorial" to="MainMenu" method="_on_tutorial_pressed"]
-[connection signal="pressed" from="MainMenu/Menu/Leaderboard" to="MainMenu" method="_on_leaderboard_pressed"]
-[connection signal="pressed" from="MainMenu/Menu/Settings" to="MainMenu" method="_on_settings_pressed"]
-[connection signal="pressed" from="MainMenu/Menu/Credits" to="MainMenu" method="_on_credits_pressed"]
-[connection signal="pressed" from="MainMenu/BackButton" to="MainMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="Menu/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Menu/Task of the day" to="." method="_on_task_of_the_day_pressed"]
+[connection signal="pressed" from="Menu/Tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Menu/Leaderboard" to="." method="_on_leaderboard_pressed"]
+[connection signal="pressed" from="Menu/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Menu/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

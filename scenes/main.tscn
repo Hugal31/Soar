@@ -16,6 +16,14 @@
 [ext_resource type="Script" uid="uid://5rlly3e5rcak" path="res://scripts/WindRandomizer.gd" id="14_vdw7m"]
 [ext_resource type="PackedScene" uid="uid://c8oeto8d8n2kw" path="res://entities/terrains/tiles/mountains_4.tscn" id="14_ytrm2"]
 
+[sub_resource type="GDScript" id="GDScript_jkv2x"]
+script/source = "extends Menu
+
+
+func enter():
+	$VBoxContainer/VBoxContainer/Restart.grab_focus()
+"
+
 [sub_resource type="Animation" id="Animation_4hst6"]
 resource_name = "DayNight"
 length = 60.0
@@ -300,6 +308,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_wsxeh")
+script = SubResource("GDScript_jkv2x")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/GameOverMenu" unique_id=1265007304]
 layout_mode = 1
@@ -327,10 +336,12 @@ size_flags_horizontal = 4
 
 [node name="Restart" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer" unique_id=914568003]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
 text = "Restart"
 
 [node name="Quit" type="Button" parent="UI/GameOverMenu/VBoxContainer/VBoxContainer" unique_id=1562691708]
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Restart")
 text = "Quit
 "
 
@@ -361,7 +372,7 @@ speed_scale = 0.03
 environment = SubResource("Environment_q57oy")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="EnvAndLight" unique_id=535270586]
-transform = Transform3D(0.45785865, 0, -0.8890242, 0.8890242, 0, 0.45785868, 0, -1, 0, 0, 0, 0)
+transform = Transform3D(0.45785862, 0, -0.88902426, 0.88902414, 0, 0.4578587, 0, -1, 0, 0, 0, 0)
 rotation_edit_mode = 1
 
 [node name="PhantomCamera3D" type="Node3D" parent="." unique_id=1097733063]

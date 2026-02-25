@@ -1,4 +1,4 @@
-extends Control
+extends Menu
 
 @export var game_scene: PackedScene
 @export var credits_scene: PackedScene
@@ -9,6 +9,12 @@ extends Control
 @onready var settings = $Settings
 @onready var credits = $Credits
 @onready var back_button = $BackButton
+
+var _previous_focus: Button = null
+
+
+func enter():
+	$Menu/Start.grab_focus()
 
 
 func _on_start_pressed():
@@ -26,6 +32,7 @@ func _start_game():
 
 
 func _show_sub_menu(sub_menu: Control):
+	_previous_focus = get_viewport().gui_get_focus_owner()
 	main_menu.hide()
 	sub_menu.visible = true
 	back_button.visible = true
@@ -33,14 +40,17 @@ func _show_sub_menu(sub_menu: Control):
 
 func _on_settings_pressed():
 	_show_sub_menu(settings)
+	settings.enter()
 
 
 func _on_tutorial_pressed():
 	_show_sub_menu(tutorials)
+	back_button.grab_focus()
 
 
 func _on_credits_pressed():
 	_show_sub_menu(credits)
+	back_button.grab_focus()
 
 
 func _on_back_button_pressed():
@@ -50,7 +60,12 @@ func _on_back_button_pressed():
 	leaderboard.hide()
 	tutorials.hide()
 	credits.hide()
+	if _previous_focus:
+		_previous_focus.grab_focus()
+	else:
+		$Menu/Start.grab_focus()
 
 
 func _on_leaderboard_pressed():
 	_show_sub_menu(leaderboard)
+	back_button.grab_focus()

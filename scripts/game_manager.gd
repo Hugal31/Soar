@@ -52,11 +52,13 @@ func toggle_pause():
 func game_over():
 	_lock_score = true
 	_game_over_menu.visible = true
+	_game_over_menu.enter()
 
 
 func pause():
 	get_tree().paused = true
 	_pause_menu.visible = true
+	_pause_menu.enter()
 
 
 func unpause():
@@ -83,6 +85,7 @@ func win():
 	add_child(win_timer)
 	win_timer.start(2)
 	await win_timer.timeout
+	_win_screen.enter()
 	_win_screen.visible = true
 	win_timer.queue_free()
 

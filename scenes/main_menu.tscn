@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://douhvu0444ko4" path="res://ui/score_list.tscn" id="7_1mrqa"]
 [ext_resource type="PackedScene" uid="uid://qfcb5fhfgwab" path="res://scenes/settings.tscn" id="7_vcc5x"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_f4d1o"]
+[sub_resource type="InputEventAction" id="InputEventAction_jk1qb"]
+action = &"ui_cancel"
+
+[sub_resource type="InputEventKey" id="InputEventKey_5dd4i"]
 device = -1
 keycode = 4194308
 
 [sub_resource type="Shortcut" id="Shortcut_eo0h8"]
-events = [SubResource("InputEventKey_f4d1o")]
+events = [SubResource("InputEventAction_jk1qb"), SubResource("InputEventKey_5dd4i")]
 
 [node name="main_menu" type="Node3D" unique_id=162333225]
 

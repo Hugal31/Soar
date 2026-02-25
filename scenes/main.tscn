@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://l25byk5j4gus"]
 
 [ext_resource type="Script" uid="uid://2escb2wg1wg8" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3D.gd" id="1_5j3ov"]
-[ext_resource type="Script" uid="uid://72v2s1utf5lk" path="res://scenes/main.gd" id="1_8cmnw"]
+[ext_resource type="Script" uid="uid://72v2s1utf5lk" path="res://scripts/game_manager.gd" id="1_8cmnw"]
 [ext_resource type="PackedScene" uid="uid://chji78mhvr35x" path="res://entities/aircraft/ask21/ask_21.tscn" id="1_mpoqe"]
 [ext_resource type="Shader" uid="uid://5d12r1g27e44" path="res://shaders/fog.gdshader" id="1_r6fcu"]
 [ext_resource type="PackedScene" uid="uid://bhgsvhdsjr8nd" path="res://ui/aircraft_hud.tscn" id="2_3c3kt"]
@@ -266,10 +266,12 @@ shader = ExtResource("1_r6fcu")
 shader_parameter/fog_start = 0.9993
 shader_parameter/fog_color = Color(0.682353, 0.788235, 1, 1)
 
-[node name="Node3D" type="Node3D" unique_id=1336041736 node_paths=PackedStringArray("aircraft")]
+[node name="Node3D" type="Node3D" unique_id=1336041736]
+
+[node name="GameManager" type="Node" parent="." unique_id=1580589865 node_paths=PackedStringArray("aircraft")]
 script = ExtResource("1_8cmnw")
 engine_time_scale = 4.0
-aircraft = NodePath("Glider")
+aircraft = NodePath("../Glider")
 
 [node name="UI" type="Control" parent="." unique_id=347147925]
 layout_mode = 3
@@ -409,15 +411,15 @@ tiles_directory = "res://entities/terrains/tiles"
 [node name="WindRandomizer" type="Node" parent="." unique_id=702878323]
 script = ExtResource("14_vdw7m")
 
-[connection signal="quit" from="UI/PauseMenu" to="." method="_on_quit"]
-[connection signal="resume" from="UI/PauseMenu" to="." method="unpause"]
-[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Restart" to="." method="restart"]
-[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit"]
-[connection signal="pressed" from="UI/WinScreen/VBoxContainer/VBoxContainer/Restart" to="." method="restart"]
-[connection signal="pressed" from="UI/WinScreen/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit"]
-[connection signal="crashed" from="Glider" to="." method="game_over"]
-[connection signal="fuel_level_changed" from="Glider" to="." method="_on_glider_fuel_level_changed"]
-[connection signal="landed" from="Glider" to="." method="win"]
+[connection signal="quit" from="UI/PauseMenu" to="GameManager" method="_on_quit"]
+[connection signal="resume" from="UI/PauseMenu" to="GameManager" method="unpause"]
+[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Restart" to="GameManager" method="restart"]
+[connection signal="pressed" from="UI/GameOverMenu/VBoxContainer/VBoxContainer/Quit" to="GameManager" method="_on_quit"]
+[connection signal="pressed" from="UI/WinScreen/VBoxContainer/VBoxContainer/Restart" to="GameManager" method="restart"]
+[connection signal="pressed" from="UI/WinScreen/VBoxContainer/VBoxContainer/Quit" to="GameManager" method="_on_quit"]
+[connection signal="crashed" from="Glider" to="GameManager" method="game_over"]
+[connection signal="fuel_level_changed" from="Glider" to="UI/Aircraft HUD" method="set_fuel"]
+[connection signal="landed" from="Glider" to="GameManager" method="win"]
 [connection signal="position_changed" from="Glider" to="Terrain" method="_on_player_position_changed"]
 
 [editable path="UI/WinScreen"]

@@ -1,13 +1,13 @@
-extends Node3D
+extends Node
 
 @export var engine_time_scale := 3.
 @export var aircraft: Node3D
 @export var score_scale := 20
 
-@onready var _pause_menu := $UI/PauseMenu
-@onready var _hud := $"UI/Aircraft HUD"
-@onready var _game_over_menu = $UI/GameOverMenu
-@onready var _win_screen = $UI/WinScreen
+@onready var _pause_menu := $"../UI/PauseMenu"
+@onready var _hud := $"../UI/Aircraft HUD"
+@onready var _game_over_menu = $"../UI/GameOverMenu"
+@onready var _win_screen = $"../UI/WinScreen"
 
 var _aircraft_start_score: int = 0
 var _score: int = 0
@@ -50,6 +50,7 @@ func toggle_pause():
 
 
 func game_over():
+	_lock_score = true
 	_game_over_menu.visible = true
 
 
@@ -87,7 +88,3 @@ func win():
 
 func _on_quit():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
-
-
-func _on_glider_fuel_level_changed(fuel: int):
-	_hud.set_fuel(fuel)

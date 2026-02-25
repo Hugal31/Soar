@@ -98,5 +98,14 @@ func _delete_front():
 		var length: float = child.get_meta("tile_length", DEFAULT_LENGTH)
 		if child.position.z + length / 2. <= _first_terrain_z_end:
 			KLogger.info("Delete tile %s at z=%.0f" % [child.name, child.position.z], LOGNAME)
+			remove_child(child)
 			child.queue_free()
 			return
+
+	# Find the next first terrain
+	_first_terrain_z_end = INF
+	for child in get_children():
+		var length: float = child.get_meta("tile_length", DEFAULT_LENGTH)
+		var z_end: float = child.position.z + length / 2.
+		if z_end < _first_terrain_z_end:
+			_first_terrain_z_end = z_end
